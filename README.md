@@ -3,12 +3,21 @@
   <p><strong>High-end, aesthetic, minimalistic SVG badge generator for modern developers.</strong></p>
   <p>Zero external network latency. Pixel-perfect geometric optics. Handcrafted typography and palettes.</p>
   <p>
+    <a href="https://a-kio.github.io/Badgify/"><strong>Open Live Studio &rarr;</strong></a>
+  </p>
+  <p>
     <a href="LICENSE"><img src="badges/solid/mit.svg" alt="MIT License" height="28" /></a>
     <img src="badges/solid/node.svg" alt="Node.js 22" height="28" />
     <img src="badges/solid/typescript.svg" alt="TypeScript" height="28" />
     <img src="badges/solid/status-stable.svg" alt="Stable" height="28" />
     <img src="badges/solid/local-first.svg" alt="Local-first" height="28" />
   </p>
+</div>
+
+---
+
+<div align="center">
+  <img src="assets/studio-clean.png" alt="Badgify Web Studio" width="100%" />
 </div>
 
 ---
