@@ -68,36 +68,45 @@ var ICONS = {
 
 // src/palette.ts
 var PALETTE = {
-  // Vibrant Blues & Cyans
-  electricBlue: "#2563eb",
-  skyBlue: "#0284c7",
+  // Vibrant Yellows & Golds
+  yellow: "#eab308",
+  brightYellow: "#facc15",
+  sunflower: "#fbbf24",
+  gold: "#f59e0b",
+  amber: "#d97706",
+  // Striking Pinks, Roses & Magentas
+  rose: "#f43f5e",
+  pink: "#ec4899",
+  hotPink: "#fb7185",
+  fuchsia: "#d946ef",
+  magenta: "#e11d48",
+  // Bold Reds & Crimsons
+  red: "#ef4444",
+  crimson: "#dc2626",
+  ruby: "#be123c",
+  // Warm Oranges & Corals
+  orange: "#f97316",
+  deepOrange: "#ea580c",
+  coral: "#ff5722",
+  tangerine: "#fb923c",
+  // Premium Purples & Violets
+  purple: "#8b5cf6",
+  violet: "#7c3aed",
+  indigo: "#6366f1",
+  deepIndigo: "#4f46e5",
+  royalPurple: "#581c87",
+  // Vibrant Cyans & Blues
   cyan: "#06b6d4",
   neonCyan: "#00d8ff",
   tailwindCyan: "#0ea5e9",
-  // Vibrant Greens & Mints
-  nodeGreen: "#388e3c",
+  skyBlue: "#0284c7",
+  electricBlue: "#2563eb",
+  // Fresh Greens & Mints
+  nodeGreen: "#16a34a",
   emerald: "#10b981",
   mint: "#059669",
   neonMint: "#00dc82",
   brightGreen: "#22c55e",
-  // Warm Ambers & Oranges
-  amber: "#d97706",
-  gold: "#f59e0b",
-  sunflower: "#fbbf24",
-  orange: "#f97316",
-  deepOrange: "#ea580c",
-  coral: "#ff5722",
-  // Striking Reds & Pinks
-  crimson: "#dc2626",
-  rose: "#f43f5e",
-  ruby: "#e11d48",
-  fuchsia: "#d946ef",
-  magenta: "#ec4899",
-  // Premium Purples & Violets
-  violet: "#7c3aed",
-  purple: "#8b5cf6",
-  indigo: "#4f46e5",
-  deepIndigo: "#3730a3",
   // Neutrals (for split backgrounds & containers)
   slateDark: "#181d26",
   slateBorder: "#333b47",
@@ -353,7 +362,7 @@ var PRESETS = {
     category: "frontend",
     defaultStyle: "solid",
     value: "React",
-    color: PALETTE.skyBlue,
+    color: PALETTE.cyan,
     icon: "react",
     description: "React UI library"
   },
@@ -364,7 +373,7 @@ var PRESETS = {
     defaultStyle: "solid",
     value: "React Native",
     color: PALETTE.skyBlue,
-    icon: "react",
+    icon: "react-native",
     description: "React Native mobile framework"
   },
   nextjs: {
@@ -393,7 +402,7 @@ var PRESETS = {
     category: "frontend",
     defaultStyle: "solid",
     value: "Svelte",
-    color: PALETTE.deepOrange,
+    color: PALETTE.coral,
     icon: "svelte",
     description: "Svelte reactive framework"
   },
@@ -403,9 +412,19 @@ var PRESETS = {
     category: "frontend",
     defaultStyle: "solid",
     value: "Astro",
-    color: PALETTE.purple,
+    color: PALETTE.violet,
     icon: "astro",
     description: "Astro content-driven framework"
+  },
+  angular: {
+    id: "angular",
+    name: "Angular",
+    category: "frontend",
+    defaultStyle: "solid",
+    value: "Angular",
+    color: PALETTE.red,
+    icon: "angular",
+    description: "Angular web application framework"
   },
   tailwindcss: {
     id: "tailwindcss",
@@ -417,13 +436,23 @@ var PRESETS = {
     icon: "tailwindcss",
     description: "Tailwind CSS utility-first framework"
   },
+  sass: {
+    id: "sass",
+    name: "Sass",
+    category: "frontend",
+    defaultStyle: "solid",
+    value: "Sass",
+    color: PALETTE.pink,
+    icon: "sass",
+    description: "Sass CSS preprocessor"
+  },
   vite: {
     id: "vite",
     name: "Vite",
     category: "tooling",
     defaultStyle: "solid",
     value: "Vite",
-    color: PALETTE.violet,
+    color: PALETTE.purple,
     icon: "vite",
     description: "Vite frontend build tool"
   },
@@ -473,7 +502,7 @@ var PRESETS = {
     category: "tooling",
     defaultStyle: "solid",
     value: "Tauri",
-    color: PALETTE.cyan,
+    color: PALETTE.gold,
     icon: "tauri",
     description: "Tauri cross-platform desktop framework"
   },
@@ -525,7 +554,7 @@ var PRESETS = {
     category: "backend",
     defaultStyle: "solid",
     value: "JavaScript",
-    color: PALETTE.gold,
+    color: PALETTE.yellow,
     icon: "javascript",
     description: "JavaScript programming language"
   },
@@ -535,7 +564,7 @@ var PRESETS = {
     category: "backend",
     defaultStyle: "solid",
     value: "Python 3.12+",
-    color: PALETTE.skyBlue,
+    color: PALETTE.gold,
     icon: "python",
     description: "Python programming language"
   },
@@ -565,7 +594,7 @@ var PRESETS = {
     category: "backend",
     defaultStyle: "solid",
     value: "Bun",
-    color: PALETTE.rose,
+    color: PALETTE.hotPink,
     icon: "bun",
     description: "Bun fast all-in-one JavaScript runtime"
   },
@@ -578,6 +607,16 @@ var PRESETS = {
     color: PALETTE.slateDeep,
     icon: "deno",
     description: "Deno secure JavaScript/TypeScript runtime"
+  },
+  trpc: {
+    id: "trpc",
+    name: "tRPC",
+    category: "backend",
+    defaultStyle: "solid",
+    value: "tRPC",
+    color: PALETTE.skyBlue,
+    icon: "trpc",
+    description: "End-to-end typesafe APIs"
   },
   // --- DATABASES & CLOUD ---
   postgresql: {
@@ -596,7 +635,7 @@ var PRESETS = {
     category: "database",
     defaultStyle: "solid",
     value: "Supabase",
-    color: PALETTE.emerald,
+    color: PALETTE.mint,
     icon: "supabase",
     description: "Supabase open source Firebase alternative"
   },
@@ -630,13 +669,23 @@ var PRESETS = {
     icon: "mongodb",
     description: "MongoDB document database"
   },
+  prisma: {
+    id: "prisma",
+    name: "Prisma",
+    category: "database",
+    defaultStyle: "solid",
+    value: "Prisma ORM",
+    color: PALETTE.indigo,
+    icon: "prisma",
+    description: "Prisma next-generation ORM"
+  },
   graphql: {
     id: "graphql",
     name: "GraphQL",
     category: "backend",
     defaultStyle: "solid",
     value: "GraphQL",
-    color: PALETTE.ruby,
+    color: PALETTE.pink,
     icon: "graphql",
     description: "GraphQL query language for APIs"
   },
@@ -656,7 +705,7 @@ var PRESETS = {
     category: "devops",
     defaultStyle: "solid",
     value: "Kubernetes",
-    color: PALETTE.electricBlue,
+    color: PALETTE.indigo,
     icon: "kubernetes",
     description: "Kubernetes container orchestration"
   },
@@ -666,7 +715,7 @@ var PRESETS = {
     category: "devops",
     defaultStyle: "solid",
     value: "CI Passing",
-    color: PALETTE.brightGreen,
+    color: PALETTE.emerald,
     icon: "githubactions",
     description: "GitHub Actions workflow status"
   },
@@ -675,10 +724,30 @@ var PRESETS = {
     name: "Cloudflare",
     category: "devops",
     defaultStyle: "solid",
-    value: "Cloudflare Workers",
+    value: "Cloudflare",
     color: PALETTE.orange,
     icon: "cloudflare",
     description: "Cloudflare edge network"
+  },
+  aws: {
+    id: "aws",
+    name: "AWS",
+    category: "devops",
+    defaultStyle: "solid",
+    value: "AWS Cloud",
+    color: PALETTE.gold,
+    icon: "aws",
+    description: "Amazon Web Services"
+  },
+  linux: {
+    id: "linux",
+    name: "Linux",
+    category: "devops",
+    defaultStyle: "solid",
+    value: "Linux",
+    color: PALETTE.brightYellow,
+    icon: "linux",
+    description: "Linux operating system"
   },
   // --- TESTING & QUALITY ---
   vitest: {
@@ -687,9 +756,19 @@ var PRESETS = {
     category: "testing",
     defaultStyle: "solid",
     value: "Vitest",
-    color: PALETTE.brightGreen,
+    color: PALETTE.brightYellow,
     icon: "vitest",
     description: "Vitest next generation testing framework"
+  },
+  jest: {
+    id: "jest",
+    name: "Jest",
+    category: "testing",
+    defaultStyle: "solid",
+    value: "Jest",
+    color: PALETTE.crimson,
+    icon: "jest",
+    description: "Jest delightful JavaScript testing"
   },
   playwright: {
     id: "playwright",
@@ -701,13 +780,23 @@ var PRESETS = {
     icon: "playwright",
     description: "Playwright end-to-end testing"
   },
+  cypress: {
+    id: "cypress",
+    name: "Cypress",
+    category: "testing",
+    defaultStyle: "solid",
+    value: "Cypress",
+    color: PALETTE.emerald,
+    icon: "cypress",
+    description: "Cypress modern testing"
+  },
   biome: {
     id: "biome",
     name: "Biome",
     category: "tooling",
     defaultStyle: "solid",
     value: "Biome Formatted",
-    color: PALETTE.skyBlue,
+    color: PALETTE.yellow,
     icon: "biome",
     description: "Biome fast formatter and linter"
   },
@@ -717,9 +806,39 @@ var PRESETS = {
     category: "tooling",
     defaultStyle: "solid",
     value: "ESLint",
-    color: PALETTE.indigo,
+    color: PALETTE.purple,
     icon: "eslint",
     description: "ESLint JavaScript linter"
+  },
+  turborepo: {
+    id: "turborepo",
+    name: "Turborepo",
+    category: "tooling",
+    defaultStyle: "solid",
+    value: "Turborepo",
+    color: PALETTE.magenta,
+    icon: "turborepo",
+    description: "High-performance monorepo build system"
+  },
+  npm: {
+    id: "npm",
+    name: "NPM",
+    category: "tooling",
+    defaultStyle: "solid",
+    value: "npm package",
+    color: PALETTE.crimson,
+    icon: "npm",
+    description: "Node Package Manager"
+  },
+  pnpm: {
+    id: "pnpm",
+    name: "pnpm",
+    category: "tooling",
+    defaultStyle: "solid",
+    value: "pnpm fast",
+    color: PALETTE.gold,
+    icon: "pnpm",
+    description: "Fast, disk space efficient package manager"
   },
   // --- META, LICENSES, STATUS & PRIVACY ---
   mit: {
@@ -728,7 +847,7 @@ var PRESETS = {
     category: "meta",
     defaultStyle: "solid",
     value: "MIT License",
-    color: PALETTE.electricBlue,
+    color: PALETTE.purple,
     icon: "osi",
     description: "MIT Open Source License"
   },
@@ -739,7 +858,7 @@ var PRESETS = {
     defaultStyle: "split",
     label: "license",
     value: "MIT",
-    color: PALETTE.electricBlue,
+    color: PALETTE.purple,
     icon: "osi",
     description: "MIT license split badge"
   },
@@ -759,7 +878,7 @@ var PRESETS = {
     category: "meta",
     defaultStyle: "solid",
     value: "Alpha",
-    color: PALETTE.amber,
+    color: PALETTE.gold,
     icon: "status-dot",
     description: "Alpha project status"
   },
@@ -770,7 +889,7 @@ var PRESETS = {
     defaultStyle: "split",
     label: "status",
     value: "alpha",
-    color: PALETTE.amber,
+    color: PALETTE.gold,
     icon: "status-dot",
     description: "Alpha status split badge"
   },
@@ -780,7 +899,7 @@ var PRESETS = {
     category: "meta",
     defaultStyle: "solid",
     value: "Beta",
-    color: PALETTE.electricBlue,
+    color: PALETTE.skyBlue,
     icon: "status-dot",
     description: "Beta project status"
   },
@@ -800,7 +919,7 @@ var PRESETS = {
     category: "meta",
     defaultStyle: "solid",
     value: "Local-first, no telemetry",
-    color: PALETTE.tailwindCyan,
+    color: PALETTE.rose,
     icon: "shield-lock",
     description: "Privacy-focused local-first software"
   },
@@ -811,7 +930,7 @@ var PRESETS = {
     defaultStyle: "split",
     label: "privacy",
     value: "local-first",
-    color: PALETTE.tailwindCyan,
+    color: PALETTE.rose,
     icon: "shield-lock",
     description: "Privacy split badge with zero telemetry"
   },

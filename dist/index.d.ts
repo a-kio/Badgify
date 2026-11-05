@@ -57,34 +57,42 @@ type IconName = keyof typeof ICONS;
 /**
  * High-end vibrant color system for Badgify.
  * Curated for modern developer aesthetics, clean contrast, and maximum legibility.
- * No muddy or washed-out tones (e.g. #0d9488 is excluded).
+ * Rich spectrum covering Yellows, Pinks, Reds, Oranges, Purples, Cyans, Blues, and Greens.
+ * No muddy or washed-out tones (e.g. #0d9488 is strictly excluded).
  */
 declare const PALETTE: {
-    readonly electricBlue: "#2563eb";
-    readonly skyBlue: "#0284c7";
+    readonly yellow: "#eab308";
+    readonly brightYellow: "#facc15";
+    readonly sunflower: "#fbbf24";
+    readonly gold: "#f59e0b";
+    readonly amber: "#d97706";
+    readonly rose: "#f43f5e";
+    readonly pink: "#ec4899";
+    readonly hotPink: "#fb7185";
+    readonly fuchsia: "#d946ef";
+    readonly magenta: "#e11d48";
+    readonly red: "#ef4444";
+    readonly crimson: "#dc2626";
+    readonly ruby: "#be123c";
+    readonly orange: "#f97316";
+    readonly deepOrange: "#ea580c";
+    readonly coral: "#ff5722";
+    readonly tangerine: "#fb923c";
+    readonly purple: "#8b5cf6";
+    readonly violet: "#7c3aed";
+    readonly indigo: "#6366f1";
+    readonly deepIndigo: "#4f46e5";
+    readonly royalPurple: "#581c87";
     readonly cyan: "#06b6d4";
     readonly neonCyan: "#00d8ff";
     readonly tailwindCyan: "#0ea5e9";
-    readonly nodeGreen: "#388e3c";
+    readonly skyBlue: "#0284c7";
+    readonly electricBlue: "#2563eb";
+    readonly nodeGreen: "#16a34a";
     readonly emerald: "#10b981";
     readonly mint: "#059669";
     readonly neonMint: "#00dc82";
     readonly brightGreen: "#22c55e";
-    readonly amber: "#d97706";
-    readonly gold: "#f59e0b";
-    readonly sunflower: "#fbbf24";
-    readonly orange: "#f97316";
-    readonly deepOrange: "#ea580c";
-    readonly coral: "#ff5722";
-    readonly crimson: "#dc2626";
-    readonly rose: "#f43f5e";
-    readonly ruby: "#e11d48";
-    readonly fuchsia: "#d946ef";
-    readonly magenta: "#ec4899";
-    readonly violet: "#7c3aed";
-    readonly purple: "#8b5cf6";
-    readonly indigo: "#4f46e5";
-    readonly deepIndigo: "#3730a3";
     readonly slateDark: "#181d26";
     readonly slateBorder: "#333b47";
     readonly slateDeep: "#0f172a";

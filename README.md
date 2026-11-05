@@ -121,12 +121,22 @@ badgify list
 ```
 
 Available categories include:
-- **Frontend & Mobile**: `react`, `react-native`, `nextjs`, `vue`, `svelte`, `astro`, `tailwindcss`, `vite`, `flutter`, `swift`, `kotlin`, `expo`, `electron`, `tauri`
-- **Backend & Runtimes**: `node`, `typescript`, `javascript`, `python`, `rust`, `go`, `bun`, `deno`
-- **Databases**: `postgresql`, `sqlite`, `redis`, `mongodb`, `supabase`
-- **DevOps**: `docker`, `kubernetes`, `githubactions`, `cloudflare`
-- **Testing & Quality**: `vitest`, `playwright`, `biome`, `eslint`
-- **Status & Meta**: `mit`, `apache`, `status-alpha`, `status-beta`, `status-stable`, `local-first`, `encrypted`
+- **Frontend & Mobile**: `react`, `react-native`, `nextjs`, `vue`, `svelte`, `astro`, `angular`, `tailwindcss`, `sass`, `vite`, `flutter`, `swift`, `kotlin`, `expo`, `electron`, `tauri`
+- **Backend & Runtimes**: `node`, `typescript`, `javascript`, `python`, `rust`, `go`, `bun`, `deno`, `trpc`
+- **Databases & Cloud**: `postgresql`, `sqlite`, `redis`, `mongodb`, `supabase`, `prisma`
+- **DevOps & Infra**: `docker`, `kubernetes`, `githubactions`, `cloudflare`, `aws`, `linux`
+- **Testing & Quality**: `vitest`, `jest`, `playwright`, `cypress`, `biome`, `eslint`, `turborepo`, `npm`, `pnpm`
+- **Status, Meta & Privacy**: `mit`, `apache`, `status-alpha`, `status-beta`, `status-stable`, `local-first`, `encrypted`
+
+### Curated Color Spectrum
+No more muddy tones or monochrome blues/greens. Badgify features a balanced, vibrant palette:
+- 🟨 **Yellows & Golds**: `#eab308` (JavaScript, Biome), `#f59e0b` (Python, Status Alpha, AWS, pnpm), `#facc15` (Vitest, Linux)
+- 🌸 **Pinks & Roses**: `#f43f5e` (Local-First), `#fb7185` (Bun), `#ec4899` (GraphQL, Sass)
+- 🟥 **Reds & Crimsons**: `#dc2626` (Redis, Jest, npm), `#ef4444` (Angular)
+- 🟧 **Oranges & Corals**: `#ea580c` (Rust, Apache), `#ff5722` (Svelte), `#f97316` (Swift, Cloudflare)
+- 🟪 **Purples & Violets**: `#8b5cf6` (MIT License, Vite, Kotlin, ESLint), `#7c3aed` (Astro, Encrypted), `#6366f1` (Kubernetes, Prisma)
+- 🟦 **Cyans & Blues**: `#06b6d4` (React, Go), `#0284c7` (React Native, Docker, SQLite), `#2563eb` (TypeScript, PostgreSQL), `#0ea5e9` (Tailwind)
+- 🟩 **Greens & Mints**: `#16a34a` (Node.js), `#10b981` (Vue, Playwright, Stable), `#059669` (Supabase), `#22c55e` (MongoDB)
 
 ---
 
