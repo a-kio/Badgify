@@ -1,0 +1,54 @@
+{
+  "name": "badgify",
+  "version": "1.0.0",
+  "description": "High-end, aesthetic, minimalistic SVG badge generator and CLI for modern developers.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "bin": {
+    "badgify": "./bin/badgify.js"
+  },
+  "files": [
+    "dist",
+    "bin",
+    "badges"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean && tsup src/cli.ts --format esm",
+    "test": "vitest run",
+    "generate-catalog": "tsx scripts/generate-catalog.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "badge",
+    "badges",
+    "svg",
+    "shields",
+    "branding",
+    "github",
+    "readme",
+    "developer",
+    "minimalist",
+    "aesthetic"
+  ],
+  "author": "a-kio",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3",
+    "vitest": "^2.1.8"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  }
+}

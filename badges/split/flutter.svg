@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="28" viewBox="0 0 140 28" fill="none" role="img" aria-label="flutter: Flutter">
+  <title>flutter: Flutter</title>
+  <clipPath id="clip_dp4epp"><rect width="140" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_dp4epp)">
+    <rect width="77" height="28" fill="#181d26"/>
+    <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="#ffffff" d="M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z"/>
+    </svg>
+    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">flutter</text>
+    <rect x="77" width="63" height="28" fill="#0284c7"/>
+    <text x="109" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">Flutter</text>
+  </g>
+  <rect width="140" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
+</svg>
