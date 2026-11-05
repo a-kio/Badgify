@@ -49,9 +49,9 @@ interface Preset {
 declare function generateBadge(options: BadgeOptions): string;
 
 /**
- * Curated collection of 100+ precision SVG icon paths (24x24 viewBox).
+ * Curated collection of 218+ precision SVG icon paths (24x24 viewBox).
  * Includes tech stacks, mobile/desktop platforms (iOS, Android), databases,
- * DevOps cloud providers, and versatile UI utility symbols for custom badges.
+ * DevOps cloud providers, AI/ML tools, and versatile UI utility symbols for custom badges.
  */
 declare const ICONS: Record<string, string>;
 type IconName = keyof typeof ICONS;

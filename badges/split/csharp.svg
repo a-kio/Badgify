@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="130" height="28" viewBox="0 0 130 28" fill="none" role="img" aria-label="backend: C#">
   <title>backend: C#</title>
-  <clipPath id="clip_a72f5d"><rect width="130" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_a72f5d)">
+  <clipPath id="clip_dvwbht"><rect width="130" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_dvwbht)">
     <rect width="90" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" d="M12 0a12 12 0 1 0 12 12A12 12 0 0 0 12 0zm-2.4 5.2a6.8 6.8 0 1 1-4.8 11.6 1 1 0 1 1 1.4-1.4 4.8 4.8 0 1 0 0-6.8 1 1 0 1 1-1.4-1.4 6.77 6.77 0 0 1 4.8-2zm8.6 3.8h-1.2l.3-1.5h-1.2l-.3 1.5h-1.5l.3-1.5h-1.2l-.3 1.5H12v1.2h1.1l-.3 1.5H11.5v1.2h1.1l-.3 1.5h1.2l.3-1.5h1.5l-.3 1.5h1.2l.3-1.5h1.3v-1.2h-1.1l.3-1.5h1.3V9zm-2.7 2.7h-1.5l.3-1.5h1.5z"/>

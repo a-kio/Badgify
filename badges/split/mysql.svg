@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="159" height="28" viewBox="0 0 159 28" fill="none" role="img" aria-label="database: MySQL">
   <title>database: MySQL</title>
-  <clipPath id="clip_mf5v46"><rect width="159" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_mf5v46)">
+  <clipPath id="clip_rcm9yj"><rect width="159" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_rcm9yj)">
     <rect width="93" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5c-2.48 0-4.5-2.02-4.5-4.5S10.52 7.5 13 7.5c1.47 0 2.78.71 3.6 1.8l-1.3 1.3C14.8 9.9 13.97 9.5 13 9.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5c.97 0 1.8-.4 2.3-1.1l1.3 1.3c-.82 1.09-2.13 1.8-3.6 1.8z"/>

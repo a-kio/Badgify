@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="168" height="28" viewBox="0 0 168 28" fill="none" role="img" aria-label="platform: Windows">
   <title>platform: Windows</title>
-  <clipPath id="clip_n0ir2d"><rect width="168" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_n0ir2d)">
+  <clipPath id="clip_tdnr43"><rect width="168" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_tdnr43)">
     <rect width="90" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.949-1.801"/>

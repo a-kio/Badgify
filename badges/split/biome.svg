@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="211" height="28" viewBox="0 0 211 28" fill="none" role="img" aria-label="tooling: Biome Formatted">
   <title>tooling: Biome Formatted</title>
-  <clipPath id="clip_2mck80"><rect width="211" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_2mck80)">
+  <clipPath id="clip_jtk65t"><rect width="211" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_jtk65t)">
     <rect width="82" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" d="m12 1.608-5.346 9.259a12.069 12.069 0 0 1 6.326-.219l1.807.426-1.7 7.208-1.809-.427c-2.224-.524-4.361.644-5.264 2.507l-1.672-.809c1.276-2.636 4.284-4.232 7.364-3.505l.847-3.592A10.211 10.211 0 0 0 0 22.392h24L12 1.608Z"/>

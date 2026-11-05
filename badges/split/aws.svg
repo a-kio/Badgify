@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="175" height="28" viewBox="0 0 175 28" fill="none" role="img" aria-label="devops: AWS Cloud">
   <title>devops: AWS Cloud</title>
-  <clipPath id="clip_my9ct8"><rect width="175" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_my9ct8)">
+  <clipPath id="clip_cw5q0c"><rect width="175" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_cw5q0c)">
     <rect width="83" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" d="M6.55 16.5c-2.4 0-4.05-1.2-4.05-3.3 0-2.4 2.1-3.6 4.35-3.6 1.05 0 2.1.3 2.7.6v-.6c0-1.35-.9-2.1-2.4-2.1-1.2 0-2.25.45-3 1.05l-.9-1.2c1.05-.9 2.55-1.5 4.35-1.5 2.55 0 4.2 1.35 4.2 3.9v5.85c-.9.6-2.55.9-4.2.9zm.6-1.5c1.2 0 2.25-.45 2.85-1.05v-2.1c-.6-.3-1.5-.45-2.4-.45-1.5 0-2.85.75-2.85 2.1 0 1.05.9 1.5 2.4 1.5zm10.95 1.5c-2.4 0-4.05-1.2-4.05-3.3 0-2.4 2.1-3.6 4.35-3.6 1.05 0 2.1.3 2.7.6v-.6c0-1.35-.9-2.1-2.4-2.1-1.2 0-2.25.45-3 1.05l-.9-1.2c1.05-.9 2.55-1.5 4.35-1.5 2.55 0 4.2 1.35 4.2 3.9v5.85c-.9.6-2.55.9-4.2.9zm.6-1.5c1.2 0 2.25-.45 2.85-1.05v-2.1c-.6-.3-1.5-.45-2.4-.45-1.5 0-2.85.75-2.85 2.1 0 1.05.9 1.5 2.4 1.5z"/>
