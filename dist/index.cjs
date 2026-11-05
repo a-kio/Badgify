@@ -20,19 +20,86 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var index_exports = {};
 __export(index_exports, {
+  DARK_FOREGROUND: () => DARK_FOREGROUND,
   DEFAULT_FONT_FAMILY: () => DEFAULT_FONT_FAMILY,
   ICONS: () => ICONS,
+  LIGHT_FOREGROUND: () => LIGHT_FOREGROUND,
   PALETTE: () => PALETTE,
   PRESETS: () => PRESETS,
   badgeFromPreset: () => badgeFromPreset,
   generateBadge: () => generateBadge,
   getCharacterWidth10px: () => getCharacterWidth10px,
+  getContrastRatio: () => getContrastRatio,
+  getOptimalForeground: () => getOptimalForeground,
   getPreset: () => getPreset,
+  getRelativeLuminance: () => getRelativeLuminance,
+  isBrightColor: () => isBrightColor,
   isCjkCharacter: () => isCjkCharacter,
   listPresets: () => listPresets,
-  measureText: () => measureText
+  measureText: () => measureText,
+  parseColorToRgb: () => parseColorToRgb
 });
 module.exports = __toCommonJS(index_exports);
+
+// src/contrast.ts
+var DARK_FOREGROUND = "#000000";
+var LIGHT_FOREGROUND = "#ffffff";
+function parseColorToRgb(color) {
+  if (!color || typeof color !== "string") return null;
+  const trimmed = color.trim();
+  if (trimmed.startsWith("#")) {
+    const hex = trimmed.slice(1);
+    if (hex.length === 3 || hex.length === 4) {
+      const r = Number.parseInt(hex[0] + hex[0], 16);
+      const g = Number.parseInt(hex[1] + hex[1], 16);
+      const b = Number.parseInt(hex[2] + hex[2], 16);
+      return Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b) ? null : [r, g, b];
+    }
+    if (hex.length === 6 || hex.length === 8) {
+      const r = Number.parseInt(hex.substring(0, 2), 16);
+      const g = Number.parseInt(hex.substring(2, 4), 16);
+      const b = Number.parseInt(hex.substring(4, 6), 16);
+      return Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b) ? null : [r, g, b];
+    }
+  }
+  const rgbMatch = trimmed.match(/^rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
+  if (rgbMatch) {
+    const r = Number.parseInt(rgbMatch[1], 10);
+    const g = Number.parseInt(rgbMatch[2], 10);
+    const b = Number.parseInt(rgbMatch[3], 10);
+    return [r, g, b];
+  }
+  return null;
+}
+function getRelativeLuminance(color) {
+  const rgb = parseColorToRgb(color);
+  if (!rgb) return 0;
+  const srgb = rgb.map((val) => {
+    const c = val / 255;
+    return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
+}
+function getContrastRatio(foreground, background) {
+  const l1 = getRelativeLuminance(foreground);
+  const l2 = getRelativeLuminance(background);
+  const lighter = Math.max(l1, l2);
+  const darker = Math.min(l1, l2);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+function isBrightColor(color, threshold = 0.42) {
+  if (!color) return false;
+  return getRelativeLuminance(color) >= threshold;
+}
+function getOptimalForeground(bgColor, preferredColor, autoContrast = true) {
+  if (!autoContrast && preferredColor) {
+    return preferredColor;
+  }
+  if (preferredColor && preferredColor.toLowerCase() !== "#ffffff" && preferredColor.toLowerCase() !== "#fff" && preferredColor.toLowerCase() !== "white") {
+    return preferredColor;
+  }
+  return isBrightColor(bgColor) ? DARK_FOREGROUND : LIGHT_FOREGROUND;
+}
 
 // src/icons.ts
 var ICONS = {
@@ -537,16 +604,17 @@ function generateBadge(options) {
     label,
     color = PALETTE.electricBlue,
     leftColor = PALETTE.slateDark,
-    textColor = PALETTE.white,
-    labelColor = PALETTE.lightGray,
+    textColor,
+    labelColor,
     icon,
-    iconColor = PALETTE.white,
+    iconColor,
     iconViewBox = "0 0 24 24",
     style = "solid",
     height = 28,
     radius,
     letterSpacing = 0.3,
-    ariaLabel
+    ariaLabel,
+    autoContrast = true
   } = options;
   const rx = resolveRadius(radius, height);
   const iconPath = resolveIconPath(icon);
@@ -560,6 +628,9 @@ function generateBadge(options) {
   const titleText = ariaLabel ?? (label ? `${label}: ${value}` : value);
   const safeTitle = escapeXml(titleText);
   if (style === "solid") {
+    const isBrightBg = isBrightColor(color);
+    const resolvedTextColor = getOptimalForeground(color, textColor, autoContrast);
+    const resolvedIconColor = getOptimalForeground(color, iconColor, autoContrast);
     const padLeft2 = iconPath ? 10 : 12;
     const padRight2 = 12;
     const iconGap2 = iconPath ? 7 : 0;
@@ -569,17 +640,23 @@ function generateBadge(options) {
     const iconX2 = padLeft2;
     const textX2 = padLeft2 + iconTotal2;
     const iconSvg2 = iconPath ? `  <svg x="${iconX2}" y="${iconY}" width="${iconSize}" height="${iconSize}" viewBox="${iconViewBox}" aria-hidden="true">
-    <path fill="${iconColor}" d="${iconPath}"/>
+    <path fill="${resolvedIconColor}" d="${iconPath}"/>
   </svg>
+` : "";
+    const borderSvg = isBrightBg ? `  <rect width="${totalWidth2}" height="${height}" rx="${rx}" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="1"/>
 ` : "";
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth2}" height="${height}" viewBox="0 0 ${totalWidth2} ${height}" fill="none" role="img" aria-label="${safeTitle}">
   <title>${safeTitle}</title>
   <rect width="${totalWidth2}" height="${height}" rx="${rx}" fill="${color}"/>
-${iconSvg2}  <text x="${textX2}" y="${textY}" fill="${textColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" letter-spacing="${letterSpacing}px">${safeValue}</text>
-</svg>
+${iconSvg2}  <text x="${textX2}" y="${textY}" fill="${resolvedTextColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" letter-spacing="${letterSpacing}px">${safeValue}</text>
+${borderSvg}</svg>
 `;
   }
   if (style === "split") {
+    const isBrightLeft = isBrightColor(leftColor);
+    const resolvedIconColor = getOptimalForeground(leftColor, iconColor, autoContrast);
+    const resolvedLabelColor = labelColor ?? (isBrightLeft ? "#18181b" : PALETTE.lightGray);
+    const resolvedValueColor = getOptimalForeground(color, textColor, autoContrast);
     const padLeft2 = iconPath ? 10 : 12;
     const iconGap2 = iconPath ? 7 : 0;
     const iconTotal2 = iconPath ? iconSize + iconGap2 : 0;
@@ -597,7 +674,7 @@ ${iconSvg2}  <text x="${textX2}" y="${textY}" fill="${textColor}" font-family="$
     const labelX = padLeft2 + iconTotal2;
     const clipId = `clip_${Math.random().toString(36).substring(2, 8)}`;
     const iconSvg2 = iconPath ? `    <svg x="${iconX2}" y="${iconY}" width="${iconSize}" height="${iconSize}" viewBox="${iconViewBox}" aria-hidden="true">
-      <path fill="${iconColor}" d="${iconPath}"/>
+      <path fill="${resolvedIconColor}" d="${iconPath}"/>
     </svg>
 ` : "";
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth2}" height="${height}" viewBox="0 0 ${totalWidth2} ${height}" fill="none" role="img" aria-label="${safeTitle}">
@@ -605,9 +682,9 @@ ${iconSvg2}  <text x="${textX2}" y="${textY}" fill="${textColor}" font-family="$
   <clipPath id="${clipId}"><rect width="${totalWidth2}" height="${height}" rx="${rx}"/></clipPath>
   <g clip-path="url(#${clipId})">
     <rect width="${leftWidth}" height="${height}" fill="${leftColor}"/>
-${iconSvg2}    <text x="${labelX}" y="${textY}" fill="${labelColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${labelFontSize}" font-weight="500" letter-spacing="${letterSpacing}px">${safeLabel || effectiveLabel}</text>
+${iconSvg2}    <text x="${labelX}" y="${textY}" fill="${resolvedLabelColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${labelFontSize}" font-weight="500" letter-spacing="${letterSpacing}px">${safeLabel || effectiveLabel}</text>
     <rect x="${leftWidth}" width="${rightWidth}" height="${height}" fill="${color}"/>
-    <text x="${valueCenterX}" y="${textY}" fill="${textColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" text-anchor="middle" letter-spacing="${letterSpacing}px">${safeValue}</text>
+    <text x="${valueCenterX}" y="${textY}" fill="${resolvedValueColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" text-anchor="middle" letter-spacing="${letterSpacing}px">${safeValue}</text>
   </g>
   <rect width="${totalWidth2}" height="${height}" rx="${rx}" fill="none" stroke="${PALETTE.slateBorder}" stroke-width="1"/>
 </svg>
@@ -2011,15 +2088,22 @@ function badgeFromPreset(presetId, overrides = {}) {
 }
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  DARK_FOREGROUND,
   DEFAULT_FONT_FAMILY,
   ICONS,
+  LIGHT_FOREGROUND,
   PALETTE,
   PRESETS,
   badgeFromPreset,
   generateBadge,
   getCharacterWidth10px,
+  getContrastRatio,
+  getOptimalForeground,
   getPreset,
+  getRelativeLuminance,
+  isBrightColor,
   isCjkCharacter,
   listPresets,
-  measureText
+  measureText,
+  parseColorToRgb
 });

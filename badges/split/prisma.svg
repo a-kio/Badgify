@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="191" height="28" viewBox="0 0 191 28" fill="none" role="img" aria-label="database: Prisma ORM">
-  <title>database: Prisma ORM</title>
-  <clipPath id="clip_phnhj9"><rect width="191" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_phnhj9)">
-    <rect width="93" height="28" fill="#181d26"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="170" height="28" viewBox="0 0 170 28" fill="none" role="img" aria-label="stack: Prisma ORM">
+  <title>stack: Prisma ORM</title>
+  <clipPath id="clip_lbhpoy"><rect width="170" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_lbhpoy)">
+    <rect width="72" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" d="M21.8068 18.2848L13.5528.7565c-.207-.4382-.639-.7273-1.1286-.7541-.5023-.0293-.9523.213-1.2062.6253L2.266 15.1271c-.2773.4518-.2718 1.0091.0158 1.4555l4.3759 6.7786c.2608.4046.7127.6388 1.1823.6388.1332 0 .267-.0188.3987-.0577l12.7019-3.7568c.3891-.1151.7072-.3904.8737-.7553s.1633-.7828-.0075-1.1454zm-1.8481.7519L9.1814 22.2242c-.3292.0975-.6448-.1873-.5756-.5194l3.8501-18.4386c.072-.3448.5486-.3996.699-.0803l7.1288 15.138c.1344.2856-.019.6224-.325.7128z"/>
     </svg>
-    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">database</text>
-    <rect x="93" width="98" height="28" fill="#6366f1"/>
-    <text x="142" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">Prisma ORM</text>
+    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">stack</text>
+    <rect x="72" width="98" height="28" fill="#6366f1"/>
+    <text x="121" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">Prisma ORM</text>
   </g>
-  <rect width="191" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
+  <rect width="170" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
 </svg>

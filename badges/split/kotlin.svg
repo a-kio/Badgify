@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="140" height="28" viewBox="0 0 140 28" fill="none" role="img" aria-label="mobile: Kotlin">
-  <title>mobile: Kotlin</title>
-  <clipPath id="clip_bxjp1y"><rect width="140" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_bxjp1y)">
-    <rect width="81" height="28" fill="#181d26"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="131" height="28" viewBox="0 0 131 28" fill="none" role="img" aria-label="stack: Kotlin">
+  <title>stack: Kotlin</title>
+  <clipPath id="clip_bnp2n3"><rect width="131" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_bnp2n3)">
+    <rect width="72" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" d="M24 24H0V0h24L12 12Z"/>
     </svg>
-    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">mobile</text>
-    <rect x="81" width="59" height="28" fill="#8b5cf6"/>
-    <text x="111" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">Kotlin</text>
+    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">stack</text>
+    <rect x="72" width="59" height="28" fill="#8b5cf6"/>
+    <text x="102" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">Kotlin</text>
   </g>
-  <rect width="140" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
+  <rect width="131" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
 </svg>

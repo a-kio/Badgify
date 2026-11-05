@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="74" height="28" viewBox="0 0 74 28" fill="none" role="img" aria-label="OLM">
+  <title>OLM</title>
+  <rect width="74" height="28" rx="6" fill="#eab308"/>
+  <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="#000000" d="M12 2a10 10 0 0 0-10 10h6a4 4 0 0 1 8 0h6A10 10 0 0 0 12 2zm0 13a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm0 7a10 10 0 0 0 10-10h-6a4 4 0 0 1-8 0H2a10 10 0 0 0 10 10z"/>
+  </svg>
+  <text x="33" y="18" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.3px">OLM</text>
+  <rect width="74" height="28" rx="6" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="1"/>
+</svg>

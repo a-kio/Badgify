@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="113" height="28" viewBox="0 0 113 28" fill="none" role="img" aria-label="P.A. Works">
+  <title>P.A. Works</title>
+  <rect width="113" height="28" rx="6" fill="#06b6d4"/>
+  <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="#ffffff" d="M3 18l6-10 4 6 3-4 5 8H3zm6-5l2 3h-4l2-3zm7 2l2 3h-4l2-3z"/>
+  </svg>
+  <text x="33" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.3px">P.A. Works</text>
+</svg>

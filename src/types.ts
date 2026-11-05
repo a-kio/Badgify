@@ -44,6 +44,9 @@ export interface BadgeOptions {
 
   /** Accessibility label (title & aria-label attribute) */
   ariaLabel?: string;
+
+  /** Whether to automatically adapt text and icon colors to black on bright backgrounds for high legibility (default: true) */
+  autoContrast?: boolean;
 }
 
 export interface Preset {

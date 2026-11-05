@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="28" viewBox="0 0 128 28" fill="none" role="img" aria-label="架构: 云原生">
+  <title>架构: 云原生</title>
+  <clipPath id="clip_k3wc34"><rect width="128" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_k3wc34)">
+    <rect width="67" height="28" fill="#181d26"/>
+    <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="#ffffff" d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z"/>
+    </svg>
+    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">架构</text>
+    <rect x="67" width="61" height="28" fill="#6366f1"/>
+    <text x="98" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">云原生</text>
+  </g>
+  <rect width="128" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
+</svg>

@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="178" height="28" viewBox="0 0 178 28" fill="none" role="img" aria-label="platform: Arch Linux">
-  <title>platform: Arch Linux</title>
-  <clipPath id="clip_sy2gty"><rect width="178" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_sy2gty)">
-    <rect width="90" height="28" fill="#181d26"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="28" viewBox="0 0 160 28" fill="none" role="img" aria-label="stack: Arch Linux">
+  <title>stack: Arch Linux</title>
+  <clipPath id="clip_tyho1j"><rect width="160" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_tyho1j)">
+    <rect width="72" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" d="M12 0c-.39 0-.74.19-.94.52L.15 19.34a1.08 1.08 0 00.93 1.6h21.84a1.08 1.08 0 00.93-1.6L12.94.52A1.08 1.08 0 0012 0zm0 4.19l7.74 13.75H4.26L12 4.19zm0 5.43l-4.14 7.36h8.28L12 9.62z"/>
     </svg>
-    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">platform</text>
-    <rect x="90" width="88" height="28" fill="#0284c7"/>
-    <text x="134" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">Arch Linux</text>
+    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">stack</text>
+    <rect x="72" width="88" height="28" fill="#0284c7"/>
+    <text x="116" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">Arch Linux</text>
   </g>
-  <rect width="178" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
+  <rect width="160" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
 </svg>

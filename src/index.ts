@@ -1,4 +1,13 @@
 export { generateBadge, DEFAULT_FONT_FAMILY } from './generator.js';
+export {
+  DARK_FOREGROUND,
+  LIGHT_FOREGROUND,
+  getRelativeLuminance,
+  getContrastRatio,
+  isBrightColor,
+  getOptimalForeground,
+  parseColorToRgb,
+} from './contrast.js';
 export { ICONS, type IconName } from './icons.js';
 export { PALETTE, type PaletteColor } from './palette.js';
 export { PRESETS, getPreset, listPresets, type PresetId } from './presets.js';

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="115" height="28" viewBox="0 0 115 28" fill="none" role="img" aria-label="Liden Films">
+  <title>Liden Films</title>
+  <rect width="115" height="28" rx="6" fill="#ea580c"/>
+  <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="#ffffff" d="M14 2L4 14h7l-2 8 10-12h-7l2-8z"/>
+  </svg>
+  <text x="33" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.3px">Liden Films</text>
+</svg>

@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="195" height="28" viewBox="0 0 195 28" fill="none" role="img" aria-label="frontend: Tailwind CSS">
-  <title>frontend: Tailwind CSS</title>
-  <clipPath id="clip_0i37bn"><rect width="195" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_0i37bn)">
-    <rect width="91" height="28" fill="#181d26"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="176" height="28" viewBox="0 0 176 28" fill="none" role="img" aria-label="stack: Tailwind CSS">
+  <title>stack: Tailwind CSS</title>
+  <clipPath id="clip_lw1s7y"><rect width="176" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_lw1s7y)">
+    <rect width="72" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z"/>
     </svg>
-    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">frontend</text>
-    <rect x="91" width="104" height="28" fill="#0ea5e9"/>
-    <text x="143" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">Tailwind CSS</text>
+    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">stack</text>
+    <rect x="72" width="104" height="28" fill="#0ea5e9"/>
+    <text x="124" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">Tailwind CSS</text>
   </g>
-  <rect width="195" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
+  <rect width="176" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
 </svg>

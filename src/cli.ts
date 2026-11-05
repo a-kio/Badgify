@@ -24,6 +24,9 @@ program
   .option('-c, --color <hex>', 'Vibrant accent color hex code (e.g. "#0284c7")', PALETTE.electricBlue)
   .option('-s, --style <type>', 'Badge style: solid, split, or outline', 'solid')
   .option('-i, --icon <nameOrPath>', 'Icon name (e.g. "react", "node", "typescript") or SVG path')
+  .option('--text-color <hex>', 'Explicit text color override')
+  .option('--icon-color <hex>', 'Explicit icon color override')
+  .option('--no-auto-contrast', 'Disable automatic foreground contrast adaptation on bright backgrounds')
   .option('-h, --height <number>', 'Height in pixels (24, 28, 32)', (v) => Number.parseInt(v, 10), 28)
   .option('-r, --radius <typeOrNum>', 'Corner radius: rounded, pill, sharp, or number', 'rounded')
   .option('-o, --output <file>', 'Save SVG directly to file')
@@ -34,6 +37,9 @@ program
       color: options.color,
       style: options.style as BadgeStyle,
       icon: options.icon,
+      textColor: options.textColor,
+      iconColor: options.iconColor,
+      autoContrast: options.autoContrast,
       height: options.height,
       radius: options.radius,
     });
@@ -56,6 +62,9 @@ program
   .option('-c, --color <hex>', 'Override accent color')
   .option('-v, --value <text>', 'Override badge text value')
   .option('-l, --label <text>', 'Override left label')
+  .option('--text-color <hex>', 'Explicit text color override')
+  .option('--icon-color <hex>', 'Explicit icon color override')
+  .option('--no-auto-contrast', 'Disable automatic foreground contrast adaptation on bright backgrounds')
   .option('-o, --output <file>', 'Save SVG directly to file')
   .action((id, options) => {
     const preset = getPreset(id);
@@ -68,6 +77,9 @@ program
       value: options.value ?? preset.value,
       label: options.label ?? preset.label,
       color: options.color ?? preset.color,
+      textColor: options.textColor,
+      iconColor: options.iconColor,
+      autoContrast: options.autoContrast,
       style: (options.style as BadgeStyle) ?? preset.defaultStyle,
       icon: preset.icon,
     });

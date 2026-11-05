@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="158" height="28" viewBox="0 0 158 28" fill="none" role="img" aria-label="tooling: VS Code">
-  <title>tooling: VS Code</title>
-  <clipPath id="clip_phxqft"><rect width="158" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_phxqft)">
-    <rect width="82" height="28" fill="#181d26"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="148" height="28" viewBox="0 0 148 28" fill="none" role="img" aria-label="stack: VS Code">
+  <title>stack: VS Code</title>
+  <clipPath id="clip_51lcgs"><rect width="148" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_51lcgs)">
+    <rect width="72" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" d="M23.15 2.587L18.21.21a1.49 1.49 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261a1 1 0 0 0-.02 1.436L3.63 12 .307 15.303a1 1 0 0 0 .02 1.436l1.322 1.202a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.49 1.49 0 0 0 1.704.29l4.94-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.14 14.833L8.85 12l9.16-5.42v10.84z"/>
     </svg>
-    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">tooling</text>
-    <rect x="82" width="76" height="28" fill="#0284c7"/>
-    <text x="120" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">VS Code</text>
+    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">stack</text>
+    <rect x="72" width="76" height="28" fill="#0284c7"/>
+    <text x="110" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">VS Code</text>
   </g>
-  <rect width="158" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
+  <rect width="148" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
 </svg>

@@ -29,6 +29,8 @@ interface BadgeOptions {
     letterSpacing?: number;
     /** Accessibility label (title & aria-label attribute) */
     ariaLabel?: string;
+    /** Whether to automatically adapt text and icon colors to black on bright backgrounds for high legibility (default: true) */
+    autoContrast?: boolean;
 }
 interface Preset {
     id: string;
@@ -48,6 +50,40 @@ declare const DEFAULT_FONT_FAMILY = "-apple-system, BlinkMacSystemFont, 'Segoe U
  * Generates high-end SVG markup for a developer badge.
  */
 declare function generateBadge(options: BadgeOptions): string;
+
+/**
+ * Dynamic contrast and relative luminance engine for Badgify.
+ * Implements W3C WCAG 2.1 relative luminance and contrast ratio algorithms.
+ * Automatically adapts text and icon colors to dark/black (#000000) on bright backgrounds,
+ * ensuring high legibility and preventing invisible/washed-out elements on yellow,
+ * lime, cyan, white, and pastel badges.
+ */
+declare const DARK_FOREGROUND = "#000000";
+declare const LIGHT_FOREGROUND = "#ffffff";
+/**
+ * Parses a hex (#RGB, #RGBA, #RRGGBB, #RRGGBBAA) or rgb(r, g, b) string
+ * into normalized RGB components [0..255].
+ */
+declare function parseColorToRgb(color: string): [number, number, number] | null;
+/**
+ * Calculates the W3C WCAG 2.1 relative luminance of a color.
+ * Returns a value between 0 (absolute black) and 1 (pure white).
+ */
+declare function getRelativeLuminance(color: string): number;
+/**
+ * Calculates the WCAG contrast ratio between two colors (ranging from 1:1 to 21:1).
+ */
+declare function getContrastRatio(foreground: string, background: string): number;
+/**
+ * Determines whether a color has high relative luminance (>= 0.42),
+ * meaning white text/icons have poor contrast (< 2.2:1) and must be inverted to dark/black.
+ */
+declare function isBrightColor(color: string, threshold?: number): boolean;
+/**
+ * Returns the optimal foreground color (#000000 or #ffffff) for a background.
+ * Respects explicit non-white user overrides unless autoContrast is true.
+ */
+declare function getOptimalForeground(bgColor: string, preferredColor?: string, autoContrast?: boolean): string;
 
 /**
  * Curated collection of 218+ precision SVG icon paths (24x24 viewBox).
@@ -133,4 +169,4 @@ declare function measureText(text: string, fontSize?: number, isBold?: boolean, 
  */
 declare function badgeFromPreset(presetId: string, overrides?: Partial<BadgeOptions>): string;
 
-export { type BadgeOptions, type BadgeRadius, type BadgeStyle, DEFAULT_FONT_FAMILY, ICONS, type IconName, PALETTE, PRESETS, type PaletteColor, type Preset, type PresetId, badgeFromPreset, generateBadge, getCharacterWidth10px, getPreset, isCjkCharacter, listPresets, measureText };
+export { type BadgeOptions, type BadgeRadius, type BadgeStyle, DARK_FOREGROUND, DEFAULT_FONT_FAMILY, ICONS, type IconName, LIGHT_FOREGROUND, PALETTE, PRESETS, type PaletteColor, type Preset, type PresetId, badgeFromPreset, generateBadge, getCharacterWidth10px, getContrastRatio, getOptimalForeground, getPreset, getRelativeLuminance, isBrightColor, isCjkCharacter, listPresets, measureText, parseColorToRgb };

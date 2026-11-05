@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="138" height="28" viewBox="0 0 138 28" fill="none" role="img" aria-label="backend: C++">
-  <title>backend: C++</title>
-  <clipPath id="clip_qs5dpj"><rect width="138" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_qs5dpj)">
-    <rect width="90" height="28" fill="#181d26"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="28" viewBox="0 0 120 28" fill="none" role="img" aria-label="stack: C++">
+  <title>stack: C++</title>
+  <clipPath id="clip_y05pk4"><rect width="120" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_y05pk4)">
+    <rect width="72" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" d="M11.996 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm-2.4 5.2a6.8 6.8 0 1 1-4.8 11.6 1 1 0 1 1 1.4-1.4 4.8 4.8 0 1 0 0-6.8 1 1 0 1 1-1.4-1.4 6.77 6.77 0 0 1 4.8-2zm6.4 3.8h1.2v2h2v1.2h-2v2h-1.2v-2h-2v-1.2h2v-2zm4.8 0h1.2v2h2v1.2h-2v2h-1.2v-2h-2v-1.2h2v-2z"/>
     </svg>
-    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">backend</text>
-    <rect x="90" width="48" height="28" fill="#2563eb"/>
-    <text x="114" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">C++</text>
+    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">stack</text>
+    <rect x="72" width="48" height="28" fill="#2563eb"/>
+    <text x="96" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">C++</text>
   </g>
-  <rect width="138" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
+  <rect width="120" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
 </svg>

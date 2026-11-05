@@ -1055,6 +1055,10 @@
             <input type="text" id="inputColorText" value="#0284c7" class="input-text" style="font-family: var(--font-mono); width: 130px;">
           </div>
           <div class="swatch-group" id="colorSwatches"></div>
+          <div id="contrastNotice" class="contrast-notice" style="display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 6px 12px; border-radius: 6px; font-size: 11.5px; background: #141416; border: 1px solid #252528; color: #a1a1aa; transition: all 0.2s ease;">
+            <span id="contrastDot" style="width: 8px; height: 8px; border-radius: 50%; background: #ffffff; display: inline-block; transition: all 0.2s ease;"></span>
+            <span id="contrastText" data-i18n="contrastAutoLight">Smart contrast: White text &amp; icon (#ffffff)</span>
+          </div>
         </div>
 
         <!-- Icon Picker Trigger -->
@@ -2745,6 +2749,12 @@
   }
 ];
     const PALETTE_SWATCHES = [
+  "#ffffff",
+  "#ffff00",
+  "#fffc00",
+  "#a3e635",
+  "#facc15",
+  "#00ffff",
   "#27272a",
   "#3f3f46",
   "#475569",
@@ -2826,6 +2836,44 @@
       return Math.ceil(w);
     }
 
+    function parseColorToRgb(color) {
+      if (!color || typeof color !== 'string') return null;
+      const trimmed = color.trim();
+      if (trimmed.startsWith('#')) {
+        const hex = trimmed.slice(1);
+        if (hex.length === 3 || hex.length === 4) {
+          const r = parseInt(hex[0] + hex[0], 16);
+          const g = parseInt(hex[1] + hex[1], 16);
+          const b = parseInt(hex[2] + hex[2], 16);
+          return isNaN(r) || isNaN(g) || isNaN(b) ? null : [r, g, b];
+        }
+        if (hex.length === 6 || hex.length === 8) {
+          const r = parseInt(hex.substring(0, 2), 16);
+          const g = parseInt(hex.substring(2, 4), 16);
+          const b = parseInt(hex.substring(4, 6), 16);
+          return isNaN(r) || isNaN(g) || isNaN(b) ? null : [r, g, b];
+        }
+      }
+      const m = trimmed.match(/^rgba?\s*\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
+      if (m) return [parseInt(m[1], 10), parseInt(m[2], 10), parseInt(m[3], 10)];
+      return null;
+    }
+
+    function getRelativeLuminance(color) {
+      const rgb = parseColorToRgb(color);
+      if (!rgb) return 0;
+      const srgb = rgb.map(val => {
+        const c = val / 255;
+        return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+      });
+      return 0.2126 * srgb[0] + 0.7152 * srgb[1] + 0.0722 * srgb[2];
+    }
+
+    function isBrightColor(color, threshold = 0.42) {
+      if (!color) return false;
+      return getRelativeLuminance(color) >= threshold;
+    }
+
     function renderSvg() {
       const height = Number(state.height);
       const fontSize = height <= 24 ? 10 : height >= 32 ? 13 : 11.5;
@@ -2840,22 +2888,31 @@
 
       const iconPath = state.icon && state.icon !== 'none' ? (ICONS[state.icon] || null) : null;
 
+      const isBrightBg = isBrightColor(state.color);
+      const autoFg = isBrightBg ? '#000000' : '#ffffff';
+
       if (state.style === 'solid') {
         const padLeft = iconPath ? 10 : 12;
         const iconTotal = iconPath ? iconSize + 7 : 0;
         const textWidth = measureText(state.value, fontSize, true);
         const totalWidth = padLeft + iconTotal + textWidth + 12;
 
-        const iconSvg = iconPath ? `  <svg x="${padLeft}" y="${iconY}" width="${iconSize}" height="${iconSize}" viewBox="0 0 24 24" aria-hidden="true"><path fill="#ffffff" d="${iconPath}"/></svg>\n` : '';
+        const iconSvg = iconPath ? `  <svg x="${padLeft}" y="${iconY}" width="${iconSize}" height="${iconSize}" viewBox="0 0 24 24" aria-hidden="true"><path fill="${autoFg}" d="${iconPath}"/></svg>\n` : '';
+        const borderSvg = isBrightBg ? `  <rect width="${totalWidth}" height="${height}" rx="${rx}" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="1"/>\n` : '';
 
         return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${height}" viewBox="0 0 ${totalWidth} ${height}" fill="none" role="img" aria-label="${state.value}">
   <title>${state.value}</title>
   <rect width="${totalWidth}" height="${height}" rx="${rx}" fill="${state.color}"/>
-${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="#ffffff" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" letter-spacing="0.3px">${state.value}</text>
-</svg>`;
+${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${autoFg}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" letter-spacing="0.3px">${state.value}</text>
+${borderSvg}</svg>`;
       }
 
       if (state.style === 'split') {
+        const isBrightLeft = isBrightColor(state.leftColor || '#141416');
+        const labelColor = isBrightLeft ? '#18181b' : '#e2e8f0';
+        const leftIconColor = isBrightLeft ? '#000000' : '#ffffff';
+        const valueColor = isBrightBg ? '#000000' : '#ffffff';
+
         const padLeft = iconPath ? 10 : 12;
         const iconTotal = iconPath ? iconSize + 7 : 0;
         const labelWidth = measureText(state.label || 'status', labelFontSize, false);
@@ -2867,16 +2924,16 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="#ffffff" font-fa
         const valueCenterX = Math.round(leftWidth + rightWidth / 2);
         const clipId = 'b_clip';
 
-        const iconSvg = iconPath ? `    <svg x="${padLeft}" y="${iconY}" width="${iconSize}" height="${iconSize}" viewBox="0 0 24 24" aria-hidden="true"><path fill="#ffffff" d="${iconPath}"/></svg>\n` : '';
+        const iconSvg = iconPath ? `    <svg x="${padLeft}" y="${iconY}" width="${iconSize}" height="${iconSize}" viewBox="0 0 24 24" aria-hidden="true"><path fill="${leftIconColor}" d="${iconPath}"/></svg>\n` : '';
 
         return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${height}" viewBox="0 0 ${totalWidth} ${height}" fill="none" role="img" aria-label="${state.label}: ${state.value}">
   <title>${state.label}: ${state.value}</title>
   <clipPath id="${clipId}"><rect width="${totalWidth}" height="${height}" rx="${rx}"/></clipPath>
   <g clip-path="url(#${clipId})">
     <rect width="${leftWidth}" height="${height}" fill="#141416"/>
-${iconSvg}    <text x="${padLeft + iconTotal}" y="${textY}" fill="#e2e8f0" font-family="${DEFAULT_FONT_FAMILY}" font-size="${labelFontSize}" font-weight="500" letter-spacing="0.3px">${state.label}</text>
+${iconSvg}    <text x="${padLeft + iconTotal}" y="${textY}" fill="${labelColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${labelFontSize}" font-weight="500" letter-spacing="0.3px">${state.label}</text>
     <rect x="${leftWidth}" width="${rightWidth}" height="${height}" fill="${state.color}"/>
-    <text x="${valueCenterX}" y="${textY}" fill="#ffffff" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" text-anchor="middle" letter-spacing="0.3px">${state.value}</text>
+    <text x="${valueCenterX}" y="${textY}" fill="${valueColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" text-anchor="middle" letter-spacing="0.3px">${state.value}</text>
   </g>
   <rect width="${totalWidth}" height="${height}" rx="${rx}" fill="none" stroke="#252528" stroke-width="1"/>
 </svg>`;
@@ -2932,6 +2989,27 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
         activePreview.innerHTML = `<svg viewBox="0 0 24 24"><path d="${ICONS[state.icon]}"/></svg>`;
       } else {
         activePreview.innerHTML = `<span style="font-size:11px;color:#71717a;">—</span>`;
+      }
+
+      // Update smart contrast notice
+      const isBright = isBrightColor(state.color);
+      const contrastNotice = document.getElementById('contrastNotice');
+      const contrastDot = document.getElementById('contrastDot');
+      const contrastText = document.getElementById('contrastText');
+      if (contrastNotice && contrastDot && contrastText) {
+        if (isBright) {
+          contrastDot.style.background = '#000000';
+          contrastDot.style.boxShadow = '0 0 0 2px #facc15';
+          contrastNotice.style.borderColor = 'rgba(250, 204, 21, 0.4)';
+          contrastNotice.style.background = 'rgba(250, 204, 21, 0.08)';
+          contrastText.textContent = I18N[currentLang]?.contrastAutoDark || "Smart contrast: Inverted to black (#000000) for bright background";
+        } else {
+          contrastDot.style.background = '#ffffff';
+          contrastDot.style.boxShadow = 'none';
+          contrastNotice.style.borderColor = '#252528';
+          contrastNotice.style.background = '#141416';
+          contrastText.textContent = I18N[currentLang]?.contrastAutoLight || "Smart contrast: White text & icon (#ffffff)";
+        }
       }
     }
 
@@ -3156,6 +3234,8 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
         catSymbols: "Symbols",
         catSocial: "Social & Media",
         catAnime: "Anime Studios",
+        contrastAutoLight: "Smart contrast: White text & icon (#ffffff)",
+        contrastAutoDark: "Smart contrast: Inverted to black (#000000) for bright background",
         toastSvg: "SVG code copied to clipboard",
         toastMd: "Markdown copied to clipboard",
         toastHtml: "HTML snippet copied to clipboard",
@@ -3210,6 +3290,8 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
         catSymbols: "シンボル & バッジ",
         catSocial: "ソーシャル & メディア",
         catAnime: "アニメスタジオ (30+)",
+        contrastAutoLight: "スマートコントラスト: 白文字・白アイコン (#ffffff)",
+        contrastAutoDark: "スマートコントラスト: 明るい背景のため黒に自動反転 (#000000)",
         toastSvg: "SVGコードをクリップボードにコピーしました",
         toastMd: "Markdownをクリップボードにコピーしました",
         toastHtml: "HTMLスニペットをクリップボードにコピーしました",
@@ -3264,6 +3346,8 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
         catSymbols: "通用符号",
         catSocial: "社交与流媒体",
         catAnime: "动画制作组 (30+)",
+        contrastAutoLight: "智能对比度: 白色文字与图标 (#ffffff)",
+        contrastAutoDark: "智能对比度: 亮色背景已自动反转为黑色 (#000000)",
         toastSvg: "SVG 代码已复制到剪贴板",
         toastMd: "Markdown 代码已复制到剪贴板",
         toastHtml: "HTML 代码已复制到剪贴板",
@@ -3307,6 +3391,7 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       try {
         localStorage.setItem('badgify_lang', lang);
       } catch (e) {}
+      update();
     }
 
     // Toast and Action Buttons

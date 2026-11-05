@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="28" viewBox="0 0 120 28" fill="none" role="img" aria-label="A-1 Pictures">
+  <title>A-1 Pictures</title>
+  <rect width="120" height="28" rx="6" fill="#2563eb"/>
+  <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="#ffffff" d="M3 4h18v16H3V4zm2 2v12h14V6H5zm3 9.5l2.5-7h2l2.5 7h-1.8l-.5-1.6H9.8l-.5 1.6H8zm2.4-3.1h1.8L11.3 9l-.9 3.4zm4.6 3.1h2v-7h-1.5v1.5h-.5v1.5h.5v4z"/>
+  </svg>
+  <text x="33" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.3px">A-1 Pictures</text>
+</svg>

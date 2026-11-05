@@ -175,4 +175,80 @@ describe('Badgify Engine', () => {
     const wechatSvg = badgeFromPreset('wechat');
     expect(wechatSvg).toContain('WeChat');
   });
+
+  it('automatically inverts text and icon colors to black on bright backgrounds', () => {
+    // Pure Yellow solid badge
+    const yellowSvg = generateBadge({
+      value: 'JavaScript',
+      color: '#FFFF00',
+      icon: 'javascript',
+      style: 'solid',
+    });
+    expect(yellowSvg).toContain('fill="#FFFF00"');
+    expect(yellowSvg).toContain('fill="#000000"'); // Both text and icon must be inverted to black
+    expect(yellowSvg).not.toContain('fill="#ffffff"');
+
+    // Snapchat bright yellow
+    const snapchatSvg = generateBadge({
+      value: 'Snapchat',
+      color: '#FFFC00',
+      icon: 'snapchat',
+      style: 'solid',
+    });
+    expect(snapchatSvg).toContain('fill="#000000"');
+
+    // Pure White solid badge
+    const whiteSvg = generateBadge({
+      value: 'Minimalist',
+      color: '#FFFFFF',
+      icon: 'star',
+      style: 'solid',
+    });
+    expect(whiteSvg).toContain('fill="#000000"');
+
+    // Split badge with bright right value block
+    const splitSvg = generateBadge({
+      label: 'stars',
+      value: '9.9k',
+      color: '#FFFF00',
+      icon: 'star',
+      style: 'split',
+    });
+    // Left container is dark (#181d26), icon is white
+    expect(splitSvg).toContain('fill="#ffffff"');
+    // Right value block is bright yellow (#FFFF00), text is black (#000000)
+    expect(splitSvg).toContain('fill="#000000"');
+
+    // Split badge with bright left container
+    const splitBrightLeft = generateBadge({
+      label: 'sponsor',
+      value: 'active',
+      leftColor: '#FFFFFF',
+      color: '#2563EB',
+      icon: 'heart',
+      style: 'split',
+    });
+    // Left icon and label on white background must be dark
+    expect(splitBrightLeft).toContain('fill="#000000"');
+
+    // Dark/medium colors must remain white text and icon
+    const blueSvg = generateBadge({
+      value: 'TypeScript',
+      color: '#2563EB',
+      icon: 'typescript',
+      style: 'solid',
+    });
+    expect(blueSvg).toContain('fill="#ffffff"');
+    expect(blueSvg).not.toContain('fill="#000000"');
+
+    // Explicit override with autoContrast: false
+    const manualSvg = generateBadge({
+      value: 'Manual White',
+      color: '#FFFF00',
+      textColor: '#ffffff',
+      autoContrast: false,
+      style: 'solid',
+    });
+    expect(manualSvg).toContain('fill="#ffffff"');
+  });
 });
