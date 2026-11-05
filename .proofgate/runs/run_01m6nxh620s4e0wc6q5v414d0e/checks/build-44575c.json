@@ -1,0 +1,37 @@
+{
+  "id": "build",
+  "title": "Production build",
+  "type": "command",
+  "status": "PASS",
+  "required": true,
+  "profiles": [
+    "balanced",
+    "thorough"
+  ],
+  "durationMs": 2892,
+  "startedAt": "2026-11-05T13:14:18.225Z",
+  "finishedAt": "2026-11-05T13:14:21.117Z",
+  "cached": false,
+  "summary": "exit 0",
+  "stdout": {
+    "text": "CLI Building entry: src/index.ts\nCLI Using tsconfig: tsconfig.json\nCLI tsup v8.5.1\nCLI Target: es2022\nCLI Cleaning output folder\nESM Build start\nCJS Build start\nCJS dist\\index.cjs 124.23 KB\nCJS ⚡️ Build success in 333ms\nESM dist\\index.js 123.01 KB\nESM ⚡️ Build success in 347ms\nDTS Build start\nDTS ⚡️ Build success in 1043ms\nDTS dist\\index.d.ts  4.81 KB\nDTS dist\\index.d.cts 4.81 KB\nCLI Building entry: src/cli.ts\nCLI Using tsconfig: tsconfig.json\nCLI tsup v8.5.1\nCLI Target: es2022\nESM Build start\nESM dist\\cli.js 127.62 KB\nESM ⚡️ Build success in 34ms\n",
+    "bytes": 570,
+    "totalBytes": 570,
+    "truncated": false
+  },
+  "stderr": {
+    "text": "$ tsup src/index.ts --format esm,cjs --dts --clean && tsup src/cli.ts --format esm\n",
+    "bytes": 83,
+    "totalBytes": 83,
+    "truncated": false
+  },
+  "findings": [],
+  "command": [
+    "pnpm",
+    "run",
+    "build"
+  ],
+  "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+  "exitCode": 0,
+  "signal": null
+}

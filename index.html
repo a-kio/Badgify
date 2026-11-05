@@ -3,8 +3,102 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Badgify - Minimalist SVG Badge Generator</title>
-  <meta name="description" content="Fast, local, aesthetic SVG badge generator for modern READMEs and documentation.">
+  <title>Badgify — Minimalist SVG Badge Generator &amp; Developer Branding</title>
+  <meta name="description" content="Ultra-fast, aesthetic SVG badge generator for GitHub READMEs and developer documentation. 218+ vector icons, split and solid styles, real GitHub dark/light canvas, local-first, zero telemetry.">
+  <meta name="keywords" content="svg badge generator, github readme badges, shields io alternative, minimalist svg badges, developer tech stack badges, custom svg shields, local first badge creator, vector badge icons, aesthetic readme badges, badgify, dark mode badges, nodejs, typescript, react, python, rust, docker">
+  <meta name="author" content="a-kio">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <link rel="canonical" href="https://a-kio.github.io/Badgify/">
+  <meta name="theme-color" content="#000000">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://a-kio.github.io/Badgify/">
+  <meta property="og:title" content="Badgify — Minimalist SVG Badge Generator">
+  <meta property="og:description" content="Fast, aesthetic, local-first SVG badges for modern READMEs and documentation. 218+ icons, split &amp; solid styles, zero telemetry.">
+  <meta property="og:site_name" content="Badgify">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://raw.githubusercontent.com/a-kio/Badgify/main/badges/split/github.svg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://a-kio.github.io/Badgify/">
+  <meta name="twitter:title" content="Badgify — Minimalist SVG Badge Generator">
+  <meta name="twitter:description" content="High-end SVG badges for GitHub documentation. 218+ icons, split &amp; solid styles, zero telemetry.">
+  <meta name="twitter:image" content="https://raw.githubusercontent.com/a-kio/Badgify/main/badges/split/github.svg">
+
+  <!-- JSON-LD Structured Data for Search Engines & AI Crawlers (Google, Gemini, Bing) -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Badgify",
+  "alternateName": [
+    "Badgify SVG Studio",
+    "Badgify Badge Generator"
+  ],
+  "url": "https://a-kio.github.io/Badgify/",
+  "description": "High-end, aesthetic, minimalistic SVG badge generator and CLI for modern developers. Generates crisp split and solid vector badges with 218+ technology icons, zero telemetry, and pure SVG output.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "All (Web, Node.js, Linux, macOS, Windows)",
+  "browserRequirements": "Requires JavaScript. Works in Chrome, Firefox, Safari, Edge.",
+  "softwareVersion": "1.0.0",
+  "license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "author": {
+    "@type": "Person",
+    "name": "a-kio",
+    "url": "https://github.com/a-kio"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "218+ curated vector tech and brand icons",
+    "Dual style rendering: Split badges (label + value) and Solid badges (unified pill)",
+    "Live preview against real GitHub Dark (#0d1117) and Light (#ffffff) themes",
+    "Instant SVG download and Markdown / HTML snippet copying",
+    "Zero telemetry, local-first execution with zero external network dependencies",
+    "CLI and programmatic Node.js / TypeScript API support"
+  ],
+  "keywords": "svg badge generator, github readme badges, shields io alternative, minimalist badges, developer branding, tech stack svg, local badge generator"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Badgify?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Badgify is an aesthetic, high-end SVG badge generator and CLI designed for developers who want clean, minimalistic, and modern badges for GitHub READMEs and documentation without the visual bloat of traditional badge servers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Badgify track telemetry or require an internet connection?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Badgify is 100% local-first with zero telemetry and zero analytics. Badges are computed entirely in the browser or via the offline CLI."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I use Badgify badges in GitHub READMEs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can copy the generated SVG directly, save it in your repository under an assets or badges folder, and reference it via standard markdown: ![Badge](badges/my-badge.svg)."
+      }
+    }
+  ]
+}
+  </script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231f1f1f'/%3E%3Cpath fill='%23ffffff' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E">
   <style>
     /* Global scrollbar killer */

@@ -1,0 +1,40 @@
+{
+  "id": "typecheck",
+  "title": "TypeScript typecheck (tsc --noEmit)",
+  "type": "command",
+  "status": "PASS",
+  "required": true,
+  "profiles": [
+    "fast",
+    "balanced",
+    "thorough"
+  ],
+  "durationMs": 0,
+  "startedAt": "2026-11-05T16:03:03.331Z",
+  "finishedAt": "2026-11-05T16:03:03.331Z",
+  "cached": true,
+  "cacheKey": "0379f2c1c057c770e81cba6b41aca89388688ffd7d4c3b15941abf7e9d7f5f8c",
+  "command": [
+    "pnpm",
+    "exec",
+    "tsc",
+    "--noEmit"
+  ],
+  "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+  "exitCode": 0,
+  "signal": null,
+  "summary": "cached pass (exit 0)",
+  "stdout": {
+    "text": "",
+    "bytes": 0,
+    "totalBytes": 0,
+    "truncated": false
+  },
+  "stderr": {
+    "text": "",
+    "bytes": 0,
+    "totalBytes": 0,
+    "truncated": false
+  },
+  "findings": []
+}

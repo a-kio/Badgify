@@ -1,0 +1,60 @@
+# Badgify
+
+> Aesthetic, minimalist SVG badge generator and CLI for modern developers. Pure vector, local-first, zero telemetry, Apache-2.0 licensed.
+
+Badgify generates high-end, clean badges for GitHub READMEs, documentation, portfolios, and tech stack showcases. Unlike traditional remote badge servers (such as Shields.io), Badgify runs 100% offline and locally, requires no external HTTP queries, and produces ultra-lightweight, crisp SVGs with pixel-perfect typography and 218+ curated vector brand icons.
+
+## Key Capabilities
+
+- **Dual Badge Topologies**:
+  - `split`: Dual-pill badge consisting of a dark label prefix container (`#141416`) and a vibrant right-side value block.
+  - `solid`: Single unified pill badge for tech stack tags and framework identifiers without left container clutter.
+- **218+ Curated Vector Icons**: Native 24x24 viewBox SVG icons for Mobile/OS (iOS, Android, Linux, Ubuntu, Windows), Frontend (React, Vue, Svelte, Next.js, Astro), Backend (Node.js, Python, Rust, Go, Java), Databases (PostgreSQL, Redis, SQLite, MongoDB), AI/ML (OpenAI, PyTorch, Hugging Face), and DevOps (Docker, Kubernetes).
+- **Zero Telemetry**: No tracking, no external pings, no telemetry. Works in air-gapped CI/CD environments.
+- **Canvas Fidelity**: Live preview in web studio simulates exact GitHub Dark (`#0d1117`) and GitHub Light (`#ffffff`) canvas backgrounds.
+
+## Installation & CLI Usage
+
+```bash
+# Global install
+npm install -g badgify
+
+# Or execute on demand via npx
+npx badgify split --label "license" --value "Apache-2.0" --color "#8b5cf6" --icon "osi" -o badge.svg
+npx badgify solid --value "TypeScript" --color "#2563eb" --icon "typescript" -o ts.svg
+```
+
+## Programmatic API (TypeScript / Node.js)
+
+```typescript
+import { generateBadge } from 'badgify';
+
+// Generate a split badge
+const splitSvg = generateBadge({
+  style: 'split',
+  label: 'github',
+  value: 'a-kio/Badgify',
+  color: '#2563eb',
+  icon: 'github'
+});
+
+// Generate a solid badge
+const solidSvg = generateBadge({
+  style: 'solid',
+  value: 'Node.js >= 22',
+  color: '#16a34a',
+  icon: 'node'
+});
+```
+
+## Available Presets & Categorization
+
+- Platforms: `ios`, `android`, `apple`, `linux`, `ubuntu`, `debian`, `arch`, `fedora`, `windows`.
+- Languages & Runtimes: `node`, `typescript`, `javascript`, `python`, `rust`, `golang`, `bun`, `deno`.
+- Frameworks: `react`, `react-native`, `vue`, `svelte`, `angular`, `nextjs`, `astro`, `tailwind`.
+- Status & Verification: `stable`, `license`, `build-passing`, `zero-telemetry`.
+
+## Online Studio
+
+- Interactive Web App: https://a-kio.github.io/Badgify/
+- Source Repository: https://github.com/a-kio/Badgify

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "integrations": [
+    {
+      "id": "gemini",
+      "version": "1.0.0",
+      "installedAt": "2026-11-05T13:19:47.082Z",
+      "scope": "project",
+      "files": [
+        ".gemini/settings.json"
+      ],
+      "backupDir": ".proofgate/backups/integrations/gemini/2026-11-05T13-19-47-078Z",
+      "notes": [
+        "MCP server name: proofgate",
+        "Gemini CLI requires JSON-only stdout from hooks; ProofGate complies."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,420 @@
+{
+  "schemaVersion": 1,
+  "id": "run_01m6nwz2cbs8v8ga1j5apj17zt",
+  "status": "FAILED",
+  "mode": "full",
+  "profile": "balanced",
+  "task": "Initial task verification for Badgify",
+  "project": {
+    "root": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+    "name": "Badgify",
+    "ecosystem": [
+      "node"
+    ],
+    "packageManager": "pnpm"
+  },
+  "startedAt": "2026-11-05T13:04:26.195Z",
+  "finishedAt": "2026-11-05T13:04:27.566Z",
+  "durationMs": 1370,
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "osRelease": "10.0.26200",
+    "nodeVersion": "v26.7.0",
+    "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+    "hostname": "FIREBAT",
+    "ci": false,
+    "git": {
+      "available": true,
+      "root": "C:/Users/sadyk/.gemini/antigravity/scratch/Badgify",
+      "branch": "main",
+      "head": "63779fc8a84eaf2c45f5cfce21546a7e59f85f40",
+      "dirty": true
+    },
+    "toolVersions": {
+      "node": "v26.7.0",
+      "git": "git version 2.51.0.windows.1"
+    },
+    "capturedAt": "2026-11-05T13:04:27.791Z"
+  },
+  "intent": {
+    "hash": "09e846617ff099fe919779dce0882033eb3ddbdec51b1f3241793fe57dcc7962",
+    "approved": true,
+    "stale": false,
+    "lockPath": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify\\.proofgate\\acceptance.lock.json",
+    "approvedAt": "2026-11-05T13:04:00.023Z",
+    "approvedBy": "init"
+  },
+  "changedFiles": {
+    "source": "full",
+    "files": [],
+    "fingerprint": "",
+    "truncated": false
+  },
+  "criteria": [
+    {
+      "id": "typecheck-passes",
+      "description": "TypeScript typecheck (tsc --noEmit) completes successfully",
+      "kind": "check",
+      "required": true,
+      "status": "FAIL",
+      "reason": "check \"typecheck\" failed",
+      "evidence": [
+        "check:typecheck",
+        "status:FAIL"
+      ]
+    },
+    {
+      "id": "test-passes",
+      "description": "Test suite completes successfully",
+      "kind": "check",
+      "required": true,
+      "status": "FAIL",
+      "reason": "check \"test\" failed",
+      "evidence": [
+        "check:test",
+        "status:FAIL"
+      ]
+    },
+    {
+      "id": "build-passes",
+      "description": "Production build completes successfully",
+      "kind": "check",
+      "required": true,
+      "status": "FAIL",
+      "reason": "check \"build\" failed",
+      "evidence": [
+        "check:build",
+        "status:FAIL"
+      ]
+    },
+    {
+      "id": "secret-scan-passes",
+      "description": "No committed secrets in changed files completes successfully",
+      "kind": "check",
+      "required": true,
+      "status": "PASS",
+      "reason": "check \"secret-scan\" passed",
+      "evidence": [
+        "check:secret-scan",
+        "status:PASS"
+      ]
+    },
+    {
+      "id": "human-signoff",
+      "description": "A human reviewed the diff and the evidence bundle",
+      "kind": "manual",
+      "required": false,
+      "status": "UNKNOWN",
+      "reason": "awaiting human sign-off (proofgate criteria signoff human-signoff)",
+      "evidence": []
+    }
+  ],
+  "checks": [
+    {
+      "id": "typecheck",
+      "title": "TypeScript typecheck (tsc --noEmit)",
+      "type": "command",
+      "status": "FAIL",
+      "required": true,
+      "profiles": [
+        "fast",
+        "balanced",
+        "thorough"
+      ],
+      "durationMs": 193,
+      "startedAt": "2026-11-05T13:04:27.184Z",
+      "finishedAt": "2026-11-05T13:04:27.377Z",
+      "cached": false,
+      "summary": "exit 1",
+      "stdout": {
+        "text": "",
+        "bytes": 0,
+        "totalBytes": 0,
+        "truncated": false
+      },
+      "stderr": {
+        "text": "'pnpm' is not recognized as an internal or external command,\noperable program or batch file.\n",
+        "bytes": 93,
+        "totalBytes": 95,
+        "truncated": false
+      },
+      "findings": [
+        {
+          "kind": "runtime-error",
+          "message": "Expected exit code 0, got 1"
+        },
+        {
+          "kind": "runtime-error",
+          "message": "operable program or batch file."
+        }
+      ],
+      "command": [
+        "pnpm",
+        "exec",
+        "tsc",
+        "--noEmit"
+      ],
+      "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+      "exitCode": 1,
+      "signal": null,
+      "artifacts": [
+        ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/typecheck-0abcfc.json",
+        ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/typecheck-0abcfc.stderr.log",
+        ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/typecheck-0abcfc.stdout.log"
+      ]
+    },
+    {
+      "id": "test",
+      "title": "Test suite",
+      "type": "command",
+      "status": "FAIL",
+      "required": true,
+      "profiles": [
+        "fast",
+        "balanced",
+        "thorough"
+      ],
+      "durationMs": 124,
+      "startedAt": "2026-11-05T13:04:27.253Z",
+      "finishedAt": "2026-11-05T13:04:27.377Z",
+      "cached": false,
+      "summary": "exit 1",
+      "stdout": {
+        "text": "",
+        "bytes": 0,
+        "totalBytes": 0,
+        "truncated": false
+      },
+      "stderr": {
+        "text": "'pnpm' is not recognized as an internal or external command,\noperable program or batch file.\n",
+        "bytes": 93,
+        "totalBytes": 95,
+        "truncated": false
+      },
+      "findings": [
+        {
+          "kind": "runtime-error",
+          "message": "Expected exit code 0, got 1"
+        },
+        {
+          "kind": "runtime-error",
+          "message": "operable program or batch file."
+        }
+      ],
+      "command": [
+        "pnpm",
+        "run",
+        "test"
+      ],
+      "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+      "exitCode": 1,
+      "signal": null,
+      "artifacts": [
+        ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/test-9f86d0.json",
+        ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/test-9f86d0.stderr.log",
+        ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/test-9f86d0.stdout.log"
+      ]
+    },
+    {
+      "id": "build",
+      "title": "Production build",
+      "type": "command",
+      "status": "FAIL",
+      "required": true,
+      "profiles": [
+        "balanced",
+        "thorough"
+      ],
+      "durationMs": 87,
+      "startedAt": "2026-11-05T13:04:27.315Z",
+      "finishedAt": "2026-11-05T13:04:27.402Z",
+      "cached": false,
+      "summary": "exit 1",
+      "stdout": {
+        "text": "",
+        "bytes": 0,
+        "totalBytes": 0,
+        "truncated": false
+      },
+      "stderr": {
+        "text": "'pnpm' is not recognized as an internal or external command,\noperable program or batch file.\n",
+        "bytes": 93,
+        "totalBytes": 95,
+        "truncated": false
+      },
+      "findings": [
+        {
+          "kind": "runtime-error",
+          "message": "Expected exit code 0, got 1"
+        },
+        {
+          "kind": "runtime-error",
+          "message": "operable program or batch file."
+        }
+      ],
+      "command": [
+        "pnpm",
+        "run",
+        "build"
+      ],
+      "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+      "exitCode": 1,
+      "signal": null,
+      "artifacts": [
+        ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/build-44575c.json",
+        ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/build-44575c.stderr.log",
+        ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/build-44575c.stdout.log"
+      ]
+    },
+    {
+      "id": "secret-scan",
+      "title": "No committed secrets in changed files",
+      "type": "secret-scan",
+      "status": "PASS",
+      "required": true,
+      "profiles": [
+        "fast",
+        "balanced",
+        "thorough"
+      ],
+      "durationMs": 354,
+      "startedAt": "2026-11-05T13:04:27.176Z",
+      "finishedAt": "2026-11-05T13:04:27.530Z",
+      "cached": false,
+      "summary": "No secrets found in 190 file(s)",
+      "stdout": {
+        "text": "",
+        "bytes": 0,
+        "totalBytes": 0,
+        "truncated": false
+      },
+      "stderr": {
+        "text": "",
+        "bytes": 0,
+        "totalBytes": 0,
+        "truncated": false
+      },
+      "findings": [],
+      "metrics": {
+        "filesScanned": 190
+      },
+      "artifacts": [
+        ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/secret-scan-97adbd.json",
+        ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/secret-scan-97adbd.stderr.log",
+        ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/secret-scan-97adbd.stdout.log"
+      ]
+    }
+  ],
+  "skippedChecks": [],
+  "cache": {
+    "enabled": true,
+    "hits": 0,
+    "misses": 3
+  },
+  "evidence": {
+    "dir": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt",
+    "manifestPath": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/manifest.json",
+    "manifestHash": "63c5cada3ad88bc0ba09abe1213343f4df0a71ef66c4354faa8b0cc96f46e516",
+    "entries": [
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/build-44575c.json",
+        "sha256": "d2972b840fe354ba86dc26656b46f2800cef25dd008992e189476133428e495f",
+        "bytes": 965,
+        "kind": "json"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/build-44575c.stderr.log",
+        "sha256": "01582bb1216dcc94ad9fdab5f5be6502b2d70fbc81a8f39417ce8c4e8adc77b8",
+        "bytes": 93,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/build-44575c.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/secret-scan-97adbd.json",
+        "sha256": "254499b63355dc5cbc7908e4a84765c80a48e6b9ca953f58b239f9163262c212",
+        "bytes": 634,
+        "kind": "json"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/secret-scan-97adbd.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/secret-scan-97adbd.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/test-9f86d0.json",
+        "sha256": "62094a14e5e98edde368360ef191b974d1be8b7c93b1e522f06e5d0b5ddfc0c1",
+        "bytes": 970,
+        "kind": "json"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/test-9f86d0.stderr.log",
+        "sha256": "01582bb1216dcc94ad9fdab5f5be6502b2d70fbc81a8f39417ce8c4e8adc77b8",
+        "bytes": 93,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/test-9f86d0.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/typecheck-0abcfc.json",
+        "sha256": "f3682b70c8239ba2580c7f101f519a15890ef4464fd852b65518eac1ade797ac",
+        "bytes": 1016,
+        "kind": "json"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/typecheck-0abcfc.stderr.log",
+        "sha256": "01582bb1216dcc94ad9fdab5f5be6502b2d70fbc81a8f39417ce8c4e8adc77b8",
+        "bytes": 93,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/checks/typecheck-0abcfc.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6nwz2cbs8v8ga1j5apj17zt/summary.json",
+        "sha256": "8b45f6ded611ad62f2989b5060d45071a9e0ad687aee894e58645022ad7d3219",
+        "bytes": 1907,
+        "kind": "summary"
+      }
+    ],
+    "totalBytes": 5771,
+    "redacted": false
+  },
+  "summary": {
+    "total": 4,
+    "passed": 1,
+    "failed": 3,
+    "unknown": 0,
+    "skipped": 0,
+    "blocked": 0,
+    "error": 0,
+    "requiredTotal": 4,
+    "requiredPassed": 1,
+    "requiredFailed": 3
+  },
+  "notes": [],
+  "tool": {
+    "name": "proofgate",
+    "version": "1.0.0",
+    "schemaVersion": 1
+  }
+}

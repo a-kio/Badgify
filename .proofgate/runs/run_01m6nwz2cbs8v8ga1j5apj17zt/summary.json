@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "runId": "run_01m6nwz2cbs8v8ga1j5apj17zt",
+  "createdAt": "2026-11-05T13:04:27.561Z",
+  "status": "FAILED",
+  "summary": {
+    "total": 4,
+    "passed": 1,
+    "failed": 3,
+    "unknown": 0,
+    "skipped": 0,
+    "blocked": 0,
+    "error": 0,
+    "requiredTotal": 4,
+    "requiredPassed": 1,
+    "requiredFailed": 3
+  },
+  "criteria": [
+    {
+      "id": "typecheck-passes",
+      "description": "TypeScript typecheck (tsc --noEmit) completes successfully",
+      "kind": "check",
+      "required": true,
+      "status": "FAIL",
+      "reason": "check \"typecheck\" failed",
+      "evidence": [
+        "check:typecheck",
+        "status:FAIL"
+      ]
+    },
+    {
+      "id": "test-passes",
+      "description": "Test suite completes successfully",
+      "kind": "check",
+      "required": true,
+      "status": "FAIL",
+      "reason": "check \"test\" failed",
+      "evidence": [
+        "check:test",
+        "status:FAIL"
+      ]
+    },
+    {
+      "id": "build-passes",
+      "description": "Production build completes successfully",
+      "kind": "check",
+      "required": true,
+      "status": "FAIL",
+      "reason": "check \"build\" failed",
+      "evidence": [
+        "check:build",
+        "status:FAIL"
+      ]
+    },
+    {
+      "id": "secret-scan-passes",
+      "description": "No committed secrets in changed files completes successfully",
+      "kind": "check",
+      "required": true,
+      "status": "PASS",
+      "reason": "check \"secret-scan\" passed",
+      "evidence": [
+        "check:secret-scan",
+        "status:PASS"
+      ]
+    },
+    {
+      "id": "human-signoff",
+      "description": "A human reviewed the diff and the evidence bundle",
+      "kind": "manual",
+      "required": false,
+      "status": "UNKNOWN",
+      "reason": "awaiting human sign-off (proofgate criteria signoff human-signoff)",
+      "evidence": []
+    }
+  ],
+  "notes": []
+}

@@ -1,0 +1,46 @@
+{
+  "id": "build",
+  "title": "Production build",
+  "type": "command",
+  "status": "FAIL",
+  "required": true,
+  "profiles": [
+    "balanced",
+    "thorough"
+  ],
+  "durationMs": 102,
+  "startedAt": "2026-11-05T13:09:12.739Z",
+  "finishedAt": "2026-11-05T13:09:12.841Z",
+  "cached": false,
+  "summary": "exit 1",
+  "stdout": {
+    "text": "",
+    "bytes": 0,
+    "totalBytes": 0,
+    "truncated": false
+  },
+  "stderr": {
+    "text": "'pnpm' is not recognized as an internal or external command,\noperable program or batch file.\n",
+    "bytes": 93,
+    "totalBytes": 95,
+    "truncated": false
+  },
+  "findings": [
+    {
+      "kind": "runtime-error",
+      "message": "Expected exit code 0, got 1"
+    },
+    {
+      "kind": "runtime-error",
+      "message": "operable program or batch file."
+    }
+  ],
+  "command": [
+    "pnpm",
+    "run",
+    "build"
+  ],
+  "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+  "exitCode": 1,
+  "signal": null
+}

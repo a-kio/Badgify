@@ -1,0 +1,24 @@
+{
+  "hooks": {
+    "AfterAgent": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .proofgate/hooks/gemini-stop.mjs",
+            "timeout": 900
+          }
+        ]
+      }
+    ]
+  },
+  "mcpServers": {
+    "proofgate": {
+      "command": "proofgate",
+      "args": [
+        "mcp"
+      ]
+    }
+  }
+}
