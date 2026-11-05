@@ -5,17 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Badgify - Minimalist SVG Badge Generator</title>
   <meta name="description" content="Fast, local, aesthetic SVG badge generator for modern READMEs and documentation.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%238b5cf6'/><path fill='white' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/></svg>">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='6' fill='%231f1f1f'/%3E%3Cpath fill='%23ffffff' d='M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z'/%3E%3C/svg%3E">
   <style>
+    /* Global scrollbar killer */
+    html, body, * {
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+    }
+    *::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+      background: transparent !important;
+    }
+
     :root {
-      --bg: #0d1117;
-      --card-bg: #161b22;
-      --border: #30363d;
-      --border-hover: #484f58;
-      --text-main: #e6edf3;
-      --text-sub: #8b949e;
-      --accent: #8b5cf6;
-      --accent-hover: #7c3aed;
+      --bg: #000000;
+      --card-bg: #0a0a0a;
+      --card-hover: #111111;
+      --border: #1c1c1c;
+      --border-hover: #2c2c2c;
+      --border-focus: #444444;
+      --text-main: #ededed;
+      --text-sub: #9e9e9e;
+      --text-muted: #666666;
+      --btn-bg: #141414;
+      --btn-hover: #1f1f1f;
+      --btn-border: #222222;
+      --accent-active: #ffffff;
       --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
     }
@@ -34,6 +51,7 @@
       line-height: 1.5;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     a {
@@ -49,17 +67,17 @@
     /* Header */
     header {
       border-bottom: 1px solid var(--border);
-      background: #090d13;
+      background: #000000;
       position: sticky;
       top: 0;
       z-index: 40;
     }
 
     .header-inner {
-      max-width: 1200px;
+      max-width: 1220px;
       margin: 0 auto;
       padding: 0 20px;
-      height: 56px;
+      height: 54px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -75,8 +93,9 @@
       width: 26px;
       height: 26px;
       border-radius: 6px;
-      background: var(--accent);
-      color: #ffffff;
+      background: #18181b;
+      color: #ededed;
+      border: 1px solid #27272a;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -95,10 +114,16 @@
       font-size: 11px;
       padding: 1px 7px;
       border-radius: 999px;
-      background: #21262d;
+      background: #111111;
       color: var(--text-sub);
       border: 1px solid var(--border);
       font-weight: 500;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
 
     .github-link {
@@ -109,23 +134,24 @@
       padding: 6px 12px;
       border-radius: 6px;
       border: 1px solid var(--border);
-      background: var(--card-bg);
+      background: #0a0a0a;
       color: var(--text-main);
+      transition: all 0.15s ease;
     }
 
     .github-link:hover {
       border-color: var(--border-hover);
-      background: #1c2129;
+      background: #141414;
     }
 
     /* Container */
     .container {
-      max-width: 1200px;
+      max-width: 1220px;
       margin: 0 auto;
-      padding: 24px 20px 48px;
+      padding: 22px 20px 48px;
       display: grid;
       grid-template-columns: 460px 1fr;
-      gap: 24px;
+      gap: 22px;
     }
 
     @media (max-width: 960px) {
@@ -164,6 +190,7 @@
       font-size: 12px;
       cursor: pointer;
       padding: 0;
+      transition: color 0.15s ease;
     }
 
     .reset-btn:hover {
@@ -187,11 +214,11 @@
       margin-bottom: 6px;
     }
 
-    .input-text, .select-box {
+    .input-text {
       width: 100%;
-      height: 36px;
+      height: 38px;
       padding: 0 12px;
-      background: #0d1117;
+      background: #000000;
       border: 1px solid var(--border);
       border-radius: 6px;
       color: var(--text-main);
@@ -201,12 +228,49 @@
       transition: border-color 0.15s ease;
     }
 
-    .input-text:focus, .select-box:focus {
-      border-color: #58a6ff;
+    .input-text:focus {
+      border-color: var(--border-focus);
     }
 
     .input-text::placeholder {
-      color: #6e7681;
+      color: var(--text-muted);
+    }
+
+    /* Stylized Select Dropdowns */
+    .select-box {
+      width: 100%;
+      height: 38px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-color: #000000;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 13px;
+      padding: 0 36px 0 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-main);
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .select-box:hover {
+      border-color: var(--border-hover);
+    }
+
+    .select-box:focus {
+      border-color: var(--border-focus);
+    }
+
+    .select-box option {
+      background-color: #0a0a0a;
+      color: #ededed;
+      padding: 6px;
     }
 
     .grid-2 {
@@ -215,7 +279,7 @@
       gap: 12px;
     }
 
-    /* Style buttons */
+    /* Style Switcher */
     .style-switcher {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -223,10 +287,10 @@
     }
 
     .style-option {
-      background: #0d1117;
+      background: #000000;
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 8px 10px;
+      padding: 9px 8px;
       color: var(--text-sub);
       cursor: pointer;
       text-align: center;
@@ -240,8 +304,8 @@
     }
 
     .style-option.active {
-      border-color: var(--accent);
-      background: rgba(139, 92, 246, 0.12);
+      border-color: #3f3f46;
+      background: #141414;
       color: #ffffff;
       font-weight: 600;
     }
@@ -249,29 +313,29 @@
     .style-option .subtext {
       display: block;
       font-size: 10.5px;
-      color: var(--text-sub);
+      color: var(--text-muted);
       margin-top: 2px;
       font-weight: normal;
     }
 
     .style-option.active .subtext {
-      color: #d8b4fe;
+      color: #a1a1aa;
     }
 
-    /* Swatches */
+    /* Color Swatches */
     .swatch-group {
       display: grid;
-      grid-template-columns: repeat(8, 1fr);
+      grid-template-columns: repeat(7, 1fr);
       gap: 6px;
       margin-top: 8px;
     }
 
     .swatch-btn {
-      height: 26px;
-      border-radius: 5px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      height: 24px;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
       cursor: pointer;
-      transition: transform 0.1s ease;
+      transition: transform 0.1s ease, border-color 0.1s ease;
     }
 
     .swatch-btn:hover {
@@ -286,21 +350,97 @@
     }
 
     .picker-wrap {
-      width: 36px;
-      height: 36px;
+      width: 38px;
+      height: 38px;
       border-radius: 6px;
       overflow: hidden;
       border: 1px solid var(--border);
       flex-shrink: 0;
+      background: #000000;
     }
 
     .picker-wrap input[type="color"] {
-      width: 52px;
-      height: 52px;
+      width: 54px;
+      height: 54px;
       margin: -8px;
       cursor: pointer;
       border: none;
       background: none;
+    }
+
+    /* Icon Row Trigger */
+    .icon-trigger-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .icon-preview-btn {
+      height: 38px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      background: #000000;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0 12px;
+      color: var(--text-main);
+      cursor: pointer;
+      font-size: 13px;
+      font-family: inherit;
+      transition: border-color 0.15s ease;
+      text-align: left;
+    }
+
+    .icon-preview-btn:hover {
+      border-color: var(--border-hover);
+    }
+
+    .icon-preview-box {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .icon-preview-box svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .icon-trigger-text {
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .open-modal-btn {
+      height: 38px;
+      padding: 0 14px;
+      background: #141414;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-main);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: inherit;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .open-modal-btn:hover {
+      border-color: var(--border-hover);
+      background: #1c1c1c;
     }
 
     /* Preset Chips */
@@ -314,7 +454,7 @@
     }
 
     .preset-btn {
-      background: #0d1117;
+      background: #000000;
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 5px 9px;
@@ -324,18 +464,18 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: border-color 0.15s ease;
+      transition: border-color 0.15s ease, background 0.15s ease;
       font-family: inherit;
     }
 
     .preset-btn:hover {
       border-color: var(--border-hover);
-      background: #1c2128;
+      background: #111111;
     }
 
     .preset-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 2px;
       flex-shrink: 0;
     }
@@ -344,7 +484,7 @@
     .preview-box {
       padding: 24px;
       border-radius: 6px;
-      min-height: 88px;
+      min-height: 84px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -352,13 +492,13 @@
     }
 
     .preview-dark {
-      background: #0d1117;
+      background: #000000;
       border: 1px solid var(--border);
     }
 
     .preview-light {
       background: #ffffff;
-      border: 1px solid #d0d7de;
+      border: 1px solid #e2e8f0;
     }
 
     .preview-label {
@@ -387,7 +527,7 @@
       padding: 0 12px;
       border-radius: 6px;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 500;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
@@ -398,29 +538,31 @@
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #1c1c1f;
+      color: #ededed;
+      border: 1px solid #2e2e33;
     }
 
     .btn-primary:hover {
-      background: var(--accent-hover);
+      background: #28282e;
+      border-color: #3f3f46;
+      color: #ffffff;
     }
 
     .btn-secondary {
-      background: #21262d;
+      background: #0e0e0e;
       color: var(--text-main);
       border: 1px solid var(--border);
     }
 
     .btn-secondary:hover {
-      background: #30363d;
+      background: #171717;
       border-color: var(--border-hover);
     }
 
     /* Code Snippet */
     .code-snippet {
-      background: #090d13;
+      background: #000000;
       border: 1px solid var(--border);
       border-radius: 6px;
       padding: 12px 14px;
@@ -430,7 +572,183 @@
       overflow-x: auto;
       white-space: pre-wrap;
       word-break: break-all;
-      max-height: 140px;
+      max-height: 130px;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #161616;
+      color: #ffffff;
+      border: 1px solid #2f2f2f;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      transform: translateY(60px);
+      opacity: 0;
+      transition: all 0.2s ease;
+      pointer-events: none;
+      z-index: 100;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Icon Picker Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      z-index: 90;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .modal-backdrop.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-dialog {
+      background: #0a0a0a;
+      border: 1px solid var(--border-hover);
+      border-radius: 10px;
+      width: 100%;
+      max-width: 680px;
+      max-height: 85vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-sub);
+      cursor: pointer;
+      padding: 4px;
+      font-size: 18px;
+      line-height: 1;
+      transition: color 0.15s ease;
+    }
+
+    .modal-close:hover {
+      color: #ffffff;
+    }
+
+    .modal-search-bar {
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    .cat-pill {
+      background: #000000;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 3px 10px;
+      font-size: 11px;
+      color: var(--text-sub);
+      cursor: pointer;
+      transition: all 0.12s ease;
+    }
+
+    .cat-pill:hover {
+      border-color: var(--border-hover);
+      color: var(--text-main);
+    }
+
+    .cat-pill.active {
+      background: #1f1f1f;
+      border-color: #3f3f46;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .modal-body {
+      padding: 16px 20px;
+      overflow-y: auto;
+      max-height: 52vh;
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+      gap: 8px;
+    }
+
+    .icon-grid-item {
+      background: #000000;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.12s ease;
+      text-align: center;
+    }
+
+    .icon-grid-item:hover {
+      border-color: var(--border-hover);
+      background: #141414;
+    }
+
+    .icon-grid-item.active {
+      border-color: #52525b;
+      background: #18181b;
+    }
+
+    .icon-grid-item svg {
+      width: 18px;
+      height: 18px;
+      fill: #ededed;
+    }
+
+    .icon-grid-item span {
+      font-size: 10.5px;
+      color: var(--text-sub);
+      max-width: 85px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .hidden {
@@ -446,11 +764,11 @@
       <div class="brand">
         <div class="brand-mark">B</div>
         <span class="brand-name">Badgify</span>
-        <span class="brand-tag">v1.0</span>
+        <span class="brand-tag">v1.1</span>
       </div>
-      <div>
+      <div class="header-right">
         <a class="github-link" href="https://github.com/a-kio/Badgify" target="_blank" rel="noopener">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
         </a>
       </div>
@@ -465,10 +783,10 @@
       <!-- Presets Card -->
       <div class="card">
         <div class="card-title">
-          <span>Preset stacks</span>
+          <span>Preset stacks & tags</span>
         </div>
         <div class="field">
-          <input type="text" id="presetSearch" placeholder="Search 50+ presets (React, Node, Rust, Bun, Python...)" class="input-text">
+          <input type="text" id="presetSearch" placeholder="Search 50+ presets (iOS, Android, React, Node, Rust, Bun...)" class="input-text">
         </div>
         <div id="presetChips" class="preset-container"></div>
       </div>
@@ -476,7 +794,7 @@
       <!-- Customizer Card -->
       <div class="card">
         <div class="card-title">
-          <span>Customize</span>
+          <span>Customize badge</span>
           <button id="resetBtn" class="reset-btn">Reset</button>
         </div>
 
@@ -503,11 +821,11 @@
         <div class="grid-2 field" id="textInputsContainer">
           <div id="labelGroup" class="hidden">
             <label class="field-label">Left label</label>
-            <input type="text" id="inputLabel" value="license" class="input-text">
+            <input type="text" id="inputLabel" value="platform" class="input-text">
           </div>
           <div id="valueGroup" style="grid-column: span 2;">
             <label class="field-label">Badge text</label>
-            <input type="text" id="inputValue" value="React Native" class="input-text">
+            <input type="text" id="inputValue" value="iOS" class="input-text">
           </div>
         </div>
 
@@ -523,19 +841,27 @@
           <div class="swatch-group" id="colorSwatches"></div>
         </div>
 
-        <!-- Icon Picker -->
+        <!-- Icon Picker Trigger -->
         <div class="field">
-          <label class="field-label">Icon</label>
-          <select id="inputIconSelect" class="select-box"></select>
+          <label class="field-label">Icon (130+ available)</label>
+          <div class="icon-trigger-row">
+            <button type="button" id="iconPreviewBtn" class="icon-preview-btn">
+              <div id="activeIconPreview" class="icon-preview-box"></div>
+              <span id="activeIconName" class="icon-trigger-text">apple</span>
+            </button>
+            <button type="button" id="browseIconsBtn" class="open-modal-btn">
+              Browse 130+ icons
+            </button>
+          </div>
         </div>
 
-        <!-- Geometry -->
+        <!-- Geometry Dropdowns -->
         <div class="grid-2 field">
           <div>
             <label class="field-label">Corner radius</label>
             <select id="inputRadius" class="select-box">
               <option value="rounded" selected>Rounded (6px)</option>
-              <option value="pill">Pill (full)</option>
+              <option value="pill">Pill (full round)</option>
               <option value="sharp">Sharp (0px)</option>
             </select>
           </div>
@@ -594,124 +920,846 @@
 
   </main>
 
+  <!-- Icon Picker Modal -->
+  <div id="iconModal" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <span class="modal-title">Select badge icon</span>
+        <button id="closeModalBtn" class="modal-close">&times;</button>
+      </div>
+      <div class="modal-search-bar">
+        <input type="text" id="iconSearchInput" placeholder="Search 130+ icons (ios, android, react, rust, rocket, key, lock...)" class="input-text">
+        <div class="cat-pills" id="catPills">
+          <button class="cat-pill active" data-cat="all">All (133)</button>
+          <button class="cat-pill" data-cat="Mobile & OS">Mobile & OS</button>
+          <button class="cat-pill" data-cat="Frontend">Frontend</button>
+          <button class="cat-pill" data-cat="Backend & Runtimes">Backend</button>
+          <button class="cat-pill" data-cat="Databases">Databases</button>
+          <button class="cat-pill" data-cat="DevOps & Cloud">DevOps</button>
+          <button class="cat-pill" data-cat="Tools & Testing">Tools</button>
+          <button class="cat-pill" data-cat="Symbols & Badges">Symbols</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="icon-grid" id="modalIconGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    <span id="toastMsg">Copied to clipboard</span>
+  </div>
+
   <script>
     const ICONS = {
+  "activity": "M22 12h-4l-3 9L9 3l-3 9H2",
+  "alert": "M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z",
+  "android": "M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9992.4482.9992.9993.0001.5511-.4482.9997-.9992.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8.0818 12 8.0818s-3.5902.3298-5.1368.868L4.8409 5.4468a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396",
   "angular": "M16.712 17.711H7.288l-1.204 2.916L12 24l5.916-3.373-1.204-2.916ZM14.692 0l7.832 16.855.814-12.856L14.692 0ZM9.308 0 .662 3.999l.814 12.856L9.308 0Zm-.405 13.93h6.198L12 6.396 8.903 13.93Z",
+  "apple": "M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 0.92-2.85-.9.04-1.99.6-2.64 1.35-.57.65-1.07 1.72-.94 2.74 1.01.08 2.04-.49 2.66-1.24z",
+  "archlinux": "M12 0c-.39 0-.74.19-.94.52L.15 19.34a1.08 1.08 0 00.93 1.6h21.84a1.08 1.08 0 00.93-1.6L12.94.52A1.08 1.08 0 0012 0zm0 4.19l7.74 13.75H4.26L12 4.19zm0 5.43l-4.14 7.36h8.28L12 9.62z",
   "astro": "M8.358 20.162c-1.186-1.07-1.532-3.316-1.038-4.944.856 1.026 2.043 1.352 3.272 1.535 1.897.283 3.76.177 5.522-.678.202-.098.388-.229.608-.36.166.473.209.95.151 1.437-.14 1.185-.738 2.1-1.688 2.794-.38.277-.782.525-1.175.787-1.205.804-1.531 1.747-1.078 3.119l.044.148a3.158 3.158 0 0 1-1.407-1.188 3.31 3.31 0 0 1-.544-1.815c-.004-.32-.004-.642-.048-.958-.106-.769-.472-1.113-1.161-1.133-.707-.02-1.267.411-1.415 1.09-.012.053-.028.104-.045.165h.002zm-5.961-4.445s3.24-1.575 6.49-1.575l2.451-7.565c.092-.366.36-.614.662-.614.302 0 .57.248.662.614l2.45 7.565c3.85 0 6.491 1.575 6.491 1.575L16.088.727C15.93.285 15.663 0 15.303 0H8.697c-.36 0-.615.285-.784.727l-5.516 14.99z",
   "aws": "M6.55 16.5c-2.4 0-4.05-1.2-4.05-3.3 0-2.4 2.1-3.6 4.35-3.6 1.05 0 2.1.3 2.7.6v-.6c0-1.35-.9-2.1-2.4-2.1-1.2 0-2.25.45-3 1.05l-.9-1.2c1.05-.9 2.55-1.5 4.35-1.5 2.55 0 4.2 1.35 4.2 3.9v5.85c-.9.6-2.55.9-4.2.9zm.6-1.5c1.2 0 2.25-.45 2.85-1.05v-2.1c-.6-.3-1.5-.45-2.4-.45-1.5 0-2.85.75-2.85 2.1 0 1.05.9 1.5 2.4 1.5zm10.95 1.5c-2.4 0-4.05-1.2-4.05-3.3 0-2.4 2.1-3.6 4.35-3.6 1.05 0 2.1.3 2.7.6v-.6c0-1.35-.9-2.1-2.4-2.1-1.2 0-2.25.45-3 1.05l-.9-1.2c1.05-.9 2.55-1.5 4.35-1.5 2.55 0 4.2 1.35 4.2 3.9v5.85c-.9.6-2.55.9-4.2.9zm.6-1.5c1.2 0 2.25-.45 2.85-1.05v-2.1c-.6-.3-1.5-.45-2.4-.45-1.5 0-2.85.75-2.85 2.1 0 1.05.9 1.5 2.4 1.5z",
+  "azure": "M5.4 21L0 13.8 12.6 3l6 6.6L5.4 21zm6.6-8.4L18 3h6l-9 18h-4.8l1.8-8.4z",
+  "babel": "M24 18.528c0 1.256-1.018 2.274-2.274 2.274H2.274C1.018 20.802 0 19.784 0 18.528V5.472C0 4.216 1.018 3.198 2.274 3.198h19.452C22.982 3.198 24 4.216 24 5.472v13.056zm-17.77-9.87h2.79c1.68 0 2.76.87 2.76 2.28 0 .93-.45 1.62-1.23 1.98v.06c.99.3 1.59 1.08 1.59 2.19 0 1.62-1.29 2.58-3.09 2.58H6.23V8.658zm1.95 3.51h.81c.69 0 1.14-.36 1.14-.96 0-.6-.45-.96-1.14-.96h-.81v1.92zm0 3.75h.96c.78 0 1.29-.39 1.29-1.05 0-.66-.51-1.05-1.29-1.05h-.96v2.1z",
+  "bell": "M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6v-5c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z",
   "biome": "m12 1.608-5.346 9.259a12.069 12.069 0 0 1 6.326-.219l1.807.426-1.7 7.208-1.809-.427c-2.224-.524-4.361.644-5.264 2.507l-1.672-.809c1.276-2.636 4.284-4.232 7.364-3.505l.847-3.592A10.211 10.211 0 0 0 0 22.392h24L12 1.608Z",
+  "book": "M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z",
+  "bootstrap": "M4.17 0h15.66C22.13 0 24 1.87 24 4.17v15.66c0 2.3-1.87 4.17-4.17 4.17H4.17C1.87 24 0 22.13 0 19.83V4.17C0 1.87 1.87 0 4.17 0zm8.39 18.32c3.04 0 4.96-1.4 4.96-3.83 0-1.81-1.19-2.92-2.78-3.23v-.08c1.32-.42 2.27-1.47 2.27-2.99 0-2.22-1.84-3.5-4.43-3.5H7.74v13.63h4.82zm-2.12-5.76h1.75c1.47 0 2.45.64 2.45 1.79 0 1.25-1.07 1.95-2.6 1.95h-1.6V12.56zm0-5.85h1.56c1.35 0 2.15.54 2.15 1.58 0 1.11-.87 1.67-2.22 1.67h-1.49V6.71z",
+  "box": "M12 2L2 7v10l10 5 10-5V7L12 2zm0 2.24l7.6 3.8L12 11.84 4.4 8.04 12 4.24zM4 9.87l7 3.5v7.26l-7-3.5V9.87zm16 7.26l-7 3.5v-7.26l7-3.5v7.26z",
+  "bug": "M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z",
   "bun": "M12 22.596c6.628 0 12-4.338 12-9.688 0-3.318-2.057-6.248-5.219-7.986-1.286-.715-2.297-1.357-3.139-1.89C14.058 2.025 13.08 1.404 12 1.404c-1.097 0-2.334.785-3.966 1.821a49.92 49.92 0 0 1-2.816 1.697C2.057 6.66 0 9.59 0 12.908c0 5.35 5.372 9.687 12 9.687v.001ZM10.599 4.715c.334-.759.503-1.58.498-2.409 0-.145.202-.187.23-.029.658 2.783-.902 4.162-2.057 4.624-.124.048-.199-.121-.103-.209a5.763 5.763 0 0 0 1.432-1.977Zm2.058-.102a5.82 5.82 0 0 0-.782-2.306v-.016c-.069-.123.086-.263.185-.172 1.962 2.111 1.307 4.067.556 5.051-.082.103-.23-.003-.189-.126a5.85 5.85 0 0 0 .23-2.431Zm1.776-.561a5.727 5.727 0 0 0-1.612-1.806v-.014c-.112-.085-.024-.274.114-.218 2.595 1.087 2.774 3.18 2.459 4.407a.116.116 0 0 1-.049.071.11.11 0 0 1-.153-.026.122.122 0 0 1-.022-.083 5.891 5.891 0 0 0-.737-2.331Zm-5.087.561c-.617.546-1.282.76-2.063 1-.117 0-.195-.078-.156-.181 1.752-.909 2.376-1.649 2.999-2.778 0 0 .155-.118.188.085 0 .304-.349 1.329-.968 1.874Zm4.945 11.237a2.957 2.957 0 0 1-.937 1.553c-.346.346-.8.565-1.286.62a2.178 2.178 0 0 1-1.327-.62 2.955 2.955 0 0 1-.925-1.553.244.244 0 0 1 .064-.198.234.234 0 0 1 .193-.069h3.965a.226.226 0 0 1 .19.07c.05.053.073.125.063.197Zm-5.458-2.176a1.862 1.862 0 0 1-2.384-.245 1.98 1.98 0 0 1-.233-2.447c.207-.319.503-.566.848-.713a1.84 1.84 0 0 1 1.092-.11c.366.075.703.261.967.531a1.98 1.98 0 0 1 .408 2.114 1.931 1.931 0 0 1-.698.869v.001Zm8.495.005a1.86 1.86 0 0 1-2.381-.253 1.964 1.964 0 0 1-.547-1.366c0-.384.11-.76.32-1.079.207-.319.503-.567.849-.713a1.844 1.844 0 0 1 1.093-.108c.367.076.704.262.968.534a1.98 1.98 0 0 1 .4 2.117 1.932 1.932 0 0 1-.702.868Z",
+  "c": "M11.996 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm0 3.6a8.4 8.4 0 1 1-5.94 14.34 1.2 1.2 0 1 1 1.7-1.7 6 6 0 1 0 0-8.48 1.2 1.2 0 1 1-1.7-1.7A8.36 8.36 0 0 1 12 3.6z",
+  "chart": "M5 9.2h3V19H5zM10.6 5h2.8v14h-2.8zm5.6 8H19v6h-2.8z",
   "check": "M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z",
+  "check-circle": "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z",
+  "cloud": "M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z",
   "cloudflare": "M16.5088 16.8447c.1475-.5068.0908-.9707-.1553-1.3154-.2246-.3164-.6045-.499-1.0615-.5205l-8.6592-.1123a.1559.1559 0 0 1-.1333-.0713c-.0283-.042-.0351-.0986-.021-.1553.0278-.084.1123-.1484.2036-.1562l8.7359-.1123c1.0351-.0489 2.1601-.8868 2.5537-1.9136l.499-1.3013c.0215-.0561.0293-.1128.0147-.168-.5625-2.5463-2.835-4.4453-5.5499-4.4453-2.5039 0-4.6284 1.6177-5.3876 3.8614-.4927-.3658-1.1187-.5625-1.794-.499-1.2026.119-2.1665 1.083-2.2861 2.2856-.0283.31-.0069.6128.0635.894C1.5683 13.171 0 14.7754 0 16.752c0 .1748.0142.3515.0352.5273.0141.083.0844.1475.1689.1475h15.9814c.0909 0 .1758-.0645.2032-.1553l.12-.4268zm2.7568-5.5634c-.0771 0-.1611 0-.2383.0112-.0566 0-.1054.0415-.127.0976l-.3378 1.1744c-.1475.5068-.0918.9707.1543 1.3164.2256.3164.6055.498 1.0625.5195l1.8437.1133c.0557 0 .1055.0263.1329.0703.0283.043.0351.1074.0214.1562-.0283.084-.1132.1485-.204.1553l-1.921.1123c-1.041.0488-2.1582.8867-2.5527 1.914l-.1406.3585c-.0283.0713.0215.1416.0986.1416h6.5977c.0771 0 .1474-.0489.169-.126.1122-.4082.1757-.837.1757-1.2803 0-2.6025-2.125-4.727-4.7344-4.727",
+  "code": "M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z",
+  "coffee": "M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM2 21h18v-2H2v2z",
+  "copy": "M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z",
+  "cpp": "M11.996 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm-2.4 5.2a6.8 6.8 0 1 1-4.8 11.6 1 1 0 1 1 1.4-1.4 4.8 4.8 0 1 0 0-6.8 1 1 0 1 1-1.4-1.4 6.77 6.77 0 0 1 4.8-2zm6.4 3.8h1.2v2h2v1.2h-2v2h-1.2v-2h-2v-1.2h2v-2zm4.8 0h1.2v2h2v1.2h-2v2h-1.2v-2h-2v-1.2h2v-2z",
+  "cpu": "M4 6c0-1.1.9-2 2-2h12c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V6zm2 0v12h12V6H6zm2-4h2v2H8V2zm4 0h2v2h-2V2zm4 0h2v2h-2V2zm-8 18h2v2H8v-2zm4 0h2v2h-2v-2zm4 0h2v2h-2v-2zM2 8h2v2H2V8zm0 4h2v2H2v-2zm0 4h2v2H2v-2zm18-8h2v2h-2V8zm0 4h2v2h-2v-2zm0 4h2v2h-2v-2zm-12-6h8v8H8V10z",
+  "cross": "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z",
+  "csharp": "M12 0a12 12 0 1 0 12 12A12 12 0 0 0 12 0zm-2.4 5.2a6.8 6.8 0 1 1-4.8 11.6 1 1 0 1 1 1.4-1.4 4.8 4.8 0 1 0 0-6.8 1 1 0 1 1-1.4-1.4 6.77 6.77 0 0 1 4.8-2zm8.6 3.8h-1.2l.3-1.5h-1.2l-.3 1.5h-1.5l.3-1.5h-1.2l-.3 1.5H12v1.2h1.1l-.3 1.5H11.5v1.2h1.1l-.3 1.5h1.2l.3-1.5h1.5l-.3 1.5h1.2l.3-1.5h1.3v-1.2h-1.1l.3-1.5h1.3V9zm-2.7 2.7h-1.5l.3-1.5h1.5z",
+  "css3": "M1.5 0h21l-1.91 21.563L11.97 24l-8.564-2.438L1.5 0zm17.09 4.5H5.41l.24 2.67h10.38l-.28 3.14H5.89l.24 2.67h9.87l-.37 4.13-3.66 1.02-3.66-1.02-.23-2.58H5.66l.44 4.88 5.87 1.63 5.87-1.63 1.25-13.91z",
   "cypress": "M11.998.0195c-.8642 0-1.6816.1101-2.1445.1934v.002C4.1731 1.2283 0 6.1368 0 12.0018c0 1.1265.1573 2.2328.4648 3.3028.0387.1453.0915.2993.1368.4473 1.607 4.865 6.2245 8.226 11.3925 8.2285.0651 0 .2518-.0003.502-.0118.8564-.0353 1.6228-.5734 1.9512-1.369l.4736-1.1544L20.4258 8.043H18.621l-2.3164 5.871-2.334-5.871h-1.9082l3.2734 8.0117c-.8115 1.9702-1.6252 3.9395-2.4355 5.9101-.0808.1945-.2655.3284-.4727.336-.144.005-.285.0098-.4316.0098-4.5848 0-8.6672-3.0695-9.9277-7.4649a10.3058 10.3058 0 0 1-.3985-2.8437c0-5.0887 3.6521-9.3404 8.6035-10.164.2214-.037.8885-.1446 1.7246-.1446 4.4166 0 8.269 2.732 9.7305 6.8476.0558.144.0977.293.1465.4395.299.9746.4531 1.9887.4531 3.0215 0 4.5696-2.9413 8.5326-7.3164 9.8613l.4863 1.5996c5.085-1.546 8.4995-6.1518 8.502-11.459 0-1.5491-.2983-2.8706-.6504-3.8926-.0432-.1212-.0873-.2422-.1309-.3633h-.002C21.4577 3.0954 17.0444.0195 11.998.0195ZM8.4336 7.8906c-1.1999 0-2.1747.3852-2.9805 1.1758-.8007.7856-1.205 1.7736-1.205 2.9356 0 1.1544.4068 2.1368 1.205 2.9199.8058.7906 1.7806 1.1738 2.9805 1.1738 1.705 0 3.1556-.955 3.7871-2.4883l.0332-.082-1.6289-.5547c-.168.4563-.7552 1.4883-2.1914 1.4883-.6745 0-1.2437-.2344-1.6934-.6992-.4572-.4699-.6875-1.0632-.6875-1.7578 0-.6998.2253-1.2809.6875-1.7735.4522-.4648 1.019-.7012 1.6934-.7012 1.438 0 2.0238 1.0815 2.1934 1.4883l1.627-.5527-.0333-.084c-.629-1.5358-2.082-2.4883-3.7871-2.4883Z",
+  "dart": "M4.1 0L0 4.1l11.9 11.9 4.1-4.1L4.1 0zm0 15.8L0 19.9 4.1 24l11.9-11.9-4.1-4.1-7.8 7.8zM24 8.2l-4.1-4.1-5.8 5.8 4.1 4.1L24 8.2z",
+  "database": "M12 2C6.48 2 2 4.02 2 6.5v11C2 19.98 6.48 22 12 22s10-2.02 10-4.5v-11C22 4.02 17.52 2 12 2zm0 2.2c4.42 0 8 1.48 8 2.3s-3.58 2.3-8 2.3-8-1.48-8-2.3 3.58-2.3 8-2.3zM4 9.48c1.88 1.34 4.8 2.02 8 2.02s6.12-.68 8-2.02v2.87c0 .82-3.58 2.3-8 2.3s-8-1.48-8-2.3V9.48zm0 5.5c1.88 1.34 4.8 2.02 8 2.02s6.12-.68 8-2.02v2.87c0 .82-3.58 2.3-8 2.3s-8-1.48-8-2.3v-2.87z",
+  "debian": "M11.968 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0011.968 0zm.032 2.182a9.818 9.818 0 110 19.636 9.818 9.818 0 010-19.636zm2.4 3.273c-1.31 0-2.62.545-3.6 1.527-1.963 1.964-1.963 5.127 0 7.091 1.964 1.964 5.127 1.964 7.091 0 .655-.654 1.091-1.418 1.31-2.29.108-.437-.11-.873-.546-.983-.436-.109-.873.11-.982.546-.109.545-.436 1.09-.873 1.527-1.31 1.31-3.49 1.31-4.8 0-1.31-1.31-1.31-3.491 0-4.8 1.31-1.31 3.49-1.31 4.8 0 .437.436.764.981.873 1.527.11.436.546.655.982.546.436-.11.654-.546.546-.982-.219-.873-.655-1.637-1.31-2.291-.98-.982-2.29-1.467-3.49-1.467z",
   "deno": "M1.105 18.02A11.9 11.9 0 0 1 0 12.985q0-.698.078-1.376a12 12 0 0 1 .231-1.34A12 12 0 0 1 4.025 4.02a12 12 0 0 1 5.46-2.771 12 12 0 0 1 3.428-.23c1.452.112 2.825.477 4.077 1.05a12 12 0 0 1 2.78 1.774 12.02 12.02 0 0 1 4.053 7.078A12 12 0 0 1 24 12.985q0 .454-.036.914a12 12 0 0 1-.728 3.305 12 12 0 0 1-2.38 3.875c-1.33 1.357-3.02 1.962-4.43 1.936a4.4 4.4 0 0 1-2.724-1.024c-.99-.853-1.391-1.83-1.53-2.919a5 5 0 0 1 .128-1.518c.105-.38.37-1.116.76-1.437-.455-.197-1.04-.624-1.226-.829-.045-.05-.04-.13 0-.183a.155.155 0 0 1 .177-.053c.392.134.869.267 1.372.35.66.111 1.484.25 2.317.292 2.03.1 4.153-.813 4.812-2.627s.403-3.609-1.96-4.685-3.454-2.356-5.363-3.128c-1.247-.505-2.636-.205-4.06.582-3.838 2.121-7.277 8.822-5.69 15.032a.191.191 0 0 1-.315.19 12 12 0 0 1-1.25-1.634 12 12 0 0 1-.769-1.404M11.57 6.087c.649-.051 1.214.501 1.31 1.236.13.979-.228 1.99-1.41 2.013-1.01.02-1.315-.997-1.248-1.614.066-.616.574-1.575 1.35-1.635",
   "docker": "M13.983 11.078h2.119a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.119a.185.185 0 00-.185.185v1.888c0 .102.083.185.185.185m-2.954-5.43h2.118a.186.186 0 00.186-.186V3.574a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m0 2.716h2.118a.187.187 0 00.186-.186V6.29a.186.186 0 00-.186-.185h-2.118a.185.185 0 00-.185.185v1.887c0 .102.082.185.185.186m-2.93 0h2.12a.186.186 0 00.184-.186V6.29a.185.185 0 00-.185-.185H8.1a.185.185 0 00-.185.185v1.887c0 .102.083.185.185.186m-2.964 0h2.119a.186.186 0 00.185-.186V6.29a.185.185 0 00-.185-.185H5.136a.186.186 0 00-.186.185v1.887c0 .102.084.185.186.186m5.893 2.715h2.118a.186.186 0 00.186-.185V9.006a.186.186 0 00-.186-.186h-2.118a.185.185 0 00-.185.185v1.888c0 .102.082.185.185.185m-2.93 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.083.185.185.185m-2.964 0h2.119a.185.185 0 00.185-.185V9.006a.185.185 0 00-.184-.186h-2.12a.186.186 0 00-.186.186v1.887c0 .102.084.185.186.185m-2.92 0h2.12a.185.185 0 00.184-.185V9.006a.185.185 0 00-.184-.186h-2.12a.185.185 0 00-.184.185v1.888c0 .102.082.185.185.185M23.763 9.89c-.065-.051-.672-.51-1.954-.51-.338.001-.676.03-1.01.087-.248-1.7-1.653-2.53-1.716-2.566l-.344-.199-.226.327c-.284.438-.49.922-.612 1.43-.23.97-.09 1.882.403 2.661-.595.332-1.55.413-1.744.42H.751a.751.751 0 00-.75.748 11.376 11.376 0 00.692 4.062c.545 1.428 1.355 2.48 2.41 3.124 1.18.723 3.1 1.137 5.275 1.137.983.003 1.963-.086 2.93-.266a12.248 12.248 0 003.823-1.389c.98-.567 1.86-1.288 2.61-2.136 1.252-1.418 1.998-2.997 2.553-4.4h.221c1.372 0 2.215-.549 2.68-1.009.309-.293.55-.65.707-1.046l.098-.288Z",
+  "download": "M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z",
+  "drizzle": "M12 2L4 7v10l8 5 8-5V7l-8-5zm6 13.8l-6 3.75-6-3.75V8.2l6-3.75 6 3.75v7.6z",
   "electron": "M12.0111 0c-.85 0-1.5392.6891-1.5392 1.5392 0 .8501.6891 1.5393 1.5392 1.5393.595 0 1.11-.338 1.3662-.832 2.2208 1.2675 3.847 5.4728 3.847 10.3623 0 2.0715-.2891 4.056-.825 5.7685a.3215.3215 0 0 0 .2107.403.322.322 0 0 0 .4033-.2111c.5558-1.7763.8542-3.8251.8542-5.9604 0-5.1927-1.7717-9.686-4.3206-11.0027.001-.0223.0035-.0443.0035-.0669 0-.85-.6891-1.5392-1.5393-1.5392zm0 .6432a.896.896 0 1 1 0 1.792.896.896 0 1 1 0-1.792zm-5.486 4.3052c-2.067.0074-3.6473.6646-4.3885 1.9485-.7375 1.2774-.5267 2.971.5113 4.7813a.3217.3217 0 0 0 .558-.32C2.271 9.7274 2.089 8.266 2.6938 7.2185c.821-1.422 3.033-1.9552 5.9321-1.4271a.3216.3216 0 0 0 .1153-.6329c-.784-.1428-1.5271-.2125-2.216-.21zm11.0522.0176a.3216.3216 0 0 0-.0084.6432c1.8337.0239 3.1556.5956 3.7502 1.6256.8192 1.419.1798 3.5947-1.7182 5.837a.322.322 0 0 0 .0377.4535.3215.3215 0 0 0 .4532-.0377c2.0535-2.426 2.7708-4.8661 1.7845-6.5744-.7257-1.257-2.26-1.9207-4.299-1.9472zm-2.6984.2924a.3225.3225 0 0 0-.0647.0072c-1.8568.3979-3.8333 1.1755-5.7314 2.2714-4.5699 2.6384-7.5924 6.4948-7.3601 9.3717-.4726.2628-.7928.7664-.7928 1.3455 0 .85.6892 1.5392 1.5393 1.5392.85 0 1.5392-.6891 1.5392-1.5392 0-.8501-.6891-1.5393-1.5392-1.5393-.038 0-.0754.003-.1128.0057-.1002-2.5597 2.7434-6.1412 7.048-8.6265 1.8413-1.063 3.7551-1.8163 5.5445-2.1997a.3217.3217 0 0 0-.07-.636zm-2.8787 6.2364a1.1192 1.1192 0 0 0-.2243.0255c-.6012.1301-.983.7225-.8533 1.3238.1302.6012.7226.9832 1.3238.8533.6012-.1302.9832-.7226.8533-1.3238-.1139-.526-.5816-.8844-1.0995-.8788zM4.532 13.341a.321.321 0 0 0-.2318.0835.3214.3214 0 0 0-.0214.4542c1.2682 1.3936 2.9157 2.701 4.7946 3.7857 4.4146 2.5489 9.1056 3.2849 11.5608 1.8392a1.53 1.53 0 0 0 .8966.2899c.8501 0 1.5392-.6891 1.5392-1.5392 0-.8501-.689-1.5393-1.5392-1.5393-.85 0-1.5392.6892-1.5392 1.5393 0 .276.0737.5344.201.7584-2.2448 1.214-6.631.5002-10.7976-1.9054-1.8228-1.0524-3.418-2.3181-4.6404-3.6614a.3206.3206 0 0 0-.2226-.1049zm-2.0628 4.0172a.896.896 0 1 1 0 1.792.896.896 0 1 1 0-1.792zm19.0616 0a.896.896 0 1 1 0 1.792.891.891 0 0 1-.5864-.2194c-.0025-.004-.0039-.0083-.0066-.0123a.3195.3195 0 0 0-.0957-.0914.896.896 0 0 1 .6887-1.4689zm-14.0045 1.368a.3215.3215 0 0 0-.3207.4296C8.2793 22.154 10.036 24 12.0111 24c1.4406 0 2.7735-.9822 3.8128-2.711a.3215.3215 0 0 0-.11-.4413.3219.3219 0 0 0-.4415.11c-.934 1.5537-2.0812 2.399-3.2613 2.399-1.6407 0-3.2075-1.6465-4.2-4.4179a.3216.3216 0 0 0-.2848-.2126z",
+  "elixir": "M12 0C6.6 5.8 4 10.4 4 14.8 4 19.3 7.6 23 12 23s8-3.7 8-8.2c0-4.4-2.6-9-8-14.8zm0 20.8c-3.3 0-6-2.7-6-6 0-3.3 2-6.9 6-11.4 4 4.5 6 8.1 6 11.4 0 3.3-2.7 6-6 6z",
   "eslint": "M7.257 9.132L11.816 6.5a.369.369 0 0 1 .368 0l4.559 2.632a.369.369 0 0 1 .184.32v5.263a.37.37 0 0 1-.184.319l-4.559 2.632a.369.369 0 0 1-.368 0l-4.559-2.632a.369.369 0 0 1-.184-.32V9.452a.37.37 0 0 1 .184-.32M23.852 11.53l-5.446-9.475c-.198-.343-.564-.596-.96-.596H6.555c-.396 0-.762.253-.96.596L.149 11.509a1.127 1.127 0 0 0 0 1.117l5.447 9.398c.197.342.563.517.959.517h10.893c.395 0 .76-.17.959-.512l5.446-9.413a1.069 1.069 0 0 0 0-1.086m-4.51 4.556a.4.4 0 0 1-.204.338L12.2 20.426a.395.395 0 0 1-.392 0l-6.943-4.002a.4.4 0 0 1-.205-.338V8.08c0-.14.083-.269.204-.338L11.8 3.74c.12-.07.272-.07.392 0l6.943 4.003a.4.4 0 0 1 .206.338z",
   "expo": "M0 20.084c.043.53.23 1.063.718 1.778.58.849 1.576 1.315 2.303.567.49-.505 5.794-9.776 8.35-13.29a.761.761 0 011.248 0c2.556 3.514 7.86 12.785 8.35 13.29.727.748 1.723.282 2.303-.567.57-.835.728-1.42.728-2.046 0-.426-8.26-15.798-9.092-17.078-.8-1.23-1.044-1.498-2.397-1.542h-1.032c-1.353.044-1.597.311-2.398 1.542C8.267 3.991.33 18.758 0 19.77Z",
+  "external-link": "M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z",
+  "eye": "M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z",
+  "firebase": "M3.89 15.67L6.25.75A.75.75 0 0 1 7.6.43l3.65 6.9-7.36 8.34zm16.22 0l-2.02-12.7a.75.75 0 0 0-1.35-.38L3.25 18.25l7.95 4.5a1.8 1.8 0 0 0 1.6 0l7.31-7.08zM12.9 8.65l-2.05-3.9a.75.75 0 0 0-1.35 0L1.75 18.25l10.25 5.8 1.9-15.4z",
+  "flame": "M12 .587l3.668 7.431 8.2 1.192-5.934 5.784 1.401 8.169-7.335-3.856-7.335 3.856 1.401-8.169-5.934-5.784 8.2-1.192zm0 5.703l-2.07 4.195-4.63.673 3.35 3.266-.79 4.61 4.14-2.177 4.14 2.177-.79-4.61 3.35-3.266-4.63-.673z",
   "flutter": "M14.314 0L2.3 12 6 15.7 21.684.013h-7.357zm.014 11.072L7.857 17.53l6.47 6.47H21.7l-6.46-6.468 6.46-6.46h-7.37z",
+  "git": "M23.546 10.93L13.067.452a1.5 1.5 0 0 0-2.126 0L8.808 2.585l3.05 3.05a1.78 1.78 0 0 1 2.257 2.285l3.052 3.052a1.78 1.78 0 0 1 2.28 2.28l4.099-4.1a1.5 1.5 0 0 0 0-2.222zM2.583 8.808L.452 10.939a1.5 1.5 0 0 0 0 2.126l10.479 10.479a1.5 1.5 0 0 0 2.126 0l2.131-2.131-3.05-3.05a1.78 1.78 0 0 1-2.285-2.257l-3.052-3.052a1.78 1.78 0 0 1-2.28-2.28l-1.938 1.034z",
   "github": "M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12",
   "githubactions": "M10.984 13.836a.5.5 0 0 1-.353-.146l-.745-.743a.5.5 0 1 1 .706-.708l.392.391 1.181-1.18a.5.5 0 0 1 .708.707l-1.535 1.533a.504.504 0 0 1-.354.146zm9.353-.147l1.534-1.532a.5.5 0 0 0-.707-.707l-1.181 1.18-.392-.391a.5.5 0 1 0-.706.708l.746.743a.497.497 0 0 0 .706-.001zM4.527 7.452l2.557-1.585A1 1 0 0 0 7.09 4.17L4.533 2.56A1 1 0 0 0 3 3.406v3.196a1.001 1.001 0 0 0 1.527.85zm2.03-2.436L4 6.602V3.406l2.557 1.61zM24 12.5c0 1.93-1.57 3.5-3.5 3.5a3.503 3.503 0 0 1-3.46-3h-2.08a3.503 3.503 0 0 1-3.46 3 3.502 3.502 0 0 1-3.46-3h-.558c-.972 0-1.85-.399-2.482-1.042V17c0 1.654 1.346 3 3 3h.04c.244-1.693 1.7-3 3.46-3 1.93 0 3.5 1.57 3.5 3.5S13.43 24 11.5 24a3.502 3.502 0 0 1-3.46-3H8c-2.206 0-4-1.794-4-4V9.899A5.008 5.008 0 0 1 0 5c0-2.757 2.243-5 5-5s5 2.243 5 5a5.005 5.005 0 0 1-4.952 4.998A2.482 2.482 0 0 0 7.482 12h.558c.244-1.693 1.7-3 3.46-3a3.502 3.502 0 0 1 3.46 3h2.08a3.503 3.503 0 0 1 3.46-3c1.93 0 3.5 1.57 3.5 3.5zm-15 8c0 1.378 1.122 2.5 2.5 2.5s2.5-1.122 2.5-2.5-1.122-2.5-2.5-2.5S9 19.122 9 20.5zM5 9c2.206 0 4-1.794 4-4S7.206 1 5 1 1 2.794 1 5s1.794 4 4 4zm9 3.5c0-1.378-1.122-2.5-2.5-2.5S9 11.122 9 12.5s1.122 2.5 2.5 2.5 2.5-1.122 2.5-2.5zm9 0c0-1.378-1.122-2.5-2.5-2.5S18 11.122 18 12.5s1.122 2.5 2.5 2.5 2.5-1.122 2.5-2.5zm-13 8a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0zm2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0zm12 0c0 1.93-1.57 3.5-3.5 3.5a3.503 3.503 0 0 1-3.46-3.002c-.007.001-.013.005-.021.005l-.506.017h-.017a.5.5 0 0 1-.016-.999l.506-.017c.018-.002.035.006.052.007A3.503 3.503 0 0 1 20.5 17c1.93 0 3.5 1.57 3.5 3.5zm-1 0c0-1.378-1.122-2.5-2.5-2.5S18 19.122 18 20.5s1.122 2.5 2.5 2.5 2.5-1.122 2.5-2.5z",
+  "gitlab": "M23.6 9.59l-1.74-5.36a.9.9 0 0 0-1.71 0L18.41 9.6H5.59L3.85 4.23a.9.9 0 0 0-1.71 0L.4 9.59a.9.9 0 0 0 .33 1l11.27 8.19 11.27-8.19a.9.9 0 0 0 .33-1z",
+  "globe": "M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm7.93 9h-3.18a15.77 15.77 0 0 0-1.39-5.06A8.02 8.02 0 0 1 19.93 11zM12 4.07c.88 1.48 1.54 3.65 1.72 6.93H10.28c.18-3.28.84-5.45 1.72-6.93zM4.07 13h3.18a15.77 15.77 0 0 0 1.39 5.06A8.02 8.02 0 0 1 4.07 13zm3.18-2H4.07a8.02 8.02 0 0 1 4.57-5.06A15.77 15.77 0 0 0 7.25 11zm3.03 2h3.44c-.18 3.28-.84 5.45-1.72 6.93-.88-1.48-1.54-3.65-1.72-6.93zm4.36 5.06a15.77 15.77 0 0 0 1.39-5.06h3.18a8.02 8.02 0 0 1-4.57 5.06z",
   "go": "M1.811 10.231c-.047 0-.058-.023-.035-.059l.246-.315c.023-.035.081-.058.128-.058h4.172c.046 0 .058.035.035.07l-.199.303c-.023.036-.082.07-.117.07zM.047 11.306c-.047 0-.059-.023-.035-.058l.245-.316c.023-.035.082-.058.129-.058h5.328c.047 0 .07.035.058.07l-.093.28c-.012.047-.058.07-.105.07zm2.828 1.075c-.047 0-.059-.035-.035-.07l.163-.292c.023-.035.07-.07.117-.07h2.337c.047 0 .07.035.07.082l-.023.28c0 .047-.047.082-.082.082zm12.129-2.36c-.736.187-1.239.327-1.963.514-.176.046-.187.058-.34-.117-.174-.199-.303-.327-.548-.444-.737-.362-1.45-.257-2.115.175-.795.514-1.204 1.274-1.192 2.22.011.935.654 1.706 1.577 1.835.795.105 1.46-.175 1.987-.77.105-.13.198-.27.315-.434H10.47c-.245 0-.304-.152-.222-.35.152-.362.432-.97.596-1.274a.315.315 0 01.292-.187h4.253c-.023.316-.023.631-.07.947a4.983 4.983 0 01-.958 2.29c-.841 1.11-1.94 1.8-3.33 1.986-1.145.152-2.209-.07-3.143-.77-.865-.655-1.356-1.52-1.484-2.595-.152-1.274.222-2.419.993-3.424.83-1.086 1.928-1.776 3.272-2.02 1.098-.2 2.15-.07 3.096.571.62.41 1.063.97 1.356 1.648.07.105.023.164-.117.2m3.868 6.461c-1.064-.024-2.034-.328-2.852-1.029a3.665 3.665 0 01-1.262-2.255c-.21-1.32.152-2.489.947-3.529.853-1.122 1.881-1.706 3.272-1.95 1.192-.21 2.314-.095 3.33.595.923.63 1.496 1.484 1.648 2.605.198 1.578-.257 2.863-1.344 3.962-.771.783-1.718 1.273-2.805 1.495-.315.06-.63.07-.934.106zm2.78-4.72c-.011-.153-.011-.27-.034-.387-.21-1.157-1.274-1.81-2.384-1.554-1.087.245-1.788.935-2.045 2.033-.21.912.234 1.835 1.075 2.21.643.28 1.285.244 1.905-.07.923-.48 1.425-1.228 1.484-2.233z",
+  "googlecloud": "M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM19 18H6c-2.21 0-4-1.79-4-4 0-2.05 1.53-3.76 3.56-3.97l1.07-.11.5-.95C8.08 7.14 9.94 6 12 6c2.62 0 4.88 1.86 5.39 4.43l.3 1.5 1.53.11c1.56.1 2.78 1.41 2.78 2.96 0 1.65-1.35 3-3 3z",
   "graphql": "M12.002 0a2.138 2.138 0 1 0 0 4.277 2.138 2.138 0 1 0 0-4.277zm8.54 4.931a2.138 2.138 0 1 0 0 4.277 2.138 2.138 0 1 0 0-4.277zm0 9.862a2.138 2.138 0 1 0 0 4.277 2.138 2.138 0 1 0 0-4.277zm-8.54 4.931a2.138 2.138 0 1 0 0 4.276 2.138 2.138 0 1 0 0-4.276zm-8.542-4.93a2.138 2.138 0 1 0 0 4.276 2.138 2.138 0 1 0 0-4.277zm0-9.863a2.138 2.138 0 1 0 0 4.277 2.138 2.138 0 1 0 0-4.277zm8.542-3.378L2.953 6.777v10.448l9.049 5.224 9.047-5.224V6.777zm0 1.601 7.66 13.27H4.34zm-1.387.371L3.97 15.037V7.363zm2.774 0 6.646 3.838v7.674zM5.355 17.44h13.293l-6.646 3.836z",
+  "heart": "M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z",
+  "html5": "M1.5 0h21l-1.91 21.563L11.97 24l-8.564-2.438L1.5 0zm7.031 9.75l-.234-2.625h11.203l.234-2.625H5.484l.703 7.875h11.485l-.328 3.563-5.375 1.453-5.375-1.453-.375-4.172H3.594l.562 6.328 7.813 2.156 7.813-2.156.844-9.375H8.531z",
+  "info": "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z",
+  "java": "M8.85 17.5c-2.3 0-3.35 1.1-3.35 1.1s.95.85 2.7.85c2.4 0 4.45-.65 4.45-.65s-1.35-1.3-3.8-1.3zm.7-3.55c-3.15 0-4.65 1.5-4.65 1.5s1.3 1.15 3.75 1.15c3.3 0 6.1-.9 6.1-.9s-1.8-1.75-5.2-1.75zm1.5-4.65s-2.15 2.15.5 4.3c2.95 2.4.95 4.2.95 4.2s3.15-1.6 1.4-4.2c-1.95-2.9-2.85-4.3-2.85-4.3zm6.4 11.65c-4.45 1.25-10.45 1.3-12.95 0 0 0 .95 1.2 4.15 1.55 4.1.45 8.8-.25 8.8-.25s0-.75 0-1.3zm-5.05-18.4c-.65 1.8 1.4 3.7 1.4 3.7s-.6-2.5-1.4-3.7zm4.1 6.35s-1.35 1.7 0 3.4c1.55 1.95 1.05 3.65 1.05 3.65s1.85-1.7.55-3.8c-1.3-2.1-1.6-3.25-1.6-3.25z",
   "javascript": "M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z",
   "jest": "M22.251 11.82a3.117 3.117 0 0 0-2.328-3.01L22.911 0H8.104L11.1 8.838a3.116 3.116 0 0 0-2.244 2.988c0 1.043.52 1.967 1.313 2.536a8.279 8.279 0 0 1-1.084 1.244 8.14 8.14 0 0 1-2.55 1.647c-.834-.563-1.195-1.556-.869-2.446a3.11 3.11 0 0 0-.91-6.08 3.117 3.117 0 0 0-3.113 3.113c0 .848.347 1.626.903 2.182-.048.097-.097.195-.146.299-.465.959-.993 2.043-1.195 3.259-.403 2.432.257 4.384 1.849 5.489A5.093 5.093 0 0 0 5.999 24c1.827 0 3.682-.917 5.475-1.807 1.279-.632 2.599-1.292 3.898-1.612.48-.118.98-.187 1.508-.264 1.07-.153 2.175-.312 3.168-.89a4.482 4.482 0 0 0 2.182-3.091c.174-.994 0-1.994-.444-2.87.298-.48.465-1.042.465-1.647zm-1.355 0c0 .965-.785 1.75-1.75 1.75a1.753 1.753 0 0 1-1.085-3.126l.007-.007c.056-.042.118-.084.18-.125 0 0 .008 0 .008-.007.028-.014.055-.035.083-.05.007 0 .014-.006.021-.006.028-.014.063-.028.097-.042.035-.014.07-.027.098-.041.007 0 .013-.007.02-.007.028-.007.056-.021.084-.028.007 0 .02-.007.028-.007.034-.007.062-.014.097-.02h.007l.104-.022c.007 0 .02 0 .028-.007.028 0 .055-.007.083-.007h.035c.035 0 .07-.007.111-.007h.09c.028 0 .05 0 .077.007h.014c.055.007.111.014.167.028a1.766 1.766 0 0 1 1.396 1.723zM10.043 1.39h10.93l-2.509 7.4c-.104.02-.208.055-.312.09l-2.64-5.385-2.648 5.35c-.104-.034-.216-.055-.327-.076l-2.494-7.38zm4.968 9.825a3.083 3.083 0 0 0-.938-1.668l1.438-2.904 1.452 2.967c-.43.43-.743.98-.868 1.605H15.01zm-3.481-1.098c.034-.007.062-.014.097-.02h.02c.029-.008.056-.008.084-.015h.028c.028 0 .049-.007.076-.007h.271c.028 0 .049.007.07.007.014 0 .02 0 .035.007.027.007.048.007.076.014.007 0 .014 0 .028.007l.097.02h.007c.028.008.056.015.083.029.007 0 .014.007.028.007.021.007.049.014.07.027.007 0 .014.007.02.007.028.014.056.021.084.035h.007a.374.374 0 0 1 .09.049h.007c.028.014.056.034.084.048.007 0 .007.007.013.007.028.014.05.035.077.049l.007.007c.083.062.16.132.236.201l.007.007a1.747 1.747 0 0 1 .48 1.209 1.752 1.752 0 0 1-3.502 0 1.742 1.742 0 0 1 1.32-1.695zm-6.838-.049c.966 0 1.751.786 1.751 1.751s-.785 1.751-1.75 1.751-1.752-.785-1.752-1.75.786-1.752 1.751-1.752zm16.163 6.025a3.07 3.07 0 0 1-1.508 2.133c-.758.438-1.689.577-2.669.716a17.29 17.29 0 0 0-1.64.291c-1.445.355-2.834 1.05-4.182 1.717-1.724.854-3.35 1.66-4.857 1.66a3.645 3.645 0 0 1-2.154-.688c-1.529-1.056-1.453-3.036-1.272-4.12.167-1.015.632-1.966 1.077-2.877.028-.055.049-.104.077-.16.152.056.312.098.479.126-.264 1.473.486 2.994 1.946 3.745l.264.139.284-.104c1.216-.431 2.342-1.133 3.336-2.071a9.334 9.334 0 0 0 1.445-1.716c.16.027.32.034.48.034a3.117 3.117 0 0 0 3.008-2.327h1.167a3.109 3.109 0 0 0 3.01 2.327c.576 0 1.11-.16 1.57-.43.18.52.236 1.063.139 1.605z",
+  "key": "M12.65 10A5.99 5.99 0 0 0 7 6c-3.31 0-6 2.69-6 6s2.69 6 6 6a5.99 5.99 0 0 0 5.65-4H17v4h4v-4h2v-4H12.65zM7 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z",
   "kotlin": "M24 24H0V0h24L12 12Z",
   "kubernetes": "M10.204 14.35l.007.01-.999 2.413a5.171 5.171 0 0 1-2.075-2.597l2.578-.437.004.005a.44.44 0 0 1 .484.606zm-.833-2.129a.44.44 0 0 0 .173-.756l.002-.011L7.585 9.7a5.143 5.143 0 0 0-.73 3.255l2.514-.725.002-.009zm1.145-1.98a.44.44 0 0 0 .699-.337l.01-.005.15-2.62a5.144 5.144 0 0 0-3.01 1.442l2.147 1.523.004-.002zm.76 2.75l.723.349.722-.347.18-.78-.5-.623h-.804l-.5.623.179.779zm1.5-3.095a.44.44 0 0 0 .7.336l.008.003 2.134-1.513a5.188 5.188 0 0 0-2.992-1.442l.148 2.615.002.001zm10.876 5.97l-5.773 7.181a1.6 1.6 0 0 1-1.248.594l-9.261.003a1.6 1.6 0 0 1-1.247-.596l-5.776-7.18a1.583 1.583 0 0 1-.307-1.34L2.1 5.573c.108-.47.425-.864.863-1.073L11.305.513a1.606 1.606 0 0 1 1.385 0l8.345 3.985c.438.209.755.604.863 1.073l2.062 8.955c.108.47-.005.963-.308 1.34zm-3.289-2.057c-.042-.01-.103-.026-.145-.034-.174-.033-.315-.025-.479-.038-.35-.037-.638-.067-.895-.148-.105-.04-.18-.165-.216-.216l-.201-.059a6.45 6.45 0 0 0-.105-2.332 6.465 6.465 0 0 0-.936-2.163c.052-.047.15-.133.177-.159.008-.09.001-.183.094-.282.197-.185.444-.338.743-.522.142-.084.273-.137.415-.242.032-.024.076-.062.11-.089.24-.191.295-.52.123-.736-.172-.216-.506-.236-.745-.045-.034.027-.08.062-.111.088-.134.116-.217.23-.33.35-.246.25-.45.458-.673.609-.097.056-.239.037-.303.033l-.19.135a6.545 6.545 0 0 0-4.146-2.003l-.012-.223c-.065-.062-.143-.115-.163-.25-.022-.268.015-.557.057-.905.023-.163.061-.298.068-.475.001-.04-.001-.099-.001-.142 0-.306-.224-.555-.5-.555-.275 0-.499.249-.499.555l.001.014c0 .041-.002.092 0 .128.006.177.044.312.067.475.042.348.078.637.056.906a.545.545 0 0 1-.162.258l-.012.211a6.424 6.424 0 0 0-4.166 2.003 8.373 8.373 0 0 1-.18-.128c-.09.012-.18.04-.297-.029-.223-.15-.427-.358-.673-.608-.113-.12-.195-.234-.329-.349-.03-.026-.077-.062-.111-.088a.594.594 0 0 0-.348-.132.481.481 0 0 0-.398.176c-.172.216-.117.546.123.737l.007.005.104.083c.142.105.272.159.414.242.299.185.546.338.743.522.076.082.09.226.1.288l.16.143a6.462 6.462 0 0 0-1.02 4.506l-.208.06c-.055.072-.133.184-.215.217-.257.081-.546.11-.895.147-.164.014-.305.006-.48.039-.037.007-.09.02-.133.03l-.004.002-.007.002c-.295.071-.484.342-.423.608.061.267.349.429.645.365l.007-.001.01-.003.129-.029c.17-.046.294-.113.448-.172.33-.118.604-.217.87-.256.112-.009.23.069.288.101l.217-.037a6.5 6.5 0 0 0 2.88 3.596l-.09.218c.033.084.069.199.044.282-.097.252-.263.517-.452.813-.091.136-.185.242-.268.399-.02.037-.045.095-.064.134-.128.275-.034.591.213.71.248.12.556-.007.69-.282v-.002c.02-.039.046-.09.062-.127.07-.162.094-.301.144-.458.132-.332.205-.68.387-.897.05-.06.13-.082.215-.105l.113-.205a6.453 6.453 0 0 0 4.609.012l.106.192c.086.028.18.042.256.155.136.232.229.507.342.84.05.156.074.295.145.457.016.037.043.09.062.129.133.276.442.402.69.282.247-.118.341-.435.213-.71-.02-.039-.045-.096-.065-.134-.083-.156-.177-.261-.268-.398-.19-.296-.346-.541-.443-.793-.04-.13.007-.21.038-.294-.018-.022-.059-.144-.083-.202a6.499 6.499 0 0 0 2.88-3.622c.064.01.176.03.213.038.075-.05.144-.114.28-.104.266.039.54.138.87.256.154.06.277.128.448.173.036.01.088.019.13.028l.009.003.007.001c.297.064.584-.098.645-.365.06-.266-.128-.537-.423-.608zM16.4 9.701l-1.95 1.746v.005a.44.44 0 0 0 .173.757l.003.01 2.526.728a5.199 5.199 0 0 0-.108-1.674A5.208 5.208 0 0 0 16.4 9.7zm-4.013 5.325a.437.437 0 0 0-.404-.232.44.44 0 0 0-.372.233h-.002l-1.268 2.292a5.164 5.164 0 0 0 3.326.003l-1.27-2.296h-.01zm1.888-1.293a.44.44 0 0 0-.27.036.44.44 0 0 0-.214.572l-.003.004 1.01 2.438a5.15 5.15 0 0 0 2.081-2.615l-2.6-.44-.004.005z",
+  "layers": "M11.99 18.54l-7.37-5.73L3 14.07l9 7 9-7-1.63-1.27-7.38 5.74zM12 16l7.36-5.73L21 9l-9-7-9 7 1.63 1.27L12 16z",
+  "link": "M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z",
   "linux": "M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 00-.088-.042c-.104-.045-.198-.064-.284-.133a1.312 1.312 0 00-.22-.066c.05-.06.146-.133.183-.198.053-.128.082-.264.088-.402v-.02a1.21 1.21 0 00-.061-.4c-.045-.134-.101-.2-.183-.333-.084-.066-.167-.132-.267-.132h-.016c-.093 0-.176.03-.262.132a.8.8 0 00-.205.334 1.18 1.18 0 00-.09.4v.019c.002.089.008.179.02.267-.193-.067-.438-.135-.607-.202a1.635 1.635 0 01-.018-.2v-.02a1.772 1.772 0 01.15-.768c.082-.22.232-.406.43-.533a.985.985 0 01.594-.2zm-2.962.059h.036c.142 0 .27.048.399.135.146.129.264.288.344.465.09.199.14.4.153.667v.004c.007.134.006.2-.002.266v.08c-.03.007-.056.018-.083.024-.152.055-.274.135-.393.2.012-.09.013-.18.003-.267v-.015c-.012-.133-.04-.2-.082-.333a.613.613 0 00-.166-.267.248.248 0 00-.183-.064h-.021c-.071.006-.13.04-.186.132a.552.552 0 00-.12.27.944.944 0 00-.023.33v.015c.012.135.037.2.08.334.046.134.098.2.166.268.01.009.02.018.034.024-.07.057-.117.07-.176.136a.304.304 0 01-.131.068 2.62 2.62 0 01-.275-.402 1.772 1.772 0 01-.155-.667 1.759 1.759 0 01.08-.668 1.43 1.43 0 01.283-.535c.128-.133.26-.2.418-.2zm1.37 1.706c.332 0 .733.065 1.216.399.293.2.523.269 1.052.468h.003c.255.136.405.266.478.399v-.131a.571.571 0 01.016.47c-.123.31-.516.643-1.063.842v.002c-.268.135-.501.333-.775.465-.276.135-.588.292-1.012.267a1.139 1.139 0 01-.448-.067 3.566 3.566 0 01-.322-.198c-.195-.135-.363-.332-.612-.465v-.005h-.005c-.4-.246-.616-.512-.686-.71-.07-.268-.005-.47.193-.6.224-.135.38-.271.483-.336.104-.074.143-.102.176-.131h.002v-.003c.169-.202.436-.47.839-.601.139-.036.294-.065.466-.065zm2.8 2.142c.358 1.417 1.196 3.475 1.735 4.473.286.534.855 1.659 1.102 3.024.156-.005.33.018.513.064.646-1.671-.546-3.467-1.089-3.966-.22-.2-.232-.335-.123-.335.59.534 1.365 1.572 1.646 2.757.13.535.16 1.104.021 1.67.067.028.135.06.205.067 1.032.534 1.413.938 1.23 1.537v-.043c-.06-.003-.12 0-.18 0h-.016c.151-.467-.182-.825-1.065-1.224-.915-.4-1.646-.336-1.77.465-.008.043-.013.066-.018.135-.068.023-.139.053-.209.064-.43.268-.662.669-.793 1.187-.13.533-.17 1.156-.205 1.869v.003c-.02.334-.17.838-.319 1.35-1.5 1.072-3.58 1.538-5.348.334a2.645 2.645 0 00-.402-.533 1.45 1.45 0 00-.275-.333c.182 0 .338-.03.465-.067a.615.615 0 00.314-.334c.108-.267 0-.697-.345-1.163-.345-.467-.931-.995-1.788-1.521-.63-.4-.986-.87-1.15-1.396-.165-.534-.143-1.085-.015-1.645.245-1.07.873-2.11 1.274-2.763.107-.065.037.135-.408.974-.396.751-1.14 2.497-.122 3.854a8.123 8.123 0 01.647-2.876c.564-1.278 1.743-3.504 1.836-5.268.048.036.217.135.289.202.218.133.38.333.59.465.21.201.477.335.876.335.039.003.075.006.11.006.412 0 .73-.134.997-.268.29-.134.52-.334.74-.4h.005c.467-.135.835-.402 1.044-.7zm2.185 8.958c.037.6.343 1.245.882 1.377.588.134 1.434-.333 1.791-.765l.211-.01c.315-.007.577.01.847.268l.003.003c.208.199.305.53.391.876.085.4.154.78.409 1.066.486.527.645.906.636 1.14l.003-.007v.018l-.003-.012c-.015.262-.185.396-.498.595-.63.401-1.746.712-2.457 1.57-.618.737-1.37 1.14-2.036 1.191-.664.053-1.237-.2-1.574-.898l-.005-.003c-.21-.4-.12-1.025.056-1.69.176-.668.428-1.344.463-1.897.037-.714.076-1.335.195-1.814.12-.465.308-.797.641-.984l.045-.022zm-10.814.049h.01c.053 0 .105.005.157.014.376.055.706.333 1.023.752l.91 1.664.003.003c.243.533.754 1.064 1.189 1.637.434.598.77 1.131.729 1.57v.006c-.057.744-.48 1.148-1.125 1.294-.645.135-1.52.002-2.395-.464-.968-.536-2.118-.469-2.857-.602-.369-.066-.61-.2-.723-.4-.11-.2-.113-.602.123-1.23v-.004l.002-.003c.117-.334.03-.752-.027-1.118-.055-.401-.083-.71.043-.94.16-.334.396-.4.69-.533.294-.135.64-.202.915-.47h.002v-.002c.256-.268.445-.601.668-.838.19-.201.38-.336.663-.336zm7.159-9.074c-.435.201-.945.535-1.488.535-.542 0-.97-.267-1.28-.466-.154-.134-.28-.268-.373-.335-.164-.134-.144-.333-.074-.333.109.016.129.134.199.2.096.066.215.2.36.333.292.2.68.467 1.167.467.485 0 1.053-.267 1.398-.466.195-.135.445-.334.648-.467.156-.136.149-.267.279-.267.128.016.034.134-.147.332a8.097 8.097 0 01-.69.468zm-1.082-1.583V5.64c-.006-.02.013-.042.029-.05.074-.043.18-.027.26.004.063 0 .16.067.15.135-.006.049-.085.066-.135.066-.055 0-.092-.043-.141-.068-.052-.018-.146-.008-.163-.065zm-.551 0c-.02.058-.113.049-.166.066-.047.025-.086.068-.14.068-.05 0-.13-.02-.136-.068-.01-.066.088-.133.15-.133.08-.031.184-.047.259-.005.019.009.036.03.03.05v.02h.003z",
+  "lock": "M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z",
+  "lua": "M12 0a12 12 0 1 0 12 12A12 12 0 0 0 12 0zm0 2.4a9.6 9.6 0 1 1-9.6 9.6 9.6 9.6 0 0 1 9.6-9.6zm4.8 2.4a2.4 2.4 0 1 0 2.4 2.4 2.4 2.4 0 0 0-2.4-2.4z",
   "mongodb": "M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 003.639-8.464c.01-.814-.103-1.662-.197-2.218zm-5.336 8.195s0-8.291.275-8.29c.213 0 .49 10.695.49 10.695-.381-.045-.765-1.76-.765-2.405z",
+  "mysql": "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 14.5c-2.48 0-4.5-2.02-4.5-4.5S10.52 7.5 13 7.5c1.47 0 2.78.71 3.6 1.8l-1.3 1.3C14.8 9.9 13.97 9.5 13 9.5c-1.38 0-2.5 1.12-2.5 2.5s1.12 2.5 2.5 2.5c.97 0 1.8-.4 2.3-1.1l1.3 1.3c-.82 1.09-2.13 1.8-3.6 1.8z",
+  "neovim": "M2.4 0L0 2.4v19.2L2.4 24h3.6l12-15.6V24H24V0h-3.6L8.4 15.6V0H2.4z",
+  "netlify": "M12 0a12 12 0 1 0 12 12A12 12 0 0 0 12 0zm-.9 4.8h1.8v3.6h-1.8V4.8zm-4.5 4.5h3.6v1.8H6.6V9.3zm10.8 0v1.8h-3.6V9.3h3.6zm-5.4 2.7h1.8v7.2h-1.8V12z",
   "nextjs": "M18.665 21.978C16.758 23.255 14.465 24 12 24 5.377 24 0 18.623 0 12S5.377 0 12 0s12 5.377 12 12c0 3.583-1.574 6.801-4.067 9.001L9.219 7.2H7.2v9.596h1.615V9.251l9.85 12.727Zm-3.332-8.533 1.6 2.061V7.2h-1.6v6.245Z",
+  "nginx": "M12 0L1.5 6v12L12 24l10.5-6V6L12 0zm6 16.5h-2.25L9 8.25V16.5H6.75V7.5H9l6.75 8.25V7.5H18v9z",
   "node": "M11.998,24c-0.321,0-0.641-0.084-0.922-0.247l-2.936-1.737c-0.438-0.245-0.224-0.332-0.08-0.383 c0.585-0.203,0.703-0.25,1.328-0.604c0.065-0.037,0.151-0.023,0.218,0.017l2.256,1.339c0.082,0.045,0.197,0.045,0.272,0l8.795-5.076 c0.082-0.047,0.134-0.141,0.134-0.238V6.921c0-0.099-0.053-0.192-0.137-0.242l-8.791-5.072c-0.081-0.047-0.189-0.047-0.271,0 L3.075,6.68C2.99,6.729,2.936,6.825,2.936,6.921v10.15c0,0.097,0.054,0.189,0.139,0.235l2.409,1.392 c1.307,0.654,2.108-0.116,2.108-0.89V7.787c0-0.142,0.114-0.253,0.256-0.253h1.115c0.139,0,0.255,0.112,0.255,0.253v10.021 c0,1.745-0.95,2.745-2.604,2.745c-0.508,0-0.909,0-2.026-0.551L2.28,18.675c-0.57-0.329-0.922-0.945-0.922-1.604V6.921 c0-0.659,0.353-1.275,0.922-1.603l8.795-5.082c0.557-0.315,1.296-0.315,1.848,0l8.794,5.082c0.57,0.329,0.924,0.944,0.924,1.603 v10.15c0,0.659-0.354,1.273-0.924,1.604l-8.794,5.078C12.643,23.916,12.324,24,11.998,24z M19.099,13.993 c0-1.9-1.284-2.406-3.987-2.763c-2.731-0.361-3.009-0.548-3.009-1.187c0-0.528,0.235-1.233,2.258-1.233 c1.807,0,2.473,0.389,2.747,1.607c0.024,0.115,0.129,0.199,0.247,0.199h1.141c0.071,0,0.138-0.031,0.186-0.081 c0.048-0.054,0.074-0.123,0.067-0.196c-0.177-2.098-1.571-3.076-4.388-3.076c-2.508,0-4.004,1.058-4.004,2.833 c0,1.925,1.488,2.457,3.895,2.695c2.88,0.282,3.103,0.703,3.103,1.269c0,0.983-0.789,1.402-2.642,1.402 c-2.327,0-2.839-0.584-3.011-1.742c-0.02-0.124-0.126-0.215-0.253-0.215h-1.137c-0.141,0-0.254,0.112-0.254,0.253 c0,1.482,0.806,3.248,4.655,3.248C17.501,17.007,19.099,15.91,19.099,13.993z",
   "npm": "M1.763 0C.786 0 0 .786 0 1.763v20.474C0 23.214.786 24 1.763 24h20.474c.977 0 1.763-.786 1.763-1.763V1.763C24 .786 23.214 0 22.237 0zM5.13 5.323l13.837.019-.009 13.836h-3.464l.01-10.382h-3.456L12.04 19.17H5.113z",
+  "nuxt": "M10.428 17.653 6.07 10.1c-.6-.97-1.74-.97-2.34 0L.224 16.03a1.94 1.94 0 0 0 1.65 2.97h7.24a1.36 1.36 0 0 0 1.314-1.347zm4.332-9.613-2.9 5.03c.59.98 1.73.98 2.33 0l4.08-7.07c.6-.97 1.74-.97 2.34 0l3.16 5.48a1.94 1.94 0 0 1-1.65 2.97H17.47a1.36 1.36 0 0 1-1.314-1.347l.45-3.08-1.846-1.973z",
   "osi": "M11.959.447A11.938 11.938 0 000 12.407c0 5.576 3.874 10.097 7.783 11.114.193.05.392-.05.467-.234l2.771-6.822a.396.396 0 00-.246-.528C9.365 15.47 8.53 14.32 8.48 12.4c-.024-1.828 1.5-3.45 3.561-3.447 1.931.003 3.479 1.632 3.479 3.453 0 .966-.203 1.687-.575 2.238-.371.552-.922.951-1.695 1.239a.396.396 0 00-.23.515l2.685 6.903a.396.396 0 00.465.24C20.163 22.534 24 18.062 24 12.406 24 5.804 18.603.447 11.959.447zm0 .791c6.22 0 11.25 4.997 11.25 11.168 0 5.138-3.423 9.208-6.895 10.272L13.9 16.47c.703-.308 1.302-.79 1.702-1.384.477-.708.709-1.602.709-2.68 0-2.266-1.898-4.24-4.27-4.244-2.48-.004-4.382 1.976-4.352 4.25.023 1.995.934 3.492 2.451 4.13L7.648 22.66C4.251 21.592.791 17.458.791 12.406A11.13 11.13 0 0111.959 1.238zm10.617 20.149a1.03 1.03 0 000 2.058 1.03 1.03 0 000-2.058zm0 .162c.48 0 .865.388.865.867a.856.856 0 01-.271.623l-.172-.342a.847.847 0 00-.111-.178.263.263 0 00-.114-.084.301.301 0 00.17-.117.356.356 0 00.061-.21c0-.13-.038-.227-.113-.292-.076-.064-.192-.095-.346-.095h-.41v1.343h.181v-.568h.2c.072 0 .128.015.17.045a.48.48 0 01.129.18l.171.343.157.001a.878.878 0 01-.567.216.865.865 0 010-1.732zm-.26.322h.229c.088 0 .155.018.2.059.044.04.066.099.066.177 0 .079-.022.14-.067.18-.044.04-.111.06-.2.06h-.228z",
+  "php": "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-5.4 7.2h2.7c1.8 0 2.7.9 2.7 2.4 0 1.8-1.2 2.7-3 2.7H7.5v4.5H5.1V7.2h1.5zm1.5 3.6h1.2c.6 0 .9-.3.9-.9 0-.6-.3-.9-.9-.9H8.1v1.8zm6.6-3.6h2.4v9.6h-2.4v-3.9h-2.4v3.9H9.9V7.2h2.4v3.9h2.4V7.2zm4.5 0h2.7c1.8 0 2.7.9 2.7 2.4 0 1.8-1.2 2.7-3 2.7h-1.5v4.5H17.7V7.2h1.5zm1.5 3.6h1.2c.6 0 .9-.3.9-.9 0-.6-.3-.9-.9-.9h-1.2v1.8z",
   "playwright": "M12.98 2.06c-.63 0-1.22.37-1.48.97L9.84 6.78c-.28.64-.17 1.39.29 1.91l2.42 2.76c.47.53 1.25.7 1.9.41l3.52-1.57c.64-.29 1.05-.93 1.01-1.63L18.7 4.8c-.04-.71-.53-1.3-1.21-1.46L13.8 2.3c-.27-.16-.54-.24-.82-.24zM5.33 11.23c-.7 0-1.34.42-1.61 1.07l-1.63 3.93c-.27.65-.12 1.41.37 1.91l2.67 2.7c.5.5 1.27.65 1.92.35l3.88-1.79c.64-.3 1.04-.94.99-1.65l-.26-3.88c-.05-.71-.55-1.3-1.25-1.44l-3.69-.97c-.46-.15-.92-.23-1.39-.23z",
   "pnpm": "M0 0v7.5h7.5V0zm8.25 0v7.5h7.498V0zm8.25 0v7.5H24V0zM2 2h3.5v3.5H2zm8.25 0h3.498v3.5H10.25zm8.25 0H22v3.5h-3.5zM8.25 8.25v7.5h7.498v-7.5zm8.25 0v7.5H24v-7.5zm2 2H22v3.5h-3.5zM0 16.5V24h7.5v-7.5zm8.25 0V24h7.498v-7.5zm8.25 0V24H24v-7.5z",
   "postgresql": "M23.5594 14.7228a.5269.5269 0 0 0-.0563-.1191c-.139-.2632-.4768-.3418-1.0074-.2321-1.6533.3411-2.2935.1312-2.5256-.0191 1.342-2.0482 2.445-4.522 3.0411-6.8297.2714-1.0507.7982-3.5237.1222-4.7316a1.5641 1.5641 0 0 0-.1509-.235C21.6931.9086 19.8007.0248 17.5099.0005c-1.4947-.0158-2.7705.3461-3.1161.4794a9.449 9.449 0 0 0-.5159-.0816 8.044 8.044 0 0 0-1.3114-.1278c-1.1822-.0184-2.2038.2642-3.0498.8406-.8573-.3211-4.7888-1.645-7.2219.0788C.9359 2.1526.3086 3.8733.4302 6.3043c.0409.818.5069 3.334 1.2423 5.7436.4598 1.5065.9387 2.7019 1.4334 3.582.553.9942 1.1259 1.5933 1.7143 1.7895.4474.1491 1.1327.1441 1.8581-.7279.8012-.9635 1.5903-1.8258 1.9446-2.2069.4351.2355.9064.3625 1.39.3772a.0569.0569 0 0 0 .0004.0041 11.0312 11.0312 0 0 0-.2472.3054c-.3389.4302-.4094.5197-1.5002.7443-.3102.064-1.1344.2339-1.1464.8115-.0025.1224.0329.2309.0919.3268.2269.4231.9216.6097 1.015.6331 1.3345.3335 2.5044.092 3.3714-.6787-.017 2.231.0775 4.4174.3454 5.0874.2212.5529.7618 1.9045 2.4692 1.9043.2505 0 .5263-.0291.8296-.0941 1.7819-.3821 2.5557-1.1696 2.855-2.9059.1503-.8707.4016-2.8753.5388-4.1012.0169-.0703.0357-.1207.057-.1362.0007-.0005.0697-.0471.4272.0307a.3673.3673 0 0 0 .0443.0068l.2539.0223.0149.001c.8468.0384 1.9114-.1426 2.5312-.4308.6438-.2988 1.8057-1.0323 1.5951-1.6698zM2.371 11.8765c-.7435-2.4358-1.1779-4.8851-1.2123-5.5719-.1086-2.1714.4171-3.6829 1.5623-4.4927 1.8367-1.2986 4.8398-.5408 6.108-.13-.0032.0032-.0066.0061-.0098.0094-2.0238 2.044-1.9758 5.536-1.9708 5.7495-.0002.0823.0066.1989.0162.3593.0348.5873.0996 1.6804-.0735 2.9184-.1609 1.1504.1937 2.2764.9728 3.0892.0806.0841.1648.1631.2518.2374-.3468.3714-1.1004 1.1926-1.9025 2.1576-.5677.6825-.9597.5517-1.0886.5087-.3919-.1307-.813-.5871-1.2381-1.3223-.4796-.839-.9635-2.0317-1.4155-3.5126zm6.0072 5.0871c-.1711-.0428-.3271-.1132-.4322-.1772.0889-.0394.2374-.0902.4833-.1409 1.2833-.2641 1.4815-.4506 1.9143-1.0002.0992-.126.2116-.2687.3673-.4426a.3549.3549 0 0 0 .0737-.1298c.1708-.1513.2724-.1099.4369-.0417.156.0646.3078.26.3695.4752.0291.1016.0619.2945-.0452.4444-.9043 1.2658-2.2216 1.2494-3.1676 1.0128zm2.094-3.988-.0525.141c-.133.3566-.2567.6881-.3334 1.003-.6674-.0021-1.3168-.2872-1.8105-.8024-.6279-.6551-.9131-1.5664-.7825-2.5004.1828-1.3079.1153-2.4468.079-3.0586-.005-.0857-.0095-.1607-.0122-.2199.2957-.2621 1.6659-.9962 2.6429-.7724.4459.1022.7176.4057.8305.928.5846 2.7038.0774 3.8307-.3302 4.7363-.084.1866-.1633.3629-.2311.5454zm7.3637 4.5725c-.0169.1768-.0358.376-.0618.5959l-.146.4383a.3547.3547 0 0 0-.0182.1077c-.0059.4747-.054.6489-.115.8693-.0634.2292-.1353.4891-.1794 1.0575-.11 1.4143-.8782 2.2267-2.4172 2.5565-1.5155.3251-1.7843-.4968-2.0212-1.2217a6.5824 6.5824 0 0 0-.0769-.2266c-.2154-.5858-.1911-1.4119-.1574-2.5551.0165-.5612-.0249-1.9013-.3302-2.6462.0044-.2932.0106-.5909.019-.8918a.3529.3529 0 0 0-.0153-.1126 1.4927 1.4927 0 0 0-.0439-.208c-.1226-.4283-.4213-.7866-.7797-.9351-.1424-.059-.4038-.1672-.7178-.0869.067-.276.1831-.5875.309-.9249l.0529-.142c.0595-.16.134-.3257.213-.5012.4265-.9476 1.0106-2.2453.3766-5.1772-.2374-1.0981-1.0304-1.6343-2.2324-1.5098-.7207.0746-1.3799.3654-1.7088.5321a5.6716 5.6716 0 0 0-.1958.1041c.0918-1.1064.4386-3.1741 1.7357-4.4823a4.0306 4.0306 0 0 1 .3033-.276.3532.3532 0 0 0 .1447-.0644c.7524-.5706 1.6945-.8506 2.802-.8325.4091.0067.8017.0339 1.1742.081 1.939.3544 3.2439 1.4468 4.0359 2.3827.8143.9623 1.2552 1.9315 1.4312 2.4543-1.3232-.1346-2.2234.1268-2.6797.779-.9926 1.4189.543 4.1729 1.2811 5.4964.1353.2426.2522.4522.2889.5413.2403.5825.5515.9713.7787 1.2552.0696.087.1372.1714.1885.245-.4008.1155-1.1208.3825-1.0552 1.717-.0123.1563-.0423.4469-.0834.8148-.0461.2077-.0702.4603-.0994.7662zm.8905-1.6211c-.0405-.8316.2691-.9185.5967-1.0105a2.8566 2.8566 0 0 0 .135-.0406 1.202 1.202 0 0 0 .1342.103c.5703.3765 1.5823.4213 3.0068.1344-.2016.1769-.5189.3994-.9533.6011-.4098.1903-1.0957.333-1.7473.3636-.7197.0336-1.0859-.0807-1.1721-.151zm.5695-9.2712c-.0059.3508-.0542.6692-.1054 1.0017-.055.3576-.112.7274-.1264 1.1762-.0142.4368.0404.8909.0932 1.3301.1066.887.216 1.8003-.2075 2.7014a3.5272 3.5272 0 0 1-.1876-.3856c-.0527-.1276-.1669-.3326-.3251-.6162-.6156-1.1041-2.0574-3.6896-1.3193-4.7446.3795-.5427 1.3408-.5661 2.1781-.463zm.2284 7.0137a12.3762 12.3762 0 0 0-.0853-.1074l-.0355-.0444c.7262-1.1995.5842-2.3862.4578-3.4385-.0519-.4318-.1009-.8396-.0885-1.2226.0129-.4061.0666-.7543.1185-1.0911.0639-.415.1288-.8443.1109-1.3505.0134-.0531.0188-.1158.0118-.1902-.0457-.4855-.5999-1.938-1.7294-3.253-.6076-.7073-1.4896-1.4972-2.6889-2.0395.5251-.1066 1.2328-.2035 2.0244-.1859 2.0515.0456 3.6746.8135 4.8242 2.2824a.908.908 0 0 1 .0667.1002c.7231 1.3556-.2762 6.2751-2.9867 10.5405zm-8.8166-6.1162c-.025.1794-.3089.4225-.6211.4225a.5821.5821 0 0 1-.0809-.0056c-.1873-.026-.3765-.144-.5059-.3156-.0458-.0605-.1203-.178-.1055-.2844.0055-.0401.0261-.0985.0925-.1488.1182-.0894.3518-.1226.6096-.0867.3163.0441.6426.1938.6113.4186zm7.9305-.4114c.0111.0792-.049.201-.1531.3102-.0683.0717-.212.1961-.4079.2232a.5456.5456 0 0 1-.075.0052c-.2935 0-.5414-.2344-.5607-.3717-.024-.1765.2641-.3106.5611-.352.297-.0414.6111.0088.6356.1851z",
+  "prettier": "M17.15 4.86c-1.54 0-2.88.89-3.53 2.18-.65-1.29-1.99-2.18-3.53-2.18-2.21 0-4 1.79-4 4 0 .97.35 1.86.93 2.56L12 16.5l4.98-5.08c.58-.7.93-1.59.93-2.56 0-2.21-1.79-4-4-4zM6.3 14.86c-.53.53-.87 1.24-.92 2.03-.09 1.34.84 2.5 2.17 2.66 1.27.15 2.4-.73 2.6-1.99.11-.68-.07-1.37-.5-1.91l-3.35-.79z",
   "prisma": "M21.8068 18.2848L13.5528.7565c-.207-.4382-.639-.7273-1.1286-.7541-.5023-.0293-.9523.213-1.2062.6253L2.266 15.1271c-.2773.4518-.2718 1.0091.0158 1.4555l4.3759 6.7786c.2608.4046.7127.6388 1.1823.6388.1332 0 .267-.0188.3987-.0577l12.7019-3.7568c.3891-.1151.7072-.3904.8737-.7553s.1633-.7828-.0075-1.1454zm-1.8481.7519L9.1814 22.2242c-.3292.0975-.6448-.1873-.5756-.5194l3.8501-18.4386c.072-.3448.5486-.3996.699-.0803l7.1288 15.138c.1344.2856-.019.6224-.325.7128z",
   "python": "M11.858 0c-.978.005-1.913.088-2.736.234C6.7.662 6.26 1.558 6.26 3.21v2.182h5.725v.727H4.111c-1.664 0-3.121 1-3.577 2.903-.526 2.181-.549 3.542 0 5.82.407 1.694 1.379 2.902 3.043 2.902h1.969v-2.616c0-1.89 1.635-3.557 3.576-3.557h5.72c1.591 0 2.862-1.31 2.862-2.91v-5.45c0-1.553-1.309-2.718-2.863-2.977A18 18 0 0 0 11.858 0M8.762 1.755c.591 0 1.074.491 1.074 1.095 0 .601-.483 1.087-1.074 1.087A1.08 1.08 0 0 1 7.688 2.85c0-.604.48-1.095 1.074-1.095m9.656 4.364v2.543c0 1.971-1.671 3.63-3.577 3.63H9.122c-1.566 0-2.862 1.34-2.862 2.91v5.452c0 1.551 1.349 2.464 2.862 2.91 1.813.532 3.55.628 5.72 0 1.44-.418 2.862-1.258 2.862-2.91V18.47h-5.719v-.727h8.582c1.664 0 2.284-1.16 2.862-2.903.598-1.793.573-3.518 0-5.819-.41-1.656-1.196-2.903-2.862-2.903zm-3.216 13.807a1.08 1.08 0 0 1 1.074 1.088c0 .604-.48 1.094-1.074 1.094-.592 0-1.075-.49-1.075-1.094 0-.601.483-1.088 1.075-1.088",
+  "railway": "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-1.5 4.5h3v3.75h-3V4.5zm-4.5 6h12v3H6v-3zm3 5.25h6V19.5H9v-3.75z",
   "react": "M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z",
   "react-native": "M14.23 12.004a2.236 2.236 0 0 1-2.235 2.236 2.236 2.236 0 0 1-2.236-2.236 2.236 2.236 0 0 1 2.235-2.236 2.236 2.236 0 0 1 2.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.278-1.375.793-1.683 3.264-.973 6.365C1.98 8.917 0 10.42 0 12.004c0 1.59 1.99 3.097 5.043 4.03-.704 3.113-.39 5.588.988 6.38.32.187.69.275 1.102.275 1.345 0 3.107-.96 4.888-2.624 1.78 1.654 3.542 2.603 4.887 2.603.41 0 .783-.09 1.106-.275 1.374-.792 1.683-3.263.973-6.365C22.02 15.096 24 13.59 24 12.004c0-1.59-1.99-3.097-5.043-4.032.704-3.11.39-5.587-.988-6.38-.318-.184-.688-.277-1.092-.278zm-.005 1.09v.006c.225 0 .406.044.558.127.666.382.955 1.835.73 3.704-.054.46-.142.945-.25 1.44-.96-.236-2.006-.417-3.107-.534-.66-.905-1.345-1.727-2.035-2.447 1.592-1.48 3.087-2.292 4.105-2.295zm-9.77.02c1.012 0 2.514.808 4.11 2.28-.686.72-1.37 1.537-2.02 2.442-1.107.117-2.154.298-3.113.538-.112-.49-.195-.964-.254-1.42-.23-1.868.054-3.32.714-3.707.19-.09.4-.127.563-.132zm4.882 3.05c.455.468.91.992 1.36 1.564-.44-.02-.89-.034-1.345-.034-.46 0-.915.01-1.36.034.44-.572.895-1.096 1.345-1.565zM12 8.1c.74 0 1.477.034 2.202.093.406.582.802 1.203 1.183 1.86.372.64.71 1.29 1.018 1.946-.308.655-.646 1.31-1.013 1.95-.38.66-.773 1.288-1.18 1.87-.728.063-1.466.098-2.21.098-.74 0-1.477-.035-2.202-.093-.406-.582-.802-1.204-1.183-1.86-.372-.64-.71-1.29-1.018-1.946.303-.657.646-1.313 1.013-1.954.38-.66.773-1.286 1.18-1.868.728-.064 1.466-.098 2.21-.098zm-3.635.254c-.24.377-.48.763-.704 1.16-.225.39-.435.782-.635 1.174-.265-.656-.49-1.31-.676-1.947.64-.15 1.315-.283 2.015-.386zm7.26 0c.695.103 1.365.23 2.006.387-.18.632-.405 1.282-.66 1.933-.2-.39-.41-.783-.64-1.174-.225-.392-.465-.774-.705-1.146zm3.063.675c.484.15.944.317 1.375.498 1.732.74 2.852 1.708 2.852 2.476-.005.768-1.125 1.74-2.857 2.475-.42.18-.88.342-1.355.493-.28-.958-.646-1.956-1.1-2.98.45-1.017.81-2.01 1.085-2.964zm-13.395.004c.278.96.645 1.957 1.1 2.98-.45 1.017-.812 2.01-1.086 2.964-.484-.15-.944-.318-1.37-.5-1.732-.737-2.852-1.706-2.852-2.474 0-.768 1.12-1.742 2.852-2.476.42-.18.88-.342 1.356-.494zm11.678 4.28c.265.657.49 1.312.676 1.948-.64.157-1.316.29-2.016.39.24-.375.48-.762.705-1.158.225-.39.435-.788.636-1.18zm-9.945.02c.2.392.41.783.64 1.175.23.39.465.772.705 1.143-.695-.102-1.365-.23-2.006-.386.18-.63.406-1.282.66-1.933zM17.92 16.32c.112.493.2.968.254 1.423.23 1.868-.054 3.32-.714 3.708-.147.09-.338.128-.563.128-1.012 0-2.514-.807-4.11-2.28.686-.72 1.37-1.536 2.02-2.44 1.107-.118 2.154-.3 3.113-.54zm-11.83.01c.96.234 2.006.415 3.107.532.66.905 1.345 1.727 2.035 2.446-1.595 1.483-3.092 2.295-4.11 2.295-.22-.005-.406-.05-.553-.132-.666-.38-.955-1.834-.73-3.703.054-.46.142-.944.25-1.438zm4.56.64c.44.02.89.034 1.345.034.46 0 .915-.01 1.36-.034-.44.572-.895 1.095-1.345 1.565-.455-.47-.91-.993-1.36-1.565z",
   "redis": "M22.71 13.145c-1.66 2.092-3.452 4.483-7.038 4.483-3.203 0-4.397-2.825-4.48-5.12.701 1.484 2.073 2.685 4.214 2.63 4.117-.133 6.94-3.852 6.94-7.239 0-4.05-3.022-6.972-8.268-6.972-3.752 0-8.4 1.428-11.455 3.685C2.59 6.937 3.885 9.958 4.35 9.626c2.648-1.904 4.748-3.13 6.784-3.744C8.12 9.244.886 17.05 0 18.425c.1 1.261 1.66 4.648 2.424 4.648.232 0 .431-.133.664-.365a100.49 100.49 0 0 0 5.54-6.765c.222 3.104 1.748 6.898 6.014 6.898 3.819 0 7.604-2.756 9.33-8.965.2-.764-.73-1.361-1.261-.73zm-4.349-5.013c0 1.959-1.926 2.922-3.685 2.922-.941 0-1.664-.247-2.235-.568 1.051-1.592 2.092-3.225 3.21-4.973 1.972.334 2.71 1.43 2.71 2.619z",
+  "remix": "m15.54 9.874 4.14-2.39-7.68-4.434L4.32 7.484l4.14 2.39 3.54-2.044 3.54 2.044zm-7.08 2.044L4.32 9.528v4.78l4.14 2.39v-4.78zm7.08 0v4.78l4.14-2.39V9.528l-4.14 2.39zM12 13.962l-3.54 2.044 3.54 2.044 3.54-2.044-3.54-2.044zm-7.68 5.258 7.68 4.434 7.68-4.434-4.14-2.39-3.54 2.044-3.54-2.044-4.14 2.39z",
+  "render": "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.5 16.5H7.5v-9h9v9z",
+  "rocket": "M12 2.5s3.5 2.5 3.5 7.5c0 1.5-.5 3-1 4l2.5 2.5-1.5 1.5-2.5-2.5c-1 .5-2.5 1-4 1-5 0-7.5-3.5-7.5-3.5s2.5 3.5 7.5 3.5c1.5 0 3-.5 4-1l2.5 2.5-1.5 1.5-2.5-2.5c-.5 1-2 1-3.5 1-5 0-7.5-3.5-7.5-3.5s.5-4 4.5-8c3.5-3.5 7-5.5 7-5.5zM12 8a2 2 0 1 0 0 4 2 2 0 0 0 0-4z",
+  "ruby": "M13.62 0l-4.14 4.54-5.96.22-3.52 7.04 4.2 12.2h15.6l4.2-12.2-3.52-7.04-5.96-.22L13.62 0zm-1.62 2.4l3.1 3.4-3.1 4.5-3.1-4.5 3.1-3.4zm-4.7 4.1l2.5 3.6-4.6 2.1 2.1-5.7zm9.4 0l2.1 5.7-4.6-2.1 2.5-3.6zM5.5 13.9l4.5-2.1 2 9.5-6.5-7.4zm13 0l-6.5 7.4 2-9.5 4.5 2.1z",
   "rust": "M23.8346 11.7033l-1.0073-.6236a13.7268 13.7268 0 00-.0283-.2936l.8656-.8069a.3483.3483 0 00-.1154-.578l-1.1066-.414a8.4958 8.4958 0 00-.087-.2856l.6904-.9587a.3462.3462 0 00-.2257-.5446l-1.1663-.1894a9.3574 9.3574 0 00-.1407-.2622l.49-1.0761a.3437.3437 0 00-.0274-.3361.3486.3486 0 00-.3006-.154l-1.1845.0416a6.7444 6.7444 0 00-.1873-.2268l.2723-1.153a.3472.3472 0 00-.417-.4172l-1.1532.2724a14.0183 14.0183 0 00-.2278-.1873l.0415-1.1845a.3442.3442 0 00-.49-.328l-1.076.491c-.0872-.0476-.1742-.0952-.2623-.1407l-.1903-1.1673A.3483.3483 0 0016.256.955l-.9597.6905a8.4867 8.4867 0 00-.2855-.086l-.414-1.1066a.3483.3483 0 00-.5781-.1154l-.8069.8666a9.2936 9.2936 0 00-.2936-.0284L12.2946.1683a.3462.3462 0 00-.5892 0l-.6236 1.0073a13.7383 13.7383 0 00-.2936.0284L9.9803.3374a.3462.3462 0 00-.578.1154l-.4141 1.1065c-.0962.0274-.1903.0567-.2855.086L7.744.955a.3483.3483 0 00-.5447.2258L7.009 2.348a9.3574 9.3574 0 00-.2622.1407l-1.0762-.491a.3462.3462 0 00-.49.328l.0416 1.1845a7.9826 7.9826 0 00-.2278.1873L3.8413 3.425a.3472.3472 0 00-.4171.4171l.2713 1.1531c-.0628.075-.1255.1509-.1863.2268l-1.1845-.0415a.3462.3462 0 00-.328.49l.491 1.0761a9.167 9.167 0 00-.1407.2622l-1.1662.1894a.3483.3483 0 00-.2258.5446l.6904.9587a13.303 13.303 0 00-.087.2855l-1.1065.414a.3483.3483 0 00-.1155.5781l.8656.807a9.2936 9.2936 0 00-.0283.2935l-1.0073.6236a.3442.3442 0 000 .5892l1.0073.6236c.008.0982.0182.1964.0283.2936l-.8656.8079a.3462.3462 0 00.1155.578l1.1065.4141c.0273.0962.0567.1914.087.2855l-.6904.9587a.3452.3452 0 00.2268.5447l1.1662.1893c.0456.088.0922.1751.1408.2622l-.491 1.0762a.3462.3462 0 00.328.49l1.1834-.0415c.0618.0769.1235.1528.1873.2277l-.2713 1.1541a.3462.3462 0 00.4171.4161l1.153-.2713c.075.0638.151.1255.2279.1863l-.0415 1.1845a.3442.3442 0 00.49.327l1.0761-.49c.087.0486.1741.0951.2622.1407l.1903 1.1662a.3483.3483 0 00.5447.2268l.9587-.6904a9.299 9.299 0 00.2855.087l.414 1.1066a.3452.3452 0 00.5781.1154l.8079-.8656c.0972.0111.1954.0203.2936.0294l.6236 1.0073a.3472.3472 0 00.5892 0l.6236-1.0073c.0982-.0091.1964-.0183.2936-.0294l.8069.8656a.3483.3483 0 00.578-.1154l.4141-1.1066a8.4626 8.4626 0 00.2855-.087l.9587.6904a.3452.3452 0 00.5447-.2268l.1903-1.1662c.088-.0456.1751-.0931.2622-.1407l1.0762.49a.3472.3472 0 00.49-.327l-.0415-1.1845a6.7267 6.7267 0 00.2267-.1863l1.1531.2713a.3472.3472 0 00.4171-.416l-.2713-1.1542c.0628-.0749.1255-.1508.1863-.2278l1.1845.0415a.3442.3442 0 00.328-.49l-.49-1.076c.0475-.0872.0951-.1742.1407-.2623l1.1662-.1893a.3483.3483 0 00.2258-.5447l-.6904-.9587.087-.2855 1.1066-.414a.3462.3462 0 00.1154-.5781l-.8656-.8079c.0101-.0972.0202-.1954.0283-.2936l1.0073-.6236a.3442.3442 0 000-.5892zm-6.7413 8.3551a.7138.7138 0 01.2986-1.396.714.714 0 11-.2997 1.396zm-.3422-2.3142a.649.649 0 00-.7715.5l-.3573 1.6685c-1.1035.501-2.3285.7795-3.6193.7795a8.7368 8.7368 0 01-3.6951-.814l-.3574-1.6684a.648.648 0 00-.7714-.499l-1.473.3158a8.7216 8.7216 0 01-.7613-.898h7.1676c.081 0 .1356-.0141.1356-.088v-2.536c0-.074-.0536-.0881-.1356-.0881h-2.0966v-1.6077h2.2677c.2065 0 1.1065.0587 1.394 1.2088.0901.3533.2875 1.5044.4232 1.8729.1346.413.6833 1.2381 1.2685 1.2381h3.5716a.7492.7492 0 00.1296-.0131 8.7874 8.7874 0 01-.8119.9526zM6.8369 20.024a.714.714 0 11-.2997-1.396.714.714 0 01.2997 1.396zM4.1177 8.9972a.7137.7137 0 11-1.304.5791.7137.7137 0 011.304-.579zm-.8352 1.9813l1.5347-.6824a.65.65 0 00.33-.8585l-.3158-.7147h1.2432v5.6025H3.5669a8.7753 8.7753 0 01-.2834-3.348zm6.7343-.5437V8.7836h2.9601c.153 0 1.0792.1772 1.0792.8697 0 .575-.7107.7815-1.2948.7815zm10.7574 1.4862c0 .2187-.008.4363-.0243.651h-.9c-.09 0-.1265.0586-.1265.1477v.413c0 .973-.5487 1.1846-1.0296 1.2382-.4576.0517-.9648-.1913-1.0275-.4717-.2704-1.5186-.7198-1.8436-1.4305-2.4034.8817-.5599 1.799-1.386 1.799-2.4915 0-1.1936-.819-1.9458-1.3769-2.3153-.7825-.5163-1.6491-.6195-1.883-.6195H5.4682a8.7651 8.7651 0 014.907-2.7699l1.0974 1.151a.648.648 0 00.9182.0213l1.227-1.1743a8.7753 8.7753 0 016.0044 4.2762l-.8403 1.8982a.652.652 0 00.33.8585l1.6178.7188c.0283.2875.0425.577.0425.8717zm-9.3006-9.5993a.7128.7128 0 11.984 1.0316.7137.7137 0 01-.984-1.0316zm8.3389 6.71a.7107.7107 0 01.9395-.3625.7137.7137 0 11-.9405.3635z",
   "sass": "M12 0c6.627 0 12 5.373 12 12s-5.373 12-12 12S0 18.627 0 12 5.373 0 12 0zM9.615 15.998c.175.645.156 1.248-.024 1.792l-.065.18c-.024.061-.052.12-.078.176-.14.29-.326.56-.555.81-.698.759-1.672 1.047-2.09.805-.45-.262-.226-1.335.584-2.19.871-.918 2.12-1.509 2.12-1.509v-.003l.108-.061zm9.911-10.861c-.542-2.133-4.077-2.834-7.422-1.645-1.989.707-4.144 1.818-5.693 3.267C4.568 8.48 4.275 9.98 4.396 10.607c.427 2.211 3.457 3.657 4.703 4.73v.006c-.367.18-3.056 1.529-3.686 2.925-.675 1.47.105 2.521.615 2.655 1.575.436 3.195-.36 4.065-1.649.84-1.261.766-2.881.404-3.676.496-.135 1.08-.195 1.83-.104 2.101.24 2.521 1.56 2.43 2.1-.09.539-.523.854-.674.944-.15.091-.195.12-.181.181.015.09.091.09.21.075.165-.03 1.096-.45 1.141-1.471.045-1.29-1.186-2.729-3.375-2.7-.9.016-1.471.091-1.875.256-.03-.045-.061-.075-.105-.105-1.35-1.455-3.855-2.475-3.75-4.41.03-.705.285-2.564 4.8-4.814 3.705-1.846 6.661-1.335 7.171-.21.733 1.604-1.576 4.59-5.431 5.024-1.47.165-2.235-.404-2.431-.615-.209-.225-.239-.24-.314-.194-.12.06-.045.255 0 .375.12.3.585.825 1.396 1.095.704.225 2.43.359 4.5-.45 2.324-.899 4.139-3.405 3.614-5.505l.073.067z",
+  "scala": "M4.8 2.4C4.8 1.1 5.9 0 7.2 0h9.6c1.3 0 2.4 1.1 2.4 2.4s-1.1 2.4-2.4 2.4H7.2c-1.3 0-2.4-1.1-2.4-2.4zm0 9.6c0-1.3 1.1-2.4 2.4-2.4h9.6c1.3 0 2.4 1.1 2.4 2.4s-1.1 2.4-2.4 2.4H7.2c-1.3 0-2.4-1.1-2.4-2.4zm0 9.6c0-1.3 1.1-2.4 2.4-2.4h9.6c1.3 0 2.4 1.1 2.4 2.4s-1.1 2.4-2.4 2.4H7.2c-1.3 0-2.4-1.1-2.4-2.4z",
+  "search": "M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z",
+  "server": "M2 4c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V4zm2 2v2h16V6H4zm-2 8c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2v-4zm2 2v2h16v-2H4zm2-7h2v2H6V7zm0 8h2v2H6v-2z",
+  "settings": "M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58c.18-.14.23-.41.12-.61l-1.92-3.32c-.12-.22-.37-.29-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54c-.04-.24-.24-.41-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58c-.18.14-.23.41-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z",
   "shield": "M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z",
+  "shield-check": "M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z",
   "shield-lock": "M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm0 4c1.66 0 3 1.34 3 3v1h1c.55 0 1 .45 1 1v4c0 .55-.45 1-1 1H8c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h1V9c0-1.66 1.34-3 3-3zm0 2c-.55 0-1 .45-1 1v1h2V9c0-.55-.45-1-1-1z",
+  "solid": "m3.033 17.653 4.843-2.8a2.535 2.535 0 0 1 2.529-.007l1.095.632a.76.76 0 0 0 .759.002l5.776-3.337a.76.76 0 0 0 .38-.658v-1.28a.76.76 0 0 0-.38-.658l-5.776-3.337a2.535 2.535 0 0 0-2.529-.007l-1.095.632a.76.76 0 0 1-.759.002L2.099 3.5a.76.76 0 0 1-.38-.658V1.562a.76.76 0 0 1 .38-.658L7.876.017a5.07 5.07 0 0 1 5.058.014l7.989 4.614a.76.76 0 0 1 .38.658v8.667a5.07 5.07 0 0 1-2.529 4.394l-7.989 4.614a5.07 5.07 0 0 1-5.058.014l-4.843-2.8a.76.76 0 0 1-.38-.658v-1.28a.76.76 0 0 1 .38-.658z",
   "sparkle": "M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z",
   "sqlite": "M21.678.521c-1.032-.92-2.28-.55-3.513.544a8.71 8.71 0 0 0-.547.535c-2.109 2.237-4.066 6.38-4.674 9.544.237.48.422 1.093.544 1.561a13.044 13.044 0 0 1 .164.703s-.019-.071-.096-.296l-.05-.146a1.689 1.689 0 0 0-.033-.08c-.138-.32-.518-.995-.686-1.289-.143.423-.27.818-.376 1.176.484.884.778 2.4.778 2.4s-.025-.099-.147-.442c-.107-.303-.644-1.244-.772-1.464-.217.804-.304 1.346-.226 1.478.152.256.296.698.422 1.186.286 1.1.485 2.44.485 2.44l.017.224a22.41 22.41 0 0 0 .056 2.748c.095 1.146.273 2.13.5 2.657l.155-.084c-.334-1.038-.47-2.399-.41-3.967.09-2.398.642-5.29 1.661-8.304 1.723-4.55 4.113-8.201 6.3-9.945-1.993 1.8-4.692 7.63-5.5 9.788-.904 2.416-1.545 4.684-1.931 6.857.666-2.037 2.821-2.912 2.821-2.912s1.057-1.304 2.292-3.166c-.74.169-1.955.458-2.362.629-.6.251-.762.337-.762.337s1.945-1.184 3.613-1.72C21.695 7.9 24.195 2.767 21.678.521m-18.573.543A1.842 1.842 0 0 0 1.27 2.9v16.608a1.84 1.84 0 0 0 1.835 1.834h9.418a22.953 22.953 0 0 1-.052-2.707c-.006-.062-.011-.141-.016-.2a27.01 27.01 0 0 0-.473-2.378c-.121-.47-.275-.898-.369-1.057-.116-.197-.098-.31-.097-.432 0-.12.015-.245.037-.386a9.98 9.98 0 0 1 .234-1.045l.217-.028c-.017-.035-.014-.065-.031-.097l-.041-.381a32.8 32.8 0 0 1 .382-1.194l.2-.019c-.008-.016-.01-.038-.018-.053l-.043-.316c.63-3.28 2.587-7.443 4.8-9.791.066-.069.133-.128.198-.194Z",
   "star": "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z",
   "status-dot": "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z",
+  "storybook": "M21.705 3.328a.998.998 0 0 0-.825-.328H3.12a.999.999 0 0 0-.999 1v15.998c0 .552.447.999.999.999h17.76c.552 0 .999-.447.999-.999V4.004a.999.999 0 0 0-.174-.676zm-8.868 13.567c-3.197 0-4.996-1.89-4.996-4.63 0-2.738 1.799-4.628 4.996-4.628 3.197 0 4.997 1.89 4.997 4.628 0 2.74-1.8 4.63-4.997 4.63zm0-2.399c1.678 0 2.518-1.037 2.518-2.231 0-1.195-.84-2.232-2.518-2.232-1.677 0-2.517 1.037-2.517 2.232 0 1.194.84 2.231 2.517 2.231z",
   "supabase": "M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z",
   "svelte": "M10.354 21.125a4.44 4.44 0 0 1-4.765-1.767 4.109 4.109 0 0 1-.703-3.107 3.898 3.898 0 0 1 .134-.522l.105-.321.287.21a7.21 7.21 0 0 0 2.186 1.092l.208.063-.02.208a1.253 1.253 0 0 0 .226.83 1.337 1.337 0 0 0 1.435.533 1.231 1.231 0 0 0 .343-.15l5.59-3.562a1.164 1.164 0 0 0 .524-.778 1.242 1.242 0 0 0-.211-.937 1.338 1.338 0 0 0-1.435-.533 1.23 1.23 0 0 0-.343.15l-2.133 1.36a4.078 4.078 0 0 1-1.135.499 4.44 4.44 0 0 1-4.765-1.766 4.108 4.108 0 0 1-.702-3.108 3.855 3.855 0 0 1 1.742-2.582l5.589-3.563a4.072 4.072 0 0 1 1.135-.499 4.44 4.44 0 0 1 4.765 1.767 4.109 4.109 0 0 1 .703 3.107 3.943 3.943 0 0 1-.134.522l-.105.321-.286-.21a7.204 7.204 0 0 0-2.187-1.093l-.208-.063.02-.207a1.255 1.255 0 0 0-.226-.831 1.337 1.337 0 0 0-1.435-.532 1.231 1.231 0 0 0-.343.15L8.62 9.368a1.162 1.162 0 0 0-.524.778 1.24 1.24 0 0 0 .211.937 1.338 1.338 0 0 0 1.435.533 1.235 1.235 0 0 0 .344-.151l2.132-1.36a4.067 4.067 0 0 1 1.135-.498 4.44 4.44 0 0 1 4.765 1.766 4.108 4.108 0 0 1 .702 3.108 3.857 3.857 0 0 1-1.742 2.583l-5.589 3.562a4.072 4.072 0 0 1-1.135.499m10.358-17.95C18.484-.015 14.082-.96 10.9 1.068L5.31 4.63a6.412 6.412 0 0 0-2.896 4.295 6.753 6.753 0 0 0 .666 4.336 6.43 6.43 0 0 0-.96 2.396 6.833 6.833 0 0 0 1.168 5.167c2.229 3.19 6.63 4.135 9.812 2.108l5.59-3.562a6.41 6.41 0 0 0 2.896-4.295 6.756 6.756 0 0 0-.665-4.336 6.429 6.429 0 0 0 .958-2.396 6.831 6.831 0 0 0-1.167-5.168Z",
   "swift": "M7.508 0c-.287 0-.573 0-.86.002-.241.002-.483.003-.724.01-.132.003-.263.009-.395.015A9.154 9.154 0 0 0 4.348.15 5.492 5.492 0 0 0 2.85.645 5.04 5.04 0 0 0 .645 2.848c-.245.48-.4.972-.495 1.5-.093.52-.122 1.05-.136 1.576a35.2 35.2 0 0 0-.012.724C0 6.935 0 7.221 0 7.508v8.984c0 .287 0 .575.002.862.002.24.005.481.012.722.014.526.043 1.057.136 1.576.095.528.25 1.02.495 1.5a5.03 5.03 0 0 0 2.205 2.203c.48.244.97.4 1.498.495.52.093 1.05.124 1.576.138.241.007.483.009.724.01.287.002.573.002.86.002h8.984c.287 0 .573 0 .86-.002.241-.001.483-.003.724-.01a10.523 10.523 0 0 0 1.578-.138 5.322 5.322 0 0 0 1.498-.495 5.035 5.035 0 0 0 2.203-2.203c.245-.48.4-.972.495-1.5.093-.52.124-1.05.138-1.576.007-.241.009-.481.01-.722.002-.287.002-.575.002-.862V7.508c0-.287 0-.573-.002-.86a33.662 33.662 0 0 0-.01-.724 10.5 10.5 0 0 0-.138-1.576 5.328 5.328 0 0 0-.495-1.5A5.039 5.039 0 0 0 21.152.645 5.32 5.32 0 0 0 19.654.15a10.493 10.493 0 0 0-1.578-.138 34.98 34.98 0 0 0-.722-.01C17.067 0 16.779 0 16.492 0H7.508zm6.035 3.41c4.114 2.47 6.545 7.162 5.549 11.131-.024.093-.05.181-.076.272l.002.001c2.062 2.538 1.5 5.258 1.236 4.745-1.072-2.086-3.066-1.568-4.088-1.043a6.803 6.803 0 0 1-.281.158l-.02.012-.002.002c-2.115 1.123-4.957 1.205-7.812-.022a12.568 12.568 0 0 1-5.64-4.838c.649.48 1.35.902 2.097 1.252 3.019 1.414 6.051 1.311 8.197-.002C9.651 12.73 7.101 9.67 5.146 7.191a10.628 10.628 0 0 1-1.005-1.384c2.34 2.142 6.038 4.83 7.365 5.576C8.69 8.408 6.208 4.743 6.324 4.86c4.436 4.47 8.528 6.996 8.528 6.996.154.085.27.154.36.213.085-.215.16-.437.224-.668.708-2.588-.09-5.548-1.893-7.992z",
   "tag": "M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82zM7 7h.01",
   "tailwindcss": "M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z",
   "tauri": "M13.912 0a8.72 8.72 0 0 0-8.308 6.139c1.05-.515 2.18-.845 3.342-.976 2.415-3.363 7.4-3.412 9.88-.097 2.48 3.315 1.025 8.084-2.883 9.45a6.131 6.131 0 0 1-.3 2.762 8.72 8.72 0 0 0 3.01-1.225A8.72 8.72 0 0 0 13.913 0zm.082 6.451a2.284 2.284 0 1 0-.15 4.566 2.284 2.284 0 0 0 .15-4.566zm-5.629.27a8.72 8.72 0 0 0-3.031 1.235 8.72 8.72 0 1 0 13.06 9.9131 10.173 10.174 0 0 1-3.343.965 6.125 6.125 0 1 1-7.028-9.343 6.114 6.115 0 0 1 .342-2.772zm1.713 6.27a2.284 2.284 0 0 0-2.284 2.283 2.284 2.284 0 0 0 2.284 2.284 2.284 2.284 0 0 0 2.284-2.284 2.284 2.284 0 0 0-2.284-2.284z",
+  "terminal": "M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8h16v10zm-14-3h4v2H6v-2zm1.7-6.7L10.3 10 7.7 12.7 6.3 11.3l1.3-1.3-1.3-1.3 1.4-1.4z",
+  "terraform": "M1.44 0v7.56l6.57 3.78V3.78L1.44 0zm8.01 4.62v7.56l6.57 3.78V8.4L9.45 4.62zm0 9.18v7.56l6.57 3.78v-7.56l-6.57-3.78zM17.46 9.24v7.56L24 13.02V5.46l-6.54 3.78z",
   "trpc": "M24 12c0 6.62-5.38 12-12 12S0 18.62 0 12 5.38 0 12 0s12 5.38 12 12ZM1.21 12A10.78 10.78 0 0 0 12 22.79 10.78 10.78 0 0 0 22.79 12 10.78 10.78 0 0 0 12 1.21 10.78 10.78 0 0 0 1.21 12Zm10.915-6.086 2.162 1.248a.25.25 0 0 1 .125.217v1.103l2.473 1.428a.25.25 0 0 1 .125.217v2.355l.955.551a.25.25 0 0 1 .125.217v2.496a.25.25 0 0 1-.125.217l-2.162 1.248a.25.25 0 0 1-.25 0l-.956-.552-2.472 1.427a.25.25 0 0 1-.25 0l-2.472-1.427-.956.552a.25.25 0 0 1-.25 0l-2.162-1.248a.25.25 0 0 1-.125-.217V13.25a.25.25 0 0 1 .125-.217l.955-.551v-2.355a.25.25 0 0 1 .125-.217l2.473-1.428V7.38a.25.25 0 0 1 .125-.217l2.162-1.248a.25.25 0 0 1 .25 0Zm1.268 10.049a.25.25 0 0 1-.125-.217V13.25a.25.25 0 0 1 .125-.217l2.16-1.248a.25.25 0 0 1 .25 0l.707.408v-1.922l-2.098-1.21v.814a.25.25 0 0 1-.125.217l-2.162 1.248a.25.25 0 0 1-.25 0l-2.162-1.248a.25.25 0 0 1-.125-.217V9.06L7.49 10.271v1.922l.707-.408a.25.25 0 0 1 .25 0l2.16 1.248a.25.25 0 0 1 .125.217v2.496a.25.25 0 0 1-.125.217l-.705.408L12 17.582l2.098-1.211ZM10.088 9.73l1.662.96V8.766l-1.662-.955Zm3.824 0V7.811l-1.662.955v1.924ZM12 6.418l-1.66.96 1.66.954 1.66-.954Zm-5.59 9.184 1.66.958v-1.921l-1.66-.956Zm3.822 0v-1.92l-1.662.957v1.923Zm-1.91-3.311-1.662.96 1.661.955 1.66-.956Zm5.446 3.31 1.66.96v-1.922l-1.66-.956Zm3.822 0v-1.918l-1.662.956v1.922Zm-1.912-3.31-1.66.96 1.66.955 1.66-.956Z",
   "turborepo": "M11.9906 4.1957c-4.2998 0-7.7981 3.501-7.7981 7.8043s3.4983 7.8043 7.7981 7.8043c4.2999 0 7.7982-3.501 7.7982-7.8043s-3.4983-7.8043-7.7982-7.8043m0 11.843c-2.229 0-4.0356-1.8079-4.0356-4.0387s1.8065-4.0387 4.0356-4.0387S16.0262 9.7692 16.0262 12s-1.8065 4.0388-4.0356 4.0388m.6534-13.1249V0C18.9726.3386 24 5.5822 24 12s-5.0274 11.66-11.356 12v-2.9139c4.7167-.3372 8.4516-4.2814 8.4516-9.0861s-3.735-8.749-8.4516-9.0861M5.113 17.9586c-1.2502-1.4446-2.0562-3.2845-2.2-5.3046H0c.151 2.8266 1.2808 5.3917 3.051 7.3668l2.0606-2.0622zM11.3372 24v-2.9139c-2.02-.1439-3.8584-.949-5.3019-2.2018l-2.0606 2.0623c1.975 1.773 4.538 2.9022 7.361 3.0534z",
   "typescript": "M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z",
+  "ubuntu": "M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-7.05 13.78a1.78 1.78 0 110-3.56 1.78 1.78 0 010 3.56zm10.7 7.02c-.79.35-1.66.57-2.58.64a8.96 8.96 0 01-6.72-3.15l1.83-1.06c1.33 1.48 3.27 2.37 5.4 2.37.7 0 1.38-.1 2.02-.29l.05 1.49zm4.27-5.02a1.78 1.78 0 11-3.56 0 1.78 1.78 0 013.56 0zm-1.87-3.78c0-1.8-.6-3.46-1.62-4.8l1.3-1.3a8.95 8.95 0 012.32 6.1c0 2.2-.8 4.22-2.13 5.78l-1.34-1.25c.92-1.28 1.47-2.84 1.47-4.53zm-5.83-6.22c.92.07 1.79.29 2.58.64l-.05 1.49c-.64-.19-1.32-.29-2.02-.29-2.13 0-4.07.89-5.4 2.37l-1.83-1.06a8.96 8.96 0 016.72-3.15zm-4.7 10.6a1.78 1.78 0 110-3.56 1.78 1.78 0 010 3.56z",
   "vercel": "m12 1.608 12 20.784H0Z",
   "vite": "M13.056 23.238a.57.57 0 0 1-1.02-.355v-5.202c0-.63-.512-1.143-1.144-1.143H5.148a.57.57 0 0 1-.464-.903l3.777-5.29c.54-.753 0-1.804-.93-1.804H.57a.574.574 0 0 1-.543-.746.6.6 0 0 1 .08-.157L5.008.78a.57.57 0 0 1 .467-.24h14.589a.57.57 0 0 1 .466.903l-3.778 5.29c-.54.755 0 1.806.93 1.806h5.745c.238 0 .424.138.513.322a.56.56 0 0 1-.063.603z",
   "vitest": "M11.545 23.3a.613.613 0 0 1-.895.197L.252 15.936A.61.61 0 0 1 0 15.439V6.325c0-.502.569-.792.975-.497l6.358 4.624c.594.433 1.432.25 1.793-.39L14.393.7a.62.62 0 0 1 .535-.314h8.455a.613.613 0 0 1 .537.916z",
+  "vscode": "M23.15 2.587L18.21.21a1.49 1.49 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261a1 1 0 0 0-.02 1.436L3.63 12 .307 15.303a1 1 0 0 0 .02 1.436l1.322 1.202a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.49 1.49 0 0 0 1.704.29l4.94-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.14 14.833L8.85 12l9.16-5.42v10.84z",
   "vue": "M24,1.61H14.06L12,5.16,9.94,1.61H0L12,22.39ZM12,14.08,5.16,2.23H9.59L12,6.41l2.41-4.18h4.43Z",
+  "webassembly": "M12 0L1.6 6v12L12 24l10.4-6V6L12 0zm-1.8 17.5h-1.6l-2-7h1.6l1.2 5 1.2-5h1.6l1.2 5 1.2-5h1.6l-2 7h-1.6l-1.2-5.2-1.2 5.2zm7.6 0h-1.6l3-7h1.6l3 7h-1.6l-.7-1.8h-3l-.7 1.8zm1.3-3.2h2l-1-2.6-1 2.6z",
+  "webpack": "M12.001 0l10.392 6v12L12.001 24 1.609 18V6L12.001 0zm-.923 2.123L3.454 6.524l7.624 4.402V2.123zm1.846 0v8.803l7.624-4.402-7.624-4.401zM2.532 8.121v7.758l6.719-3.879-6.719-3.879zm18.936 0l-6.719 3.879 6.719 3.879V8.121zm-10.46 5.922l-7.554 4.361 8.477 4.894v-8.79l-.923-.465zm1.846 0v8.79l8.477-4.894-7.554-4.361-.923.465z",
+  "windows": "M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.4H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.949-1.801",
+  "yarn": "M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.1 16.5l-3.9-3.9 1.8-1.8 3.9 3.9-1.8 1.8zm-6.6-6.6L6.6 6 8.4 4.2l3.9 3.9-1.8 1.8z",
+  "zap": "M13 2L3 14h8v8l10-12h-8V2z",
+  "zig": "M23.16 3H.84A.84.84 0 0 0 0 3.84v1.86c0 .46.38.84.84.84h17.9L.3 18.06a.84.84 0 0 0-.3.6v1.5a.84.84 0 0 0 .84.84h22.32a.84.84 0 0 0 .84-.84v-1.86a.84.84 0 0 0-.84-.84H5.26L23.7 5.94a.84.84 0 0 0 .3-.6V3.84A.84.84 0 0 0 23.16 3z"
 };
-
-    const PALETTE_SWATCHES = [
-      '#eab308', '#facc15', '#f59e0b', '#d97706',
-      '#f43f5e', '#ec4899', '#fb7185', '#d946ef',
-      '#ef4444', '#dc2626', '#be123c',
-      '#f97316', '#ea580c', '#ff5722',
-      '#8b5cf6', '#7c3aed', '#6366f1',
-      '#06b6d4', '#0ea5e9', '#0284c7', '#2563eb',
-      '#16a34a', '#10b981', '#059669', '#0f172a'
-    ];
-
+    const ICON_CATS = {
+  "apple": "Mobile & OS",
+  "android": "Mobile & OS",
+  "windows": "Mobile & OS",
+  "linux": "Mobile & OS",
+  "ubuntu": "Mobile & OS",
+  "debian": "Mobile & OS",
+  "archlinux": "Mobile & OS",
+  "react-native": "Mobile & OS",
+  "flutter": "Mobile & OS",
+  "swift": "Mobile & OS",
+  "kotlin": "Mobile & OS",
+  "expo": "Mobile & OS",
+  "electron": "Mobile & OS",
+  "react": "Frontend",
+  "nextjs": "Frontend",
+  "vue": "Frontend",
+  "svelte": "Frontend",
+  "angular": "Frontend",
+  "astro": "Frontend",
+  "solid": "Frontend",
+  "remix": "Frontend",
+  "nuxt": "Frontend",
+  "html5": "Frontend",
+  "css3": "Frontend",
+  "javascript": "Frontend",
+  "typescript": "Frontend",
+  "tailwindcss": "Frontend",
+  "sass": "Frontend",
+  "bootstrap": "Frontend",
+  "vite": "Frontend",
+  "webpack": "Frontend",
+  "babel": "Frontend",
+  "prettier": "Frontend",
+  "biome": "Frontend",
+  "storybook": "Frontend",
+  "webassembly": "Frontend",
+  "tauri": "Frontend",
+  "node": "Backend & Runtimes",
+  "bun": "Backend & Runtimes",
+  "deno": "Backend & Runtimes",
+  "python": "Backend & Runtimes",
+  "rust": "Backend & Runtimes",
+  "go": "Backend & Runtimes",
+  "c": "Backend & Runtimes",
+  "cpp": "Backend & Runtimes",
+  "csharp": "Backend & Runtimes",
+  "java": "Backend & Runtimes",
+  "ruby": "Backend & Runtimes",
+  "php": "Backend & Runtimes",
+  "elixir": "Backend & Runtimes",
+  "scala": "Backend & Runtimes",
+  "zig": "Backend & Runtimes",
+  "dart": "Backend & Runtimes",
+  "lua": "Backend & Runtimes",
+  "trpc": "Backend & Runtimes",
+  "turborepo": "Backend & Runtimes",
+  "postgresql": "Databases",
+  "mysql": "Databases",
+  "sqlite": "Databases",
+  "mongodb": "Databases",
+  "redis": "Databases",
+  "supabase": "Databases",
+  "firebase": "Databases",
+  "prisma": "Databases",
+  "drizzle": "Databases",
+  "graphql": "Databases",
+  "docker": "DevOps & Cloud",
+  "kubernetes": "DevOps & Cloud",
+  "aws": "DevOps & Cloud",
+  "googlecloud": "DevOps & Cloud",
+  "azure": "DevOps & Cloud",
+  "cloudflare": "DevOps & Cloud",
+  "vercel": "DevOps & Cloud",
+  "netlify": "DevOps & Cloud",
+  "railway": "DevOps & Cloud",
+  "render": "DevOps & Cloud",
+  "terraform": "DevOps & Cloud",
+  "nginx": "DevOps & Cloud",
+  "git": "Tools & Testing",
+  "github": "Tools & Testing",
+  "githubactions": "Tools & Testing",
+  "gitlab": "Tools & Testing",
+  "npm": "Tools & Testing",
+  "pnpm": "Tools & Testing",
+  "yarn": "Tools & Testing",
+  "jest": "Tools & Testing",
+  "vitest": "Tools & Testing",
+  "playwright": "Tools & Testing",
+  "cypress": "Tools & Testing",
+  "eslint": "Tools & Testing",
+  "vscode": "Tools & Testing",
+  "neovim": "Tools & Testing",
+  "check": "Symbols & Badges",
+  "check-circle": "Symbols & Badges",
+  "cross": "Symbols & Badges",
+  "shield": "Symbols & Badges",
+  "shield-check": "Symbols & Badges",
+  "shield-lock": "Symbols & Badges",
+  "lock": "Symbols & Badges",
+  "key": "Symbols & Badges",
+  "terminal": "Symbols & Badges",
+  "code": "Symbols & Badges",
+  "cpu": "Symbols & Badges",
+  "server": "Symbols & Badges",
+  "database": "Symbols & Badges",
+  "cloud": "Symbols & Badges",
+  "star": "Symbols & Badges",
+  "heart": "Symbols & Badges",
+  "zap": "Symbols & Badges",
+  "flame": "Symbols & Badges",
+  "rocket": "Symbols & Badges",
+  "box": "Symbols & Badges",
+  "download": "Symbols & Badges",
+  "globe": "Symbols & Badges",
+  "link": "Symbols & Badges",
+  "info": "Symbols & Badges",
+  "bug": "Symbols & Badges",
+  "alert": "Symbols & Badges",
+  "eye": "Symbols & Badges",
+  "activity": "Symbols & Badges",
+  "chart": "Symbols & Badges",
+  "bell": "Symbols & Badges",
+  "settings": "Symbols & Badges",
+  "coffee": "Symbols & Badges",
+  "sparkle": "Symbols & Badges",
+  "osi": "Symbols & Badges",
+  "book": "Symbols & Badges",
+  "layers": "Symbols & Badges",
+  "copy": "Symbols & Badges",
+  "search": "Symbols & Badges",
+  "external-link": "Symbols & Badges",
+  "tag": "Symbols & Badges",
+  "status-dot": "Symbols & Badges"
+};
     const PRESETS = [
-      { id: 'mit', name: 'MIT License', style: 'solid', val: 'MIT License', color: '#8b5cf6', icon: 'osi' },
-      { id: 'node', name: 'Node.js', style: 'solid', val: 'Node.js ≥ 22', color: '#16a34a', icon: 'node' },
-      { id: 'status-alpha', name: 'Alpha Status', style: 'solid', val: 'Alpha', color: '#f59e0b', icon: 'status-dot' },
-      { id: 'local-first', name: 'Local-First', style: 'solid', val: 'Local-first, no telemetry', color: '#f43f5e', icon: 'shield-lock' },
-      { id: 'react-native', name: 'React Native', style: 'solid', val: 'React Native', color: '#0284c7', icon: 'react-native' },
-      { id: 'react', name: 'React', style: 'solid', val: 'React', color: '#06b6d4', icon: 'react' },
-      { id: 'javascript', name: 'JavaScript', style: 'solid', val: 'JavaScript', color: '#eab308', icon: 'javascript' },
-      { id: 'python', name: 'Python', style: 'solid', val: 'Python 3.12+', color: '#f59e0b', icon: 'python' },
-      { id: 'rust', name: 'Rust', style: 'solid', val: 'Rust', color: '#ea580c', icon: 'rust' },
-      { id: 'redis', name: 'Redis', style: 'solid', val: 'Redis', color: '#dc2626', icon: 'redis' },
-      { id: 'graphql', name: 'GraphQL', style: 'solid', val: 'GraphQL', color: '#ec4899', icon: 'graphql' },
-      { id: 'bun', name: 'Bun', style: 'solid', val: 'Bun', color: '#fb7185', icon: 'bun' },
-      { id: 'angular', name: 'Angular', style: 'solid', val: 'Angular', color: '#ef4444', icon: 'angular' },
-      { id: 'svelte', name: 'Svelte', style: 'solid', val: 'Svelte', color: '#ff5722', icon: 'svelte' },
-      { id: 'swift', name: 'Swift', style: 'solid', val: 'Swift', color: '#f97316', icon: 'swift' },
-      { id: 'kotlin', name: 'Kotlin', style: 'solid', val: 'Kotlin', color: '#8b5cf6', icon: 'kotlin' },
-      { id: 'vite', name: 'Vite', style: 'solid', val: 'Vite', color: '#8b5cf6', icon: 'vite' },
-      { id: 'astro', name: 'Astro', style: 'solid', val: 'Astro', color: '#7c3aed', icon: 'astro' },
-      { id: 'typescript', name: 'TypeScript', style: 'solid', val: 'TypeScript', color: '#2563eb', icon: 'typescript' },
-      { id: 'nextjs', name: 'Next.js', style: 'solid', val: 'Next.js', color: '#0f172a', icon: 'nextjs' },
-      { id: 'tailwindcss', name: 'Tailwind CSS', style: 'solid', val: 'Tailwind CSS', color: '#0ea5e9', icon: 'tailwindcss' },
-      { id: 'go', name: 'Go', style: 'solid', val: 'Go', color: '#06b6d4', icon: 'go' },
-      { id: 'vue', name: 'Vue.js', style: 'solid', val: 'Vue.js', color: '#10b981', icon: 'vue' },
-      { id: 'supabase', name: 'Supabase', style: 'solid', val: 'Supabase', color: '#059669', icon: 'supabase' },
-      { id: 'docker', name: 'Docker', style: 'solid', val: 'Docker', color: '#0284c7', icon: 'docker' },
-      { id: 'kubernetes', name: 'Kubernetes', style: 'solid', val: 'Kubernetes', color: '#6366f1', icon: 'kubernetes' },
-      { id: 'postgresql', name: 'PostgreSQL', style: 'solid', val: 'PostgreSQL', color: '#2563eb', icon: 'postgresql' },
-      { id: 'vitest', name: 'Vitest', style: 'solid', val: 'Vitest', color: '#facc15', icon: 'vitest' },
-      { id: 'playwright', name: 'Playwright', style: 'solid', val: 'Playwright', color: '#10b981', icon: 'playwright' },
-      { id: 'cypress', name: 'Cypress', style: 'solid', val: 'Cypress', color: '#10b981', icon: 'cypress' },
-      { id: 'prisma', name: 'Prisma', style: 'solid', val: 'Prisma ORM', color: '#6366f1', icon: 'prisma' },
-      { id: 'cloudflare', name: 'Cloudflare', style: 'solid', val: 'Cloudflare', color: '#f97316', icon: 'cloudflare' },
-      { id: 'aws', name: 'AWS', style: 'solid', val: 'AWS Cloud', color: '#f59e0b', icon: 'aws' },
-      { id: 'linux', name: 'Linux', style: 'solid', val: 'Linux', color: '#facc15', icon: 'linux' },
-      { id: 'node-split', name: 'Node.js (Split)', style: 'split', label: 'node', val: '≥ 22.0.0', color: '#16a34a', icon: 'node' },
-      { id: 'mit-split', name: 'MIT License (Split)', style: 'split', label: 'license', val: 'MIT', color: '#8b5cf6', icon: 'osi' },
-      { id: 'status-alpha-split', name: 'Alpha Status (Split)', style: 'split', label: 'status', val: 'alpha', color: '#f59e0b', icon: 'status-dot' },
-      { id: 'local-first-split', name: 'Local-First (Split)', style: 'split', label: 'privacy', val: 'local-first', color: '#f43f5e', icon: 'shield-lock' }
-    ];
+  {
+    "id": "ios",
+    "name": "iOS",
+    "cat": "Mobile & OS",
+    "style": "solid",
+    "val": "iOS",
+    "color": "#475569",
+    "icon": "apple"
+  },
+  {
+    "id": "android",
+    "name": "Android",
+    "cat": "Mobile & OS",
+    "style": "solid",
+    "val": "Android",
+    "color": "#10b981",
+    "icon": "android"
+  },
+  {
+    "id": "react-native",
+    "name": "React Native",
+    "cat": "Mobile & OS",
+    "style": "solid",
+    "val": "React Native",
+    "color": "#0284c7",
+    "icon": "react-native"
+  },
+  {
+    "id": "flutter",
+    "name": "Flutter",
+    "cat": "Mobile & OS",
+    "style": "solid",
+    "val": "Flutter",
+    "color": "#0284c7",
+    "icon": "flutter"
+  },
+  {
+    "id": "swift",
+    "name": "Swift",
+    "cat": "Mobile & OS",
+    "style": "solid",
+    "val": "Swift 6.0",
+    "color": "#ea580c",
+    "icon": "swift"
+  },
+  {
+    "id": "kotlin",
+    "name": "Kotlin",
+    "cat": "Mobile & OS",
+    "style": "solid",
+    "val": "Kotlin",
+    "color": "#8b5cf6",
+    "icon": "kotlin"
+  },
+  {
+    "id": "linux",
+    "name": "Linux",
+    "cat": "Mobile & OS",
+    "style": "solid",
+    "val": "Linux",
+    "color": "#eab308",
+    "icon": "linux"
+  },
+  {
+    "id": "ubuntu",
+    "name": "Ubuntu",
+    "cat": "Mobile & OS",
+    "style": "solid",
+    "val": "Ubuntu",
+    "color": "#ea580c",
+    "icon": "ubuntu"
+  },
+  {
+    "id": "windows",
+    "name": "Windows",
+    "cat": "Mobile & OS",
+    "style": "solid",
+    "val": "Windows",
+    "color": "#0284c7",
+    "icon": "windows"
+  },
+  {
+    "id": "react",
+    "name": "React",
+    "cat": "Frontend",
+    "style": "solid",
+    "val": "React 19",
+    "color": "#06b6d4",
+    "icon": "react"
+  },
+  {
+    "id": "nextjs",
+    "name": "Next.js",
+    "cat": "Frontend",
+    "style": "solid",
+    "val": "Next.js 15",
+    "color": "#27272a",
+    "icon": "nextjs"
+  },
+  {
+    "id": "vue",
+    "name": "Vue.js",
+    "cat": "Frontend",
+    "style": "solid",
+    "val": "Vue 3",
+    "color": "#10b981",
+    "icon": "vue"
+  },
+  {
+    "id": "svelte",
+    "name": "Svelte",
+    "cat": "Frontend",
+    "style": "solid",
+    "val": "Svelte 5",
+    "color": "#ea580c",
+    "icon": "svelte"
+  },
+  {
+    "id": "astro",
+    "name": "Astro",
+    "cat": "Frontend",
+    "style": "solid",
+    "val": "Astro",
+    "color": "#ea580c",
+    "icon": "astro"
+  },
+  {
+    "id": "angular",
+    "name": "Angular",
+    "cat": "Frontend",
+    "style": "solid",
+    "val": "Angular",
+    "color": "#dc2626",
+    "icon": "angular"
+  },
+  {
+    "id": "tailwind",
+    "name": "Tailwind",
+    "cat": "Frontend",
+    "style": "solid",
+    "val": "Tailwind CSS",
+    "color": "#0284c7",
+    "icon": "tailwindcss"
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "cat": "Frontend",
+    "style": "solid",
+    "val": "TypeScript",
+    "color": "#2563eb",
+    "icon": "typescript"
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "cat": "Frontend",
+    "style": "solid",
+    "val": "JavaScript",
+    "color": "#eab308",
+    "icon": "javascript"
+  },
+  {
+    "id": "vite",
+    "name": "Vite",
+    "cat": "Frontend",
+    "style": "solid",
+    "val": "Vite",
+    "color": "#8b5cf6",
+    "icon": "vite"
+  },
+  {
+    "id": "node",
+    "name": "Node.js",
+    "cat": "Backend",
+    "style": "solid",
+    "val": "Node.js 22",
+    "color": "#16a34a",
+    "icon": "node"
+  },
+  {
+    "id": "bun",
+    "name": "Bun",
+    "cat": "Backend",
+    "style": "solid",
+    "val": "Bun",
+    "color": "#d97706",
+    "icon": "bun"
+  },
+  {
+    "id": "deno",
+    "name": "Deno",
+    "cat": "Backend",
+    "style": "solid",
+    "val": "Deno 2",
+    "color": "#27272a",
+    "icon": "deno"
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "cat": "Backend",
+    "style": "solid",
+    "val": "Python 3.13",
+    "color": "#eab308",
+    "icon": "python"
+  },
+  {
+    "id": "rust",
+    "name": "Rust",
+    "cat": "Backend",
+    "style": "solid",
+    "val": "Rust 2024",
+    "color": "#ea580c",
+    "icon": "rust"
+  },
+  {
+    "id": "go",
+    "name": "Go",
+    "cat": "Backend",
+    "style": "solid",
+    "val": "Go 1.23",
+    "color": "#0284c7",
+    "icon": "go"
+  },
+  {
+    "id": "cpp",
+    "name": "C++",
+    "cat": "Backend",
+    "style": "solid",
+    "val": "C++23",
+    "color": "#2563eb",
+    "icon": "cpp"
+  },
+  {
+    "id": "csharp",
+    "name": "C#",
+    "cat": "Backend",
+    "style": "solid",
+    "val": "C# .NET 9",
+    "color": "#7c3aed",
+    "icon": "csharp"
+  },
+  {
+    "id": "java",
+    "name": "Java",
+    "cat": "Backend",
+    "style": "solid",
+    "val": "Java 21",
+    "color": "#ea580c",
+    "icon": "java"
+  },
+  {
+    "id": "ruby",
+    "name": "Ruby",
+    "cat": "Backend",
+    "style": "solid",
+    "val": "Ruby 3.4",
+    "color": "#e11d48",
+    "icon": "ruby"
+  },
+  {
+    "id": "php",
+    "name": "PHP",
+    "cat": "Backend",
+    "style": "solid",
+    "val": "PHP 8.4",
+    "color": "#4f46e5",
+    "icon": "php"
+  },
+  {
+    "id": "docker",
+    "name": "Docker",
+    "cat": "DevOps",
+    "style": "solid",
+    "val": "Docker",
+    "color": "#0284c7",
+    "icon": "docker"
+  },
+  {
+    "id": "k8s",
+    "name": "Kubernetes",
+    "cat": "DevOps",
+    "style": "solid",
+    "val": "Kubernetes",
+    "color": "#2563eb",
+    "icon": "kubernetes"
+  },
+  {
+    "id": "aws",
+    "name": "AWS",
+    "cat": "DevOps",
+    "style": "solid",
+    "val": "AWS",
+    "color": "#f59e0b",
+    "icon": "aws"
+  },
+  {
+    "id": "gcp",
+    "name": "Google Cloud",
+    "cat": "DevOps",
+    "style": "solid",
+    "val": "Google Cloud",
+    "color": "#2563eb",
+    "icon": "googlecloud"
+  },
+  {
+    "id": "azure",
+    "name": "Azure",
+    "cat": "DevOps",
+    "style": "solid",
+    "val": "Microsoft Azure",
+    "color": "#0284c7",
+    "icon": "azure"
+  },
+  {
+    "id": "cloudflare",
+    "name": "Cloudflare",
+    "cat": "DevOps",
+    "style": "solid",
+    "val": "Cloudflare",
+    "color": "#ea580c",
+    "icon": "cloudflare"
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "cat": "DevOps",
+    "style": "solid",
+    "val": "Vercel",
+    "color": "#27272a",
+    "icon": "vercel"
+  },
+  {
+    "id": "supabase",
+    "name": "Supabase",
+    "cat": "DevOps",
+    "style": "solid",
+    "val": "Supabase",
+    "color": "#16a34a",
+    "icon": "supabase"
+  },
+  {
+    "id": "postgres",
+    "name": "PostgreSQL",
+    "cat": "DevOps",
+    "style": "solid",
+    "val": "PostgreSQL",
+    "color": "#0284c7",
+    "icon": "postgresql"
+  },
+  {
+    "id": "redis",
+    "name": "Redis",
+    "cat": "DevOps",
+    "style": "solid",
+    "val": "Redis 7",
+    "color": "#dc2626",
+    "icon": "redis"
+  },
+  {
+    "id": "git",
+    "name": "Git",
+    "cat": "Tools",
+    "style": "solid",
+    "val": "Git",
+    "color": "#ea580c",
+    "icon": "git"
+  },
+  {
+    "id": "github-actions",
+    "name": "CI",
+    "cat": "Tools",
+    "style": "solid",
+    "val": "GitHub Actions",
+    "color": "#2563eb",
+    "icon": "githubactions"
+  },
+  {
+    "id": "mit-split",
+    "name": "License (MIT)",
+    "cat": "Status",
+    "style": "split",
+    "label": "license",
+    "val": "MIT",
+    "color": "#8b5cf6",
+    "icon": "osi"
+  },
+  {
+    "id": "node-split",
+    "name": "Node Version",
+    "cat": "Status",
+    "style": "split",
+    "label": "node",
+    "val": ">= 22.0.0",
+    "color": "#16a34a",
+    "icon": "node"
+  },
+  {
+    "id": "status-stable-split",
+    "name": "Release (Stable)",
+    "cat": "Status",
+    "style": "split",
+    "label": "release",
+    "val": "v2.0.0",
+    "color": "#16a34a",
+    "icon": "rocket"
+  },
+  {
+    "id": "status-alpha-split",
+    "name": "Status (Alpha)",
+    "cat": "Status",
+    "style": "split",
+    "label": "status",
+    "val": "alpha",
+    "color": "#f59e0b",
+    "icon": "status-dot"
+  },
+  {
+    "id": "security-split",
+    "name": "Security (Passed)",
+    "cat": "Status",
+    "style": "split",
+    "label": "security",
+    "val": "verified",
+    "color": "#16a34a",
+    "icon": "shield-check"
+  },
+  {
+    "id": "local-first-split",
+    "name": "Privacy (Local)",
+    "cat": "Status",
+    "style": "split",
+    "label": "privacy",
+    "val": "local-first",
+    "color": "#f43f5e",
+    "icon": "shield-lock"
+  },
+  {
+    "id": "encrypted-split",
+    "name": "Encryption",
+    "cat": "Status",
+    "style": "split",
+    "label": "storage",
+    "val": "AES-256",
+    "color": "#0284c7",
+    "icon": "lock"
+  },
+  {
+    "id": "uptime-split",
+    "name": "Uptime",
+    "cat": "Status",
+    "style": "split",
+    "label": "uptime",
+    "val": "99.98%",
+    "color": "#10b981",
+    "icon": "activity"
+  },
+  {
+    "id": "tests-split",
+    "name": "Tests Passing",
+    "cat": "Status",
+    "style": "split",
+    "label": "tests",
+    "val": "100% passing",
+    "color": "#16a34a",
+    "icon": "check-circle"
+  },
+  {
+    "id": "downloads-split",
+    "name": "Downloads",
+    "cat": "Status",
+    "style": "split",
+    "label": "downloads",
+    "val": "100k / mo",
+    "color": "#0284c7",
+    "icon": "download"
+  },
+  {
+    "id": "cli-split",
+    "name": "CLI Tool",
+    "cat": "Status",
+    "style": "split",
+    "label": "cli",
+    "val": "npx badgify",
+    "color": "#ea580c",
+    "icon": "terminal"
+  },
+  {
+    "id": "speed-split",
+    "name": "Performance",
+    "cat": "Status",
+    "style": "split",
+    "label": "latency",
+    "val": "0.4ms",
+    "color": "#f59e0b",
+    "icon": "zap"
+  }
+];
+    const PALETTE_SWATCHES = [
+  "#27272a",
+  "#3f3f46",
+  "#475569",
+  "#52525b",
+  "#eab308",
+  "#f59e0b",
+  "#d97706",
+  "#b45309",
+  "#f97316",
+  "#ea580c",
+  "#c2410c",
+  "#fb7185",
+  "#e11d48",
+  "#f43f5e",
+  "#dc2626",
+  "#b91c1c",
+  "#8b5cf6",
+  "#7c3aed",
+  "#6366f1",
+  "#4f46e5",
+  "#2563eb",
+  "#0284c7",
+  "#0ea5e9",
+  "#06b6d4",
+  "#10b981",
+  "#16a34a",
+  "#059669",
+  "#15803d"
+];
 
     let state = {
       style: 'solid',
-      label: 'license',
-      value: 'React Native',
-      color: '#0284c7',
-      icon: 'react-native',
+      label: 'platform',
+      value: 'iOS',
+      color: '#475569',
+      icon: 'apple',
       radius: 'rounded',
       height: 28
     };
@@ -738,7 +1786,7 @@
       if (state.radius === 'pill') rx = Math.floor(height / 2);
       else if (state.radius === 'sharp') rx = 0;
 
-      const iconPath = ICONS[state.icon] || null;
+      const iconPath = state.icon && state.icon !== 'none' ? (ICONS[state.icon] || null) : null;
 
       if (state.style === 'solid') {
         const padLeft = iconPath ? 10 : 12;
@@ -773,12 +1821,12 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="#ffffff" font-fa
   <title>${state.label}: ${state.value}</title>
   <clipPath id="${clipId}"><rect width="${totalWidth}" height="${height}" rx="${rx}"/></clipPath>
   <g clip-path="url(#${clipId})">
-    <rect width="${leftWidth}" height="${height}" fill="#181d26"/>
+    <rect width="${leftWidth}" height="${height}" fill="#141416"/>
 ${iconSvg}    <text x="${padLeft + iconTotal}" y="${textY}" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${labelFontSize}" font-weight="500" letter-spacing="0.3px">${state.label}</text>
     <rect x="${leftWidth}" width="${rightWidth}" height="${height}" fill="${state.color}"/>
     <text x="${valueCenterX}" y="${textY}" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${fontSize}" font-weight="700" text-anchor="middle" letter-spacing="0.3px">${state.value}</text>
   </g>
-  <rect width="${totalWidth}" height="${height}" rx="${rx}" fill="none" stroke="#333b47" stroke-width="1"/>
+  <rect width="${totalWidth}" height="${height}" rx="${rx}" fill="none" stroke="#252528" stroke-width="1"/>
 </svg>`;
       }
 
@@ -793,7 +1841,7 @@ ${iconSvg}    <text x="${padLeft + iconTotal}" y="${textY}" fill="#e2e8f0" font-
 
       return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${height}" viewBox="0 0 ${totalWidth} ${height}" fill="none" role="img" aria-label="${fullText}">
   <title>${fullText}</title>
-  <rect x="0.5" y="0.5" width="${totalWidth - 1}" height="${height - 1}" rx="${rx}" fill="#0f172a" stroke="${state.color}" stroke-width="1"/>
+  <rect x="0.5" y="0.5" width="${totalWidth - 1}" height="${height - 1}" rx="${rx}" fill="#0a0a0a" stroke="${state.color}" stroke-width="1"/>
 ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${fontSize}" font-weight="700" letter-spacing="0.3px">${fullText}</text>
 </svg>`;
     }
@@ -813,6 +1861,7 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
         }
       });
 
+      // Show/hide split label
       const labelGroup = document.getElementById('labelGroup');
       const valueGroup = document.getElementById('valueGroup');
       if (state.style === 'split') {
@@ -821,6 +1870,16 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       } else {
         labelGroup.classList.add('hidden');
         valueGroup.style.gridColumn = 'span 2';
+      }
+
+      // Update active icon display
+      const activePreview = document.getElementById('activeIconPreview');
+      const activeName = document.getElementById('activeIconName');
+      activeName.textContent = state.icon || 'none (text only)';
+      if (state.icon && state.icon !== 'none' && ICONS[state.icon]) {
+        activePreview.innerHTML = `<svg viewBox="0 0 24 24"><path d="${ICONS[state.icon]}"/></svg>`;
+      } else {
+        activePreview.innerHTML = `<span style="font-size:11px;color:#71717a;">—</span>`;
       }
     }
 
@@ -840,21 +1899,11 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       swatchesContainer.appendChild(b);
     });
 
-    // Init icons dropdown
-    const iconSelect = document.getElementById('inputIconSelect');
-    Object.keys(ICONS).sort().forEach(name => {
-      const opt = document.createElement('option');
-      opt.value = name;
-      opt.textContent = name;
-      if (name === state.icon) opt.selected = true;
-      iconSelect.appendChild(opt);
-    });
-
     // Init preset chips
     function renderPresetChips(filter = '') {
       const container = document.getElementById('presetChips');
       container.innerHTML = '';
-      PRESETS.filter(p => p.name.toLowerCase().includes(filter.toLowerCase())).forEach(p => {
+      PRESETS.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()) || p.val.toLowerCase().includes(filter.toLowerCase())).forEach(p => {
         const btn = document.createElement('button');
         btn.className = 'preset-btn';
         btn.innerHTML = `<span class="preset-dot" style="background:${p.color}"></span><span>${p.name}</span>`;
@@ -868,7 +1917,6 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
           document.getElementById('inputLabel').value = state.label;
           document.getElementById('inputColorPicker').value = state.color;
           document.getElementById('inputColorText').value = state.color;
-          document.getElementById('inputIconSelect').value = state.icon;
           update();
         };
         container.appendChild(btn);
@@ -880,7 +1928,75 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       renderPresetChips(e.target.value);
     });
 
-    // Event listeners
+    // Modal Icon Picker Logic
+    let currentCat = 'all';
+    let currentIconSearch = '';
+
+    function renderModalIcons() {
+      const grid = document.getElementById('modalIconGrid');
+      grid.innerHTML = '';
+
+      // Add "None" item first
+      const noneItem = document.createElement('div');
+      noneItem.className = 'icon-grid-item' + (state.icon === 'none' ? ' active' : '');
+      noneItem.innerHTML = `<div style="width:18px;height:18px;display:flex;align-items:center;justify-content:center;color:#71717a;font-size:14px;">—</div><span>None (text)</span>`;
+      noneItem.onclick = () => {
+        state.icon = 'none';
+        closeIconModal();
+        update();
+      };
+      grid.appendChild(noneItem);
+
+      const allKeys = Object.keys(ICONS).sort();
+      allKeys.forEach(name => {
+        const cat = ICON_CATS[name] || 'Symbols & Badges';
+        if (currentCat !== 'all' && cat !== currentCat) return;
+        if (currentIconSearch && !name.toLowerCase().includes(currentIconSearch.toLowerCase())) return;
+
+        const item = document.createElement('div');
+        item.className = 'icon-grid-item' + (state.icon === name ? ' active' : '');
+        item.innerHTML = `<svg viewBox="0 0 24 24"><path d="${ICONS[name]}"/></svg><span>${name}</span>`;
+        item.onclick = () => {
+          state.icon = name;
+          closeIconModal();
+          update();
+        };
+        grid.appendChild(item);
+      });
+    }
+
+    function openIconModal() {
+      document.getElementById('iconModal').classList.add('show');
+      renderModalIcons();
+      document.getElementById('iconSearchInput').focus();
+    }
+
+    function closeIconModal() {
+      document.getElementById('iconModal').classList.remove('show');
+    }
+
+    document.getElementById('browseIconsBtn').addEventListener('click', openIconModal);
+    document.getElementById('iconPreviewBtn').addEventListener('click', openIconModal);
+    document.getElementById('closeModalBtn').addEventListener('click', closeIconModal);
+    document.getElementById('iconModal').addEventListener('click', (e) => {
+      if (e.target.id === 'iconModal') closeIconModal();
+    });
+
+    document.getElementById('iconSearchInput').addEventListener('input', (e) => {
+      currentIconSearch = e.target.value;
+      renderModalIcons();
+    });
+
+    document.querySelectorAll('.cat-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        currentCat = pill.dataset.cat;
+        renderModalIcons();
+      });
+    });
+
+    // Form Event Listeners
     document.querySelectorAll('.style-option').forEach(btn => {
       btn.addEventListener('click', () => {
         state.style = btn.dataset.style;
@@ -910,11 +2026,6 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       update();
     });
 
-    document.getElementById('inputIconSelect').addEventListener('change', (e) => {
-      state.icon = e.target.value;
-      update();
-    });
-
     document.getElementById('inputRadius').addEventListener('change', (e) => {
       state.radius = e.target.value;
       update();
@@ -928,10 +2039,10 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
     document.getElementById('resetBtn').addEventListener('click', () => {
       state = {
         style: 'solid',
-        label: 'license',
-        value: 'React Native',
-        color: '#0284c7',
-        icon: 'react-native',
+        label: 'platform',
+        value: 'iOS',
+        color: '#475569',
+        icon: 'apple',
         radius: 'rounded',
         height: 28
       };
@@ -939,30 +2050,32 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       document.getElementById('inputLabel').value = state.label;
       document.getElementById('inputColorPicker').value = state.color;
       document.getElementById('inputColorText').value = state.color;
-      document.getElementById('inputIconSelect').value = state.icon;
       document.getElementById('inputRadius').value = state.radius;
       document.getElementById('inputHeight').value = state.height;
       update();
     });
 
-    function flashButton(btn, text = 'Copied') {
-      const orig = btn.textContent;
-      btn.textContent = text;
-      setTimeout(() => { btn.textContent = orig; }, 1800);
+    // Toast and Action Buttons
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toastMsg');
+      msgEl.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => { toast.classList.remove('show'); }, 2000);
     }
 
     document.getElementById('copySvgBtn').addEventListener('click', () => {
-      navigator.clipboard.writeText(renderSvg()).then(() => flashButton(document.getElementById('copySvgBtn')));
+      navigator.clipboard.writeText(renderSvg()).then(() => showToast('SVG code copied to clipboard'));
     });
 
     document.getElementById('copyMdBtn').addEventListener('click', () => {
       const md = `![${state.value}](badge.svg)`;
-      navigator.clipboard.writeText(md).then(() => flashButton(document.getElementById('copyMdBtn')));
+      navigator.clipboard.writeText(md).then(() => showToast('Markdown copied to clipboard'));
     });
 
     document.getElementById('copyHtmlBtn').addEventListener('click', () => {
       const html = `<img src="badge.svg" alt="${state.value}" height="${state.height}" />`;
-      navigator.clipboard.writeText(html).then(() => flashButton(document.getElementById('copyHtmlBtn')));
+      navigator.clipboard.writeText(html).then(() => showToast('HTML snippet copied to clipboard'));
     });
 
     document.getElementById('downloadSvgBtn').addEventListener('click', () => {
@@ -974,6 +2087,7 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       a.download = `${state.value.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'badge'}.svg`;
       a.click();
       URL.revokeObjectURL(url);
+      showToast('SVG badge downloaded');
     });
 
     // Initial render

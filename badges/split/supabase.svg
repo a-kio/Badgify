@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="177" height="28" viewBox="0 0 177 28" fill="none" role="img" aria-label="supabase: Supabase">
-  <title>supabase: Supabase</title>
-  <clipPath id="clip_q2p4wf"><rect width="177" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_q2p4wf)">
-    <rect width="95" height="28" fill="#181d26"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="175" height="28" viewBox="0 0 175 28" fill="none" role="img" aria-label="database: Supabase">
+  <title>database: Supabase</title>
+  <clipPath id="clip_h80ff7"><rect width="175" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_h80ff7)">
+    <rect width="93" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" d="M11.9 1.036c-.015-.986-1.26-1.41-1.874-.637L.764 12.05C-.33 13.427.65 15.455 2.409 15.455h9.579l.113 7.51c.014.985 1.259 1.408 1.873.636l9.262-11.653c1.093-1.375.113-3.403-1.645-3.403h-9.642z"/>
     </svg>
-    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">supabase</text>
-    <rect x="95" width="82" height="28" fill="#059669"/>
-    <text x="136" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">Supabase</text>
+    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">database</text>
+    <rect x="93" width="82" height="28" fill="#059669"/>
+    <text x="134" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">Supabase</text>
   </g>
-  <rect width="177" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
+  <rect width="175" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
 </svg>

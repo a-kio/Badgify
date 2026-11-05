@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="158" height="28" viewBox="0 0 158 28" fill="none" role="img" aria-label="platform: Ubuntu">
+  <title>platform: Ubuntu</title>
+  <clipPath id="clip_0r6cj0"><rect width="158" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_0r6cj0)">
+    <rect width="90" height="28" fill="#181d26"/>
+    <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="#ffffff" d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-7.05 13.78a1.78 1.78 0 110-3.56 1.78 1.78 0 010 3.56zm10.7 7.02c-.79.35-1.66.57-2.58.64a8.96 8.96 0 01-6.72-3.15l1.83-1.06c1.33 1.48 3.27 2.37 5.4 2.37.7 0 1.38-.1 2.02-.29l.05 1.49zm4.27-5.02a1.78 1.78 0 11-3.56 0 1.78 1.78 0 013.56 0zm-1.87-3.78c0-1.8-.6-3.46-1.62-4.8l1.3-1.3a8.95 8.95 0 012.32 6.1c0 2.2-.8 4.22-2.13 5.78l-1.34-1.25c.92-1.28 1.47-2.84 1.47-4.53zm-5.83-6.22c.92.07 1.79.29 2.58.64l-.05 1.49c-.64-.19-1.32-.29-2.02-.29-2.13 0-4.07.89-5.4 2.37l-1.83-1.06a8.96 8.96 0 016.72-3.15zm-4.7 10.6a1.78 1.78 0 110-3.56 1.78 1.78 0 010 3.56z"/>
+    </svg>
+    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">platform</text>
+    <rect x="90" width="68" height="28" fill="#ea580c"/>
+    <text x="124" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">Ubuntu</text>
+  </g>
+  <rect width="158" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
+</svg>

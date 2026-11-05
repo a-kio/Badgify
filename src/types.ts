@@ -49,7 +49,7 @@ export interface BadgeOptions {
 export interface Preset {
   id: string;
   name: string;
-  category: 'frontend' | 'backend' | 'mobile' | 'database' | 'devops' | 'testing' | 'tooling' | 'meta';
+  category: 'frontend' | 'backend' | 'mobile' | 'database' | 'devops' | 'testing' | 'tooling' | 'meta' | 'platform';
   defaultStyle: BadgeStyle;
   label?: string;
   value: string;

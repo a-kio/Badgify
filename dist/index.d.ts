@@ -33,7 +33,7 @@ interface BadgeOptions {
 interface Preset {
     id: string;
     name: string;
-    category: 'frontend' | 'backend' | 'mobile' | 'database' | 'devops' | 'testing' | 'tooling' | 'meta';
+    category: 'frontend' | 'backend' | 'mobile' | 'database' | 'devops' | 'testing' | 'tooling' | 'meta' | 'platform';
     defaultStyle: BadgeStyle;
     label?: string;
     value: string;
@@ -49,7 +49,9 @@ interface Preset {
 declare function generateBadge(options: BadgeOptions): string;
 
 /**
- * Official brand & system SVG vector paths (viewBox: 0 0 24 24)
+ * Curated collection of 100+ precision SVG icon paths (24x24 viewBox).
+ * Includes tech stacks, mobile/desktop platforms (iOS, Android), databases,
+ * DevOps cloud providers, and versatile UI utility symbols for custom badges.
  */
 declare const ICONS: Record<string, string>;
 type IconName = keyof typeof ICONS;

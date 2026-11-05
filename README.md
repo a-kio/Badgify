@@ -8,6 +8,8 @@
   <p>
     <a href="LICENSE"><img src="badges/solid/mit.svg" alt="MIT License" height="28" /></a>
     <img src="badges/solid/node.svg" alt="Node.js 22" height="28" />
+    <img src="badges/solid/ios.svg" alt="iOS" height="28" />
+    <img src="badges/solid/android.svg" alt="Android" height="28" />
     <img src="badges/solid/typescript.svg" alt="TypeScript" height="28" />
     <img src="badges/solid/status-stable.svg" alt="Stable" height="28" />
     <img src="badges/solid/local-first.svg" alt="Local-first" height="28" />
