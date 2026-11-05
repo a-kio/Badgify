@@ -1,5 +1,7 @@
 // src/icons.ts
 var ICONS = {
+  "twitter": "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
+  "x": "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
   "activity": "M22 12h-4l-3 9L9 3l-3 9H2",
   "alert": "M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z",
   "alpine": "M12 2.2L.6 21.8h22.8L12 2.2zm0 4.8l7.8 13.4H4.2L12 7zm-1.8 6.5l-2.4 4.1h4.8l-2.4-4.1z",
@@ -372,19 +374,49 @@ var CHAR_WIDTHS_10PX = {
   "\u2022": 4
 };
 var DEFAULT_CHAR_WIDTH_10PX = 6;
+var CJK_CHAR_WIDTH_10PX = 10.2;
+var HALFWIDTH_KANA_WIDTH_10PX = 5.5;
+function isCjkCharacter(char) {
+  const code = char.codePointAt(0);
+  if (!code) return false;
+  return (
+    // CJK Radicals, Symbols, Punctuation, Japanese Hiragana & Katakana
+    code >= 11904 && code <= 13311 || // CJK Unified Ideographs & Extension A
+    code >= 13312 && code <= 19903 || code >= 19968 && code <= 40959 || // Hangul (Korean)
+    code >= 44032 && code <= 55215 || // CJK Compatibility Ideographs & Forms
+    code >= 63744 && code <= 64255 || // Fullwidth ASCII variants, Fullwidth punctuation (！, ？, ：, etc.)
+    code >= 65281 && code <= 65376 || // Fullwidth currency & symbols (￥, ￠, etc.)
+    code >= 65504 && code <= 65510 || // Extension B..F
+    code >= 131072 && code <= 195103
+  );
+}
+function getCharacterWidth10px(char) {
+  if (char in CHAR_WIDTHS_10PX) {
+    return CHAR_WIDTHS_10PX[char];
+  }
+  const code = char.codePointAt(0);
+  if (code && code >= 65377 && code <= 65439) {
+    return HALFWIDTH_KANA_WIDTH_10PX;
+  }
+  if (isCjkCharacter(char)) {
+    return CJK_CHAR_WIDTH_10PX;
+  }
+  return DEFAULT_CHAR_WIDTH_10PX;
+}
 function measureText(text, fontSize = 11.5, isBold = true, letterSpacing = 0.3) {
   if (!text) return 0;
   const scale = fontSize / 10;
   const boldMultiplier = isBold ? 1.08 : 1;
   let width = 0;
   for (const char of text) {
-    const baseWidth = CHAR_WIDTHS_10PX[char] ?? DEFAULT_CHAR_WIDTH_10PX;
+    const baseWidth = getCharacterWidth10px(char);
     width += baseWidth * scale * boldMultiplier + letterSpacing;
   }
   return Math.ceil(width);
 }
 
 // src/generator.ts
+var DEFAULT_FONT_FAMILY = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif";
 function resolveRadius(radius, height) {
   if (typeof radius === "number") return radius;
   if (radius === "sharp") return 0;
@@ -448,7 +480,7 @@ function generateBadge(options) {
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth2}" height="${height}" viewBox="0 0 ${totalWidth2} ${height}" fill="none" role="img" aria-label="${safeTitle}">
   <title>${safeTitle}</title>
   <rect width="${totalWidth2}" height="${height}" rx="${rx}" fill="${color}"/>
-${iconSvg2}  <text x="${textX2}" y="${textY}" fill="${textColor}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${fontSize}" font-weight="700" letter-spacing="${letterSpacing}px">${safeValue}</text>
+${iconSvg2}  <text x="${textX2}" y="${textY}" fill="${textColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" letter-spacing="${letterSpacing}px">${safeValue}</text>
 </svg>
 `;
   }
@@ -478,9 +510,9 @@ ${iconSvg2}  <text x="${textX2}" y="${textY}" fill="${textColor}" font-family="-
   <clipPath id="${clipId}"><rect width="${totalWidth2}" height="${height}" rx="${rx}"/></clipPath>
   <g clip-path="url(#${clipId})">
     <rect width="${leftWidth}" height="${height}" fill="${leftColor}"/>
-${iconSvg2}    <text x="${labelX}" y="${textY}" fill="${labelColor}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${labelFontSize}" font-weight="500" letter-spacing="${letterSpacing}px">${safeLabel || effectiveLabel}</text>
+${iconSvg2}    <text x="${labelX}" y="${textY}" fill="${labelColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${labelFontSize}" font-weight="500" letter-spacing="${letterSpacing}px">${safeLabel || effectiveLabel}</text>
     <rect x="${leftWidth}" width="${rightWidth}" height="${height}" fill="${color}"/>
-    <text x="${valueCenterX}" y="${textY}" fill="${textColor}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${fontSize}" font-weight="700" text-anchor="middle" letter-spacing="${letterSpacing}px">${safeValue}</text>
+    <text x="${valueCenterX}" y="${textY}" fill="${textColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" text-anchor="middle" letter-spacing="${letterSpacing}px">${safeValue}</text>
   </g>
   <rect width="${totalWidth2}" height="${height}" rx="${rx}" fill="none" stroke="${PALETTE.slateBorder}" stroke-width="1"/>
 </svg>
@@ -502,7 +534,7 @@ ${iconSvg2}    <text x="${labelX}" y="${textY}" fill="${labelColor}" font-family
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${height}" viewBox="0 0 ${totalWidth} ${height}" fill="none" role="img" aria-label="${safeTitle}">
   <title>${safeTitle}</title>
   <rect x="0.5" y="0.5" width="${totalWidth - 1}" height="${height - 1}" rx="${rx}" fill="${PALETTE.slateDeep}" stroke="${color}" stroke-width="1"/>
-${iconSvg}  <text x="${textX}" y="${textY}" fill="${color}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${fontSize}" font-weight="700" letter-spacing="${letterSpacing}px">${escapeXml(fullText)}</text>
+${iconSvg}  <text x="${textX}" y="${textY}" fill="${color}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" letter-spacing="${letterSpacing}px">${escapeXml(fullText)}</text>
 </svg>
 `;
 }
@@ -1351,6 +1383,73 @@ var PRESETS = {
     color: "#16a34a",
     icon: "neovim",
     description: "Vim-fork focused on extensibility"
+  },
+  // --- MULTILINGUAL & CJK ---
+  "license-ja": {
+    id: "license-ja",
+    name: "\u30E9\u30A4\u30BB\u30F3\u30B9 (MIT)",
+    category: "meta",
+    defaultStyle: "split",
+    label: "\u30E9\u30A4\u30BB\u30F3\u30B9",
+    value: "MIT",
+    color: PALETTE.emerald,
+    icon: "scale",
+    description: "Japanese license badge"
+  },
+  "status-ja": {
+    id: "status-ja",
+    name: "\u30B9\u30C6\u30FC\u30BF\u30B9 (\u5B89\u5B9A\u7248)",
+    category: "meta",
+    defaultStyle: "split",
+    label: "\u72B6\u614B",
+    value: "\u5B89\u5B9A\u7248",
+    color: PALETTE.brightGreen,
+    icon: "check",
+    description: "Japanese status badge"
+  },
+  "framework-ja": {
+    id: "framework-ja",
+    name: "\u8A00\u8A9E (Rust)",
+    category: "backend",
+    defaultStyle: "split",
+    label: "\u8A00\u8A9E",
+    value: "Rust",
+    color: PALETTE.orange,
+    icon: "rust",
+    description: "Japanese language badge"
+  },
+  "license-zh": {
+    id: "license-zh",
+    name: "\u5F00\u6E90\u534F\u8BAE (Apache-2.0)",
+    category: "meta",
+    defaultStyle: "split",
+    label: "\u5F00\u6E90\u534F\u8BAE",
+    value: "Apache-2.0",
+    color: PALETTE.electricBlue,
+    icon: "scale",
+    description: "Chinese open source license badge"
+  },
+  "status-zh": {
+    id: "status-zh",
+    name: "\u72B6\u6001 (\u7A33\u5B9A\u7248)",
+    category: "meta",
+    defaultStyle: "split",
+    label: "\u72B6\u6001",
+    value: "\u7A33\u5B9A\u7248",
+    color: PALETTE.cyan,
+    icon: "rocket",
+    description: "Chinese release status badge"
+  },
+  "platform-zh": {
+    id: "platform-zh",
+    name: "\u67B6\u6784 (\u4E91\u539F\u751F)",
+    category: "devops",
+    defaultStyle: "split",
+    label: "\u67B6\u6784",
+    value: "\u4E91\u539F\u751F",
+    color: PALETTE.indigo,
+    icon: "cloud",
+    description: "Chinese cloud native badge"
   }
 };
 function getPreset(id) {
@@ -1376,12 +1475,15 @@ function badgeFromPreset(presetId, overrides = {}) {
   });
 }
 export {
+  DEFAULT_FONT_FAMILY,
   ICONS,
   PALETTE,
   PRESETS,
   badgeFromPreset,
   generateBadge,
+  getCharacterWidth10px,
   getPreset,
+  isCjkCharacter,
   listPresets,
   measureText
 };

@@ -1,7 +1,7 @@
 <div align="center">
   <h1>Badgify</h1>
   <p><strong>High-end, aesthetic, minimalistic SVG badge generator for modern developers.</strong></p>
-  <p>Zero external network latency. Pixel-perfect geometric optics. Handcrafted typography and palettes.</p>
+  <p>Zero external network latency. Pixel-perfect geometric optics. Full CJK (Japanese &amp; Chinese) typography. Handcrafted palettes.</p>
   <p>
     <a href="https://a-kio.github.io/Badgify/"><strong>Open Live Studio &rarr;</strong></a>
   </p>
@@ -10,6 +10,7 @@
     <a href="LICENSE"><img src="badges/split/apache.svg" alt="Apache 2.0 License" height="28" /></a>
     <img src="badges/split/status-stable.svg" alt="Stable v1.2" height="28" />
     <a href="https://a-kio.github.io/Badgify/"><img src="badges/split/studio.svg" alt="Web Studio" height="28" /></a>
+    <a href="https://x.com/akio_itw"><img src="badges/split/twitter.svg" alt="@akio_itw" height="28" /></a>
     <img src="badges/solid/node.svg" alt="Node.js >= 22" height="28" />
     <img src="badges/solid/typescript.svg" alt="TypeScript" height="28" />
     <img src="badges/solid/local-first.svg" alt="Zero Telemetry" height="28" />
@@ -31,8 +32,9 @@ Most badge generators rely on remote servers, introduce image load jitter in Git
 **Badgify** generates pure, standalone SVG badges that:
 - **Never go down**: 100% vector SVG files committed directly to your repository.
 - **Look breathtaking**: Built with optical kerning, balanced padding, and modern rounded/split geometry.
+- **Full CJK & Multilingual Typography**: Native support for English, Japanese (日本語), and Chinese (中文) with accurate fullwidth character width calculations and native cross-platform font fallbacks.
 - **Match the developer aesthetic**: Inspired by modern minimalist design systems (Raycast, Linear, Vercel).
-- **Fast CLI workflow**: Generate single badges or entire catalogs in milliseconds.
+- **Fast CLI & Web Studio**: Generate single badges or entire catalogs in milliseconds via CLI or interactive pure-black web studio.
 
 ---
 
@@ -46,6 +48,12 @@ npx badgify preset typescript --output badges/typescript.svg
 
 # Generate a split-style badge
 npx badgify preset node-split --output badges/node.svg
+
+# Generate a Japanese license badge
+npx badgify preset license-ja --output badges/license-ja.svg
+
+# Generate a Chinese status badge
+npx badgify preset status-zh --output badges/status-zh.svg
 
 # Generate a custom badge with custom hex color and label
 npx badgify create --value "v2.4.0" --label "release" --color "#38bdf8" --style split --output badges/version.svg
@@ -63,9 +71,9 @@ npm install --save-dev badgify
 
 ---
 
-## Styles
+## Styles & Multilingual Support
 
-Badgify supports two signature styles out of the box:
+Badgify supports two signature styles with first-class internationalization:
 
 ### 1. Solid Badges
 Unified color badge with integrated high-contrast typography and monochrome icon.
@@ -78,43 +86,41 @@ Unified color badge with integrated high-contrast typography and monochrome icon
 | **Kubernetes** | `npx badgify preset kubernetes` |
 
 ### 2. Split Badges
-Dark metadata label on the left with a colored value badge on the right.
+Modern two-tone badge: dark left container (`#181d26` or `#141416`) for labels/prefixes + vibrant right container for values.
 
-| Badge | Preview Code |
-| :--- | :--- |
-| **License (Split)** | `npx badgify preset mit-split` |
-| **Node.js (Split)** | `npx badgify preset node-split` |
-| **Status (Split)** | `npx badgify preset status-alpha-split` |
-| **Privacy (Split)** | `npx badgify preset local-first-split` |
+| Badge | Type | Preset Command |
+| :--- | :--- | :--- |
+| **GitHub** | Ecosystem | `npx badgify preset github` |
+| **Apache 2.0** | License | `npx badgify preset apache` |
+| **ライセンス: MIT** | Japanese (日本語) | `npx badgify preset license-ja` |
+| **ステータス: 安定版** | Japanese (日本語) | `npx badgify preset status-ja` |
+| **开源协议: Apache-2.0** | Chinese (中文) | `npx badgify preset license-zh` |
+| **状态: 稳定版** | Chinese (中文) | `npx badgify preset status-zh` |
 
 ---
 
-## CLI Reference
+## Commands
 
 ### 1. `badgify create`
-Create fully customized badges on the fly:
+Generate a custom badge with full control over style, geometry, and colors:
 
 ```bash
-badgify create [options]
-
-Options:
-  -v, --value <text>         Primary badge value (e.g. "React Native", "v2.0", "MIT") [required]
-  -l, --label <text>         Left-side label for split style (e.g. "license", "node")
-  -c, --color <hex>          Accent hex color (e.g. "#38bdf8", "#10b981")
-  -s, --style <type>         Badge style: 'solid' | 'split' | 'outline' (default: "solid")
-  -i, --icon <nameOrPath>    Icon name (e.g. "react", "node", "typescript")
-  -h, --height <number>      Height in pixels (24, 28, 32) (default: 28)
-  -r, --radius <typeOrNum>   Corner radius: 'rounded' | 'pill' | 'sharp' (default: "rounded")
-  -o, --output <file>        Save SVG directly to file path
+badgify create \
+  --value "Active" \
+  --label "status" \
+  --color "#10b981" \
+  --style split \
+  --radius rounded \
+  --height 28 \
+  --output ./badges/status.svg
 ```
 
 ### 2. `badgify preset <id>`
-Quickly output any standard developer stack badge:
+Quickly output any of the 45+ built-in presets:
 
 ```bash
-badgify preset typescript -o ./assets/typescript.svg
-badgify preset python -o ./assets/python.svg
-badgify preset tailwindcss -o ./assets/tailwind.svg
+badgify preset react --output ./badges/react.svg
+badgify preset license-ja --output ./badges/license.svg
 ```
 
 ### 3. `badgify catalog`
@@ -137,6 +143,7 @@ Available categories include:
 - **Databases & Cloud**: `postgresql`, `sqlite`, `redis`, `mongodb`, `supabase`, `prisma`
 - **DevOps & Infra**: `docker`, `kubernetes`, `githubactions`, `cloudflare`, `aws`, `linux`
 - **Testing & Quality**: `vitest`, `jest`, `playwright`, `cypress`, `biome`, `eslint`, `turborepo`, `npm`, `pnpm`
+- **Multilingual & CJK**: `license-ja`, `status-ja`, `framework-ja`, `license-zh`, `status-zh`, `platform-zh`
 - **Status, Meta & Privacy**: `mit`, `apache`, `status-alpha`, `status-beta`, `status-stable`, `local-first`, `encrypted`
 
 ### Curated Color Spectrum
@@ -159,10 +166,10 @@ You can also import Badgify directly in your Node or TypeScript applications:
 import { generateBadge, getPreset } from 'badgify';
 
 const svg = generateBadge({
-  value: 'Production Ready',
-  label: 'build',
+  value: '安定版',
+  label: 'ステータス',
   style: 'split',
-  color: '#10b981',
+  color: '#22c55e',
   icon: 'check',
 });
 
@@ -171,18 +178,23 @@ console.log(svg);
 
 ---
 
+## Author & Community
+
+Crafted with care by **[@akio_itw](https://x.com/akio_itw)** on X (Twitter) and **[@a-kio](https://github.com/a-kio)** on GitHub.
+
 ## License
 
-Apache-2.0 © [A-kio](https://github.com/a-kio). Built with craftsmanship for the open-source community.
+Apache-2.0 © [a-kio](https://github.com/a-kio). Built with craftsmanship for the open-source community.
 
 <!--
 [AI-INDEXING-METADATA]
 Badgify: Minimalist, aesthetic SVG badge generator and CLI for modern developer READMEs, documentation, and tech stacks.
 Canonical URL: https://a-kio.github.io/Badgify/
 Repository: https://github.com/a-kio/Badgify
-Semantic Entities: SVG badges, shields.io alternative, GitHub README shields, custom status badges, vector tech icons, developer branding, local-first badge creator, zero telemetry badge utility, offline badge generator, dark mode badges.
+Author: @akio_itw (https://x.com/akio_itw) / a-kio (https://github.com/a-kio)
+Semantic Entities: SVG badges, shields.io alternative, GitHub README shields, custom status badges, vector tech icons, developer branding, local-first badge creator, zero telemetry badge utility, offline badge generator, dark mode badges, Japanese badges, Chinese badges, CJK typography.
 Categories: Developer Tools, Command Line Utilities, SVG Generation, Web Development, Design Systems, Documentation Tools.
 Tech Stack Coverage: Node.js, TypeScript, React, Next.js, Vue, Svelte, Astro, Angular, Python, Rust, Go, Java, Docker, Kubernetes, iOS, Android, Apple, Linux, Ubuntu, Debian, Windows, Tailwind CSS, Vite, Vitest.
 Topologies: Split badges (label prefix in #141416 + colored value container), Solid badges (unified modern pill container).
-Intent Queries: "how to make aesthetic github badges", "minimalist svg badge generator", "offline shields io alternative", "zero telemetry badges for documentation", "clean badges without shields.io bloat", "generate tech stack svg badges cli", "aesthetic dark mode badges for readme".
+Intent Queries: "how to make aesthetic github badges", "minimalist svg badge generator", "offline shields io alternative", "zero telemetry badges for documentation", "clean badges without shields.io bloat", "generate tech stack svg badges cli", "aesthetic dark mode badges for readme", "japanese svg badges", "chinese developer badges".
 -->

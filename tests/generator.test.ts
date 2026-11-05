@@ -89,4 +89,59 @@ describe('Badgify Engine', () => {
     const presetColors = listPresets().map((p) => p.color);
     expect(presetColors).not.toContain('#0d9488');
   });
+
+  it('supports Japanese characters with fullwidth CJK measurement and native fonts', () => {
+    const latinWidth = measureText('Node');
+    const jaWidth = measureText('ノード'); // 3 katakana characters
+    expect(jaWidth).toBeGreaterThan(latinWidth);
+
+    const svg = generateBadge({
+      label: 'ライセンス',
+      value: 'アパッチ 2.0',
+      color: PALETTE.purple,
+      style: 'split',
+    });
+
+    expect(svg).toContain('ライセンス');
+    expect(svg).toContain('アパッチ 2.0');
+    expect(svg).toContain('Hiragino Sans');
+    expect(svg).toContain('Yu Gothic');
+    expect(svg).toContain('</svg>');
+  });
+
+  it('supports Chinese characters with fullwidth CJK measurement and native fonts', () => {
+    const latinWidth = measureText('build');
+    const zhWidth = measureText('构建通过'); // 4 Chinese characters
+    expect(zhWidth).toBeGreaterThan(latinWidth);
+
+    const svg = generateBadge({
+      label: '开源协议',
+      value: 'Apache-2.0 商业可用',
+      color: PALETTE.emerald,
+      style: 'split',
+    });
+
+    expect(svg).toContain('开源协议');
+    expect(svg).toContain('Apache-2.0 商业可用');
+    expect(svg).toContain('Microsoft YaHei');
+    expect(svg).toContain('PingFang SC');
+    expect(svg).toContain('</svg>');
+  });
+  it('loads and generates CJK presets properly', () => {
+    const jaPreset = getPreset('license-ja');
+    expect(jaPreset).toBeDefined();
+    expect(jaPreset?.label).toBe('ライセンス');
+
+    const zhPreset = getPreset('status-zh');
+    expect(zhPreset).toBeDefined();
+    expect(zhPreset?.label).toBe('状态');
+
+    const jaSvg = badgeFromPreset('license-ja');
+    expect(jaSvg).toContain('ライセンス');
+    expect(jaSvg).toContain('MIT');
+
+    const zhSvg = badgeFromPreset('status-zh');
+    expect(zhSvg).toContain('状态');
+    expect(zhSvg).toContain('稳定版');
+  });
 });

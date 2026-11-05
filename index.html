@@ -11,6 +11,11 @@
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <link rel="canonical" href="https://a-kio.github.io/Badgify/">
+  <link rel="alternate" hreflang="en" href="https://a-kio.github.io/Badgify/">
+  <link rel="alternate" hreflang="ja" href="https://a-kio.github.io/Badgify/?lang=ja">
+  <link rel="alternate" hreflang="zh" href="https://a-kio.github.io/Badgify/?lang=zh">
+  <link rel="alternate" hreflang="x-default" href="https://a-kio.github.io/Badgify/">
+
   <meta name="theme-color" content="#000000">
 
   <!-- Open Graph / Facebook -->
@@ -237,6 +242,112 @@
       border-color: var(--border-hover);
       background: #141414;
     }
+
+    /* Language Switcher */
+    .lang-switcher {
+      display: inline-flex;
+      align-items: center;
+      background: #0a0a0a;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-sub);
+      font-size: 11.5px;
+      font-weight: 500;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      font-family: var(--font-ui);
+    }
+
+    .lang-btn:hover {
+      color: var(--text-main);
+      background: #141414;
+    }
+
+    .lang-btn.active {
+      background: #ededed;
+      color: #000000;
+      font-weight: 600;
+    }
+
+    /* Twitter / X Link */
+    .twitter-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #0a0a0a;
+      color: var(--text-main);
+      transition: all 0.15s ease;
+    }
+
+    .twitter-link:hover {
+      border-color: var(--border-hover);
+      background: #141414;
+      color: #ffffff;
+    }
+
+    /* Footer */
+    footer.site-footer {
+      border-top: 1px solid var(--border);
+      background: #000000;
+      padding: 24px 20px 32px;
+      margin-top: 32px;
+    }
+
+    .footer-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-left strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      color: var(--text-sub);
+      font-size: 12px;
+      transition: color 0.15s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--text-main);
+    }
+
 
     /* Container */
     .container {
@@ -863,6 +974,15 @@
         <span class="brand-tag">v1.2</span>
       </div>
       <div class="header-right">
+        <div class="lang-switcher" id="langSwitcher" role="group" aria-label="Language selection">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="ja">日本語</button>
+          <button type="button" class="lang-btn" data-lang="zh">中文</button>
+        </div>
+        <a class="twitter-link" href="https://x.com/akio_itw" target="_blank" rel="noopener" title="@akio_itw on X (Twitter)">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <span>@akio_itw</span>
+        </a>
         <a class="github-link" href="https://github.com/a-kio/Badgify" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           GitHub
@@ -879,10 +999,10 @@
       <!-- Presets Card -->
       <div class="card">
         <div class="card-title">
-          <span>Preset stacks & tags</span>
+          <span data-i18n="presetTitle">Preset stacks & tags</span>
         </div>
         <div class="field">
-          <input type="text" id="presetSearch" placeholder="Search presets (iOS, Android, React, Node, Rust, AI...)" class="input-text">
+          <input type="text" id="presetSearch" placeholder="Search presets (iOS, Android, React, Node, Rust, AI...)" data-i18n-ph="presetSearchPh" class="input-text">
         </div>
         <div id="presetChips" class="preset-container"></div>
       </div>
@@ -890,25 +1010,25 @@
       <!-- Customizer Card -->
       <div class="card">
         <div class="card-title">
-          <span>Customize badge</span>
-          <button id="resetBtn" class="reset-btn">Reset</button>
+          <span data-i18n="customizeTitle">Customize badge</span>
+          <button id="resetBtn" class="reset-btn" data-i18n="resetBtn">Reset</button>
         </div>
 
         <!-- Style Switcher -->
         <div class="field">
-          <label class="field-label">Style</label>
+          <label class="field-label" data-i18n="styleLabel">Style</label>
           <div class="style-switcher">
             <button type="button" class="style-option active" data-style="solid">
-              Solid tag
-              <span class="subtext">Unified fill</span>
+              <span data-i18n="styleSolid">Solid tag</span>
+              <span class="subtext" data-i18n="styleSolidSub">Unified fill</span>
             </button>
             <button type="button" class="style-option" data-style="split">
-              Split tag
-              <span class="subtext">Label + value</span>
+              <span data-i18n="styleSplit">Split tag</span>
+              <span class="subtext" data-i18n="styleSplitSub">Label + value</span>
             </button>
             <button type="button" class="style-option" data-style="outline">
-              Outline
-              <span class="subtext">Wireframe</span>
+              <span data-i18n="styleOutline">Outline</span>
+              <span class="subtext" data-i18n="styleOutlineSub">Wireframe</span>
             </button>
           </div>
         </div>
@@ -916,18 +1036,18 @@
         <!-- Text Inputs -->
         <div class="grid-2 field" id="textInputsContainer">
           <div id="labelGroup" class="hidden">
-            <label class="field-label">Left label</label>
+            <label class="field-label" data-i18n="leftLabel">Left label</label>
             <input type="text" id="inputLabel" value="platform" class="input-text">
           </div>
           <div id="valueGroup" style="grid-column: span 2;">
-            <label class="field-label">Badge text</label>
+            <label class="field-label" data-i18n="badgeText">Badge text</label>
             <input type="text" id="inputValue" value="iOS" class="input-text">
           </div>
         </div>
 
         <!-- Color Palette -->
         <div class="field">
-          <label class="field-label">Accent color</label>
+          <label class="field-label" data-i18n="accentColor">Accent color</label>
           <div class="color-input-row">
             <div class="picker-wrap">
               <input type="color" id="inputColorPicker" value="#0284c7">
@@ -939,13 +1059,13 @@
 
         <!-- Icon Picker Trigger -->
         <div class="field">
-          <label class="field-label">Icon (218 available)</label>
+          <label class="field-label" data-i18n="iconLabel">Icon (218 available)</label>
           <div class="icon-trigger-row">
             <button type="button" id="iconPreviewBtn" class="icon-preview-btn">
               <div id="activeIconPreview" class="icon-preview-box"></div>
               <span id="activeIconName" class="icon-trigger-text">apple</span>
             </button>
-            <button type="button" id="browseIconsBtn" class="open-modal-btn">
+            <button type="button" id="browseIconsBtn" class="open-modal-btn" data-i18n="browseIconsBtn">
               Browse 218 icons
             </button>
           </div>
@@ -954,19 +1074,19 @@
         <!-- Geometry Dropdowns -->
         <div class="grid-2 field">
           <div>
-            <label class="field-label">Corner radius</label>
+            <label class="field-label" data-i18n="cornerRadius">Corner radius</label>
             <select id="inputRadius" class="select-box">
-              <option value="rounded" selected>Rounded (6px)</option>
-              <option value="pill">Pill (full round)</option>
-              <option value="sharp">Sharp (0px)</option>
+              <option value="rounded" selected data-i18n="radiusRounded">Rounded (6px)</option>
+              <option value="pill" data-i18n="radiusPill">Pill (full round)</option>
+              <option value="sharp" data-i18n="radiusSharp">Sharp (0px)</option>
             </select>
           </div>
           <div>
-            <label class="field-label">Height</label>
+            <label class="field-label" data-i18n="heightLabel">Height</label>
             <select id="inputHeight" class="select-box">
-              <option value="24">24px (compact)</option>
-              <option value="28" selected>28px (standard)</option>
-              <option value="32">32px (large)</option>
+              <option value="24" data-i18n="heightCompact">24px (compact)</option>
+              <option value="28" selected data-i18n="heightStandard">28px (standard)</option>
+              <option value="32" data-i18n="heightLarge">32px (large)</option>
             </select>
           </div>
         </div>
@@ -980,34 +1100,34 @@
       
       <div class="card">
         <div class="card-title">
-          <span>Live preview</span>
+          <span data-i18n="livePreview">Live preview</span>
         </div>
 
         <!-- Real GitHub Dark Theme Preview -->
         <div class="field">
-          <div class="preview-label">GitHub dark theme (#0d1117)</div>
+          <div class="preview-label" data-i18n="previewDark">GitHub dark theme (#0d1117)</div>
           <div class="preview-box preview-dark" id="previewDark"></div>
         </div>
 
         <!-- Real GitHub Light Theme Preview -->
         <div class="field">
-          <div class="preview-label">GitHub light theme (#ffffff)</div>
+          <div class="preview-label" data-i18n="previewLight">GitHub light theme (#ffffff)</div>
           <div class="preview-box preview-light" id="previewLight"></div>
         </div>
 
         <!-- Export Buttons -->
         <div class="action-grid">
-          <button id="copySvgBtn" class="btn btn-primary">Copy SVG</button>
-          <button id="copyMdBtn" class="btn btn-secondary">Copy Markdown</button>
-          <button id="copyHtmlBtn" class="btn btn-secondary">Copy HTML</button>
-          <button id="downloadSvgBtn" class="btn btn-secondary">Download SVG</button>
+          <button id="copySvgBtn" class="btn btn-primary" data-i18n="copySvg">Copy SVG</button>
+          <button id="copyMdBtn" class="btn btn-secondary" data-i18n="copyMd">Copy Markdown</button>
+          <button id="copyHtmlBtn" class="btn btn-secondary" data-i18n="copyHtml">Copy HTML</button>
+          <button id="downloadSvgBtn" class="btn btn-secondary" data-i18n="downloadSvg">Download SVG</button>
         </div>
       </div>
 
       <!-- SVG Code Inspector -->
       <div class="card">
         <div class="card-title">
-          <span>SVG output</span>
+          <span data-i18n="svgOutput">SVG output</span>
         </div>
         <pre class="code-snippet" id="codeOutput"></pre>
       </div>
@@ -1016,25 +1136,45 @@
 
   </main>
 
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <strong>Badgify</strong> &copy; 2026 a-kio &middot; <span data-i18n="footerLicense">Apache-2.0 License</span>
+      </div>
+      <div class="footer-links">
+        <a href="https://x.com/akio_itw" target="_blank" rel="noopener" class="footer-link" title="Follow @akio_itw on X">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <span>@akio_itw</span>
+        </a>
+        <a href="https://github.com/a-kio/Badgify" target="_blank" rel="noopener" class="footer-link" title="GitHub Repository">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+
   <!-- Icon Picker Modal -->
   <div id="iconModal" class="modal-backdrop">
     <div class="modal-dialog">
       <div class="modal-header">
-        <span class="modal-title">Select badge icon (218 available)</span>
+        <span class="modal-title" data-i18n="modalTitle">Select badge icon (218 available)</span>
         <button id="closeModalBtn" class="modal-close">&times;</button>
       </div>
       <div class="modal-search-bar">
-        <input type="text" id="iconSearchInput" placeholder="Search 200+ icons (ios, android, openai, pytorch, rust, rocket, key, lock...)" class="input-text">
+        <input type="text" id="iconSearchInput" placeholder="Search 200+ icons (ios, android, openai, pytorch, rust, rocket, key, lock...)" data-i18n-ph="modalSearchPh" class="input-text">
         <div class="cat-pills" id="catPills">
-          <button class="cat-pill active" data-cat="all">All (218)</button>
-          <button class="cat-pill" data-cat="Mobile & OS">Mobile & OS</button>
-          <button class="cat-pill" data-cat="Frontend & Web">Frontend</button>
-          <button class="cat-pill" data-cat="Backend & Runtimes">Backend</button>
-          <button class="cat-pill" data-cat="AI & Data Science">AI & ML</button>
-          <button class="cat-pill" data-cat="Databases & Queues">Databases</button>
-          <button class="cat-pill" data-cat="DevOps & Cloud">DevOps</button>
-          <button class="cat-pill" data-cat="Tools & Editors">Tools</button>
-          <button class="cat-pill" data-cat="Symbols & Badges">Symbols</button>
+          <button class="cat-pill active" data-cat="all" data-i18n="catAll">All (218)</button>
+          <button class="cat-pill" data-cat="Mobile & OS" data-i18n="catMobile">Mobile & OS</button>
+          <button class="cat-pill" data-cat="Frontend & Web" data-i18n="catFrontend">Frontend</button>
+          <button class="cat-pill" data-cat="Backend & Runtimes" data-i18n="catBackend">Backend</button>
+          <button class="cat-pill" data-cat="AI & Data Science" data-i18n="catAi">AI & ML</button>
+          <button class="cat-pill" data-cat="Databases & Queues" data-i18n="catDb">Databases</button>
+          <button class="cat-pill" data-cat="DevOps & Cloud" data-i18n="catDevops">DevOps</button>
+          <button class="cat-pill" data-cat="Tools & Editors" data-i18n="catTools">Tools</button>
+          <button class="cat-pill" data-cat="Symbols & Badges" data-i18n="catSymbols">Symbols</button>
         </div>
       </div>
       <div class="modal-body">
@@ -1051,6 +1191,8 @@
 
   <script>
     const ICONS = {
+  "twitter": "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
+  "x": "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
   "activity": "M22 12h-4l-3 9L9 3l-3 9H2",
   "alert": "M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z",
   "alpine": "M12 2.2L.6 21.8h22.8L12 2.2zm0 4.8l7.8 13.4H4.2L12 7zm-1.8 6.5l-2.4 4.1h4.8l-2.4-4.1z",
@@ -1271,6 +1413,8 @@
   "zustand": "M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm1 14.93V17a1 1 0 0 1-2 0v-.07A8 8 0 0 1 4.07 11H4a1 1 0 0 1 0-2h.07A8 8 0 0 1 11 4.07V4a1 1 0 0 1 2 0v.07A8 8 0 0 1 19.93 11H20a1 1 0 0 1 0 2h-.07A8 8 0 0 1 13 16.93z"
 };
     const ICON_CATS = {
+  "twitter": "Symbols & Badges",
+  "x": "Symbols & Badges",
   "apple": "Mobile & OS",
   "android": "Mobile & OS",
   "windows": "Mobile & OS",
@@ -1492,6 +1636,66 @@
   "status-dot": "Symbols & Badges"
 };
     const PRESETS = [
+  {
+    "id": "license-ja",
+    "name": "ライセンス: MIT",
+    "cat": "Symbols & Badges",
+    "style": "split",
+    "label": "ライセンス",
+    "val": "MIT",
+    "color": "#10b981",
+    "icon": "scale"
+  },
+  {
+    "id": "status-ja",
+    "name": "ステータス: 安定版",
+    "cat": "Symbols & Badges",
+    "style": "split",
+    "label": "状態",
+    "val": "安定版",
+    "color": "#22c55e",
+    "icon": "check"
+  },
+  {
+    "id": "lang-ja",
+    "name": "言語: Rust",
+    "cat": "Backend & Runtimes",
+    "style": "split",
+    "label": "言語",
+    "val": "Rust",
+    "color": "#ea580c",
+    "icon": "rust"
+  },
+  {
+    "id": "license-zh",
+    "name": "开源协议: Apache-2.0",
+    "cat": "Symbols & Badges",
+    "style": "split",
+    "label": "开源协议",
+    "val": "Apache-2.0",
+    "color": "#2563eb",
+    "icon": "scale"
+  },
+  {
+    "id": "status-zh",
+    "name": "状态: 稳定版",
+    "cat": "Symbols & Badges",
+    "style": "split",
+    "label": "状态",
+    "val": "稳定版",
+    "color": "#06b6d4",
+    "icon": "rocket"
+  },
+  {
+    "id": "cloud-zh",
+    "name": "架构: 云原生",
+    "cat": "DevOps & Cloud",
+    "style": "split",
+    "label": "架构",
+    "val": "云原生",
+    "color": "#6366f1",
+    "icon": "cloud"
+  },
   {
     "id": "ios",
     "name": "iOS",
@@ -2068,12 +2272,43 @@
       height: 28
     };
 
+    const DEFAULT_FONT_FAMILY = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif";
+
+    function isCjkCharacter(char) {
+      const code = char.codePointAt(0) || 0;
+      return (
+        (code >= 0x3040 && code <= 0x309f) || // Hiragana
+        (code >= 0x30a0 && code <= 0x30ff) || // Katakana
+        (code >= 0x4e00 && code <= 0x9fff) || // CJK Unified Ideographs
+        (code >= 0x3400 && code <= 0x4dbf) || // CJK Extension A
+        (code >= 0x20000 && code <= 0x2a6df) || // CJK Extension B
+        (code >= 0xac00 && code <= 0xd7af) || // Hangul Syllables
+        (code >= 0xff00 && code <= 0xffef) || // Halfwidth and Fullwidth Forms
+        (code >= 0x3000 && code <= 0x303f)    // CJK Symbols and Punctuation
+      );
+    }
+
+    function getCharacterWidth10px(char) {
+      const code = char.codePointAt(0) || 0;
+      if (code >= 0xff65 && code <= 0xff9f) return 5.5; // Halfwidth Katakana
+      if (isCjkCharacter(char)) return 10.2; // Fullwidth CJK
+      if (char === ' ' || char === '\t') return 3.2;
+      if (/[ilI1\.,;:'"!|`']/.test(char)) return 3.6;
+      if (/[fjtr\(\)\[\]\{\}\-]/.test(char)) return 4.5;
+      if (/[mwMW@]/.test(char)) return 8.2;
+      if (char >= 'A' && char <= 'Z') return 7.2;
+      return 5.8;
+    }
+
     function measureText(str, fontSize = 11.5, isBold = true) {
       const scale = fontSize / 10;
       const factor = isBold ? 1.08 : 1.0;
       let w = 0;
       for (const ch of str) {
-        w += (ch.toUpperCase() === ch ? 7.2 : 5.8) * scale * factor + 0.3;
+        const charWidth10px = getCharacterWidth10px(ch);
+        const cjk = isCjkCharacter(ch);
+        const boldMultiplier = cjk ? 1.02 : factor;
+        w += charWidth10px * scale * boldMultiplier + (cjk ? 0.2 : 0.3);
       }
       return Math.ceil(w);
     }
@@ -2103,7 +2338,7 @@
         return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${height}" viewBox="0 0 ${totalWidth} ${height}" fill="none" role="img" aria-label="${state.value}">
   <title>${state.value}</title>
   <rect width="${totalWidth}" height="${height}" rx="${rx}" fill="${state.color}"/>
-${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${fontSize}" font-weight="700" letter-spacing="0.3px">${state.value}</text>
+${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="#ffffff" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" letter-spacing="0.3px">${state.value}</text>
 </svg>`;
       }
 
@@ -2126,9 +2361,9 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="#ffffff" font-fa
   <clipPath id="${clipId}"><rect width="${totalWidth}" height="${height}" rx="${rx}"/></clipPath>
   <g clip-path="url(#${clipId})">
     <rect width="${leftWidth}" height="${height}" fill="#141416"/>
-${iconSvg}    <text x="${padLeft + iconTotal}" y="${textY}" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${labelFontSize}" font-weight="500" letter-spacing="0.3px">${state.label}</text>
+${iconSvg}    <text x="${padLeft + iconTotal}" y="${textY}" fill="#e2e8f0" font-family="${DEFAULT_FONT_FAMILY}" font-size="${labelFontSize}" font-weight="500" letter-spacing="0.3px">${state.label}</text>
     <rect x="${leftWidth}" width="${rightWidth}" height="${height}" fill="${state.color}"/>
-    <text x="${valueCenterX}" y="${textY}" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${fontSize}" font-weight="700" text-anchor="middle" letter-spacing="0.3px">${state.value}</text>
+    <text x="${valueCenterX}" y="${textY}" fill="#ffffff" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" text-anchor="middle" letter-spacing="0.3px">${state.value}</text>
   </g>
   <rect width="${totalWidth}" height="${height}" rx="${rx}" fill="none" stroke="#252528" stroke-width="1"/>
 </svg>`;
@@ -2146,7 +2381,7 @@ ${iconSvg}    <text x="${padLeft + iconTotal}" y="${textY}" fill="#e2e8f0" font-
       return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${height}" viewBox="0 0 ${totalWidth} ${height}" fill="none" role="img" aria-label="${fullText}">
   <title>${fullText}</title>
   <rect x="0.5" y="0.5" width="${totalWidth - 1}" height="${height - 1}" rx="${rx}" fill="#0a0a0a" stroke="${state.color}" stroke-width="1"/>
-${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${fontSize}" font-weight="700" letter-spacing="0.3px">${fullText}</text>
+${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" letter-spacing="0.3px">${fullText}</text>
 </svg>`;
     }
 
@@ -2359,6 +2594,202 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       update();
     });
 
+    // i18n Localization Dictionary
+    const I18N = {
+      en: {
+        presetTitle: "Preset stacks & tags",
+        presetSearchPh: "Search presets (iOS, Android, React, Node, Rust, AI...)",
+        customizeTitle: "Customize badge",
+        resetBtn: "Reset",
+        styleLabel: "Style",
+        styleSolid: "Solid tag",
+        styleSolidSub: "Unified fill",
+        styleSplit: "Split tag",
+        styleSplitSub: "Label + value",
+        styleOutline: "Outline",
+        styleOutlineSub: "Wireframe",
+        leftLabel: "Left label",
+        badgeText: "Badge text",
+        accentColor: "Accent color",
+        iconLabel: "Icon (218 available)",
+        browseIconsBtn: "Browse 218 icons",
+        cornerRadius: "Corner radius",
+        radiusRounded: "Rounded (6px)",
+        radiusPill: "Pill (full round)",
+        radiusSharp: "Sharp (0px)",
+        heightLabel: "Height",
+        heightCompact: "24px (compact)",
+        heightStandard: "28px (standard)",
+        heightLarge: "32px (large)",
+        livePreview: "Live preview",
+        previewDark: "GitHub dark theme (#0d1117)",
+        previewLight: "GitHub light theme (#ffffff)",
+        copySvg: "Copy SVG",
+        copyMd: "Copy Markdown",
+        copyHtml: "Copy HTML",
+        downloadSvg: "Download SVG",
+        svgOutput: "SVG output",
+        footerLicense: "Apache-2.0 License",
+        modalTitle: "Select badge icon (218 available)",
+        modalSearchPh: "Search 200+ icons (ios, android, openai, pytorch, rust, rocket, key, lock...)",
+        catAll: "All (218)",
+        catMobile: "Mobile & OS",
+        catFrontend: "Frontend",
+        catBackend: "Backend",
+        catAi: "AI & ML",
+        catDb: "Databases",
+        catDevops: "DevOps",
+        catTools: "Tools",
+        catSymbols: "Symbols",
+        toastSvg: "SVG code copied to clipboard",
+        toastMd: "Markdown copied to clipboard",
+        toastHtml: "HTML snippet copied to clipboard",
+        toastDownload: "SVG badge downloaded",
+        toastReset: "Badge reset to default",
+        noneText: "None (text only)"
+      },
+      ja: {
+        presetTitle: "プリセットスタック & タグ",
+        presetSearchPh: "プリセットを検索 (iOS, Android, React, Node, Rust, AI...)",
+        customizeTitle: "バッジをカスタマイズ",
+        resetBtn: "リセット",
+        styleLabel: "スタイル",
+        styleSolid: "ソリッド",
+        styleSolidSub: "単一塗りつぶし",
+        styleSplit: "スプリット",
+        styleSplitSub: "ラベル + 値",
+        styleOutline: "アウトライン",
+        styleOutlineSub: "ワイヤーフレーム",
+        leftLabel: "左側ラベル",
+        badgeText: "バッジテキスト",
+        accentColor: "アクセントカラー",
+        iconLabel: "アイコン (218種類利用可能)",
+        browseIconsBtn: "218個のアイコンを見る",
+        cornerRadius: "角丸の半径",
+        radiusRounded: "角丸 (6px)",
+        radiusPill: "ピル型 (完全な丸)",
+        radiusSharp: "角なし (0px)",
+        heightLabel: "高さ",
+        heightCompact: "24px (コンパクト)",
+        heightStandard: "28px (標準)",
+        heightLarge: "32px (ラージ)",
+        livePreview: "ライブプレビュー",
+        previewDark: "GitHub ダークテーマ (#0d1117)",
+        previewLight: "GitHub ライトテーマ (#ffffff)",
+        copySvg: "SVGをコピー",
+        copyMd: "Markdownをコピー",
+        copyHtml: "HTMLをコピー",
+        downloadSvg: "SVGをダウンロード",
+        svgOutput: "SVGコード出力",
+        footerLicense: "Apache-2.0 ライセンス",
+        modalTitle: "バッジアイコンを選択 (218種類)",
+        modalSearchPh: "200以上のアイコンを検索 (ios, android, openai, pytorch, rust...)",
+        catAll: "すべて (218)",
+        catMobile: "モバイル & OS",
+        catFrontend: "フロントエンド",
+        catBackend: "バックエンド",
+        catAi: "AI & 機械学習",
+        catDb: "データベース",
+        catDevops: "DevOps & クラウド",
+        catTools: "ツール & エディタ",
+        catSymbols: "シンボル & バッジ",
+        toastSvg: "SVGコードをクリップボードにコピーしました",
+        toastMd: "Markdownをクリップボードにコピーしました",
+        toastHtml: "HTMLスニペットをクリップボードにコピーしました",
+        toastDownload: "SVGバッジをダウンロードしました",
+        toastReset: "デフォルトにリセットしました",
+        noneText: "なし (テキストのみ)"
+      },
+      zh: {
+        presetTitle: "预设技术栈与标签",
+        presetSearchPh: "搜索预设 (iOS, Android, React, Node, Rust, AI...)",
+        customizeTitle: "自定义徽章",
+        resetBtn: "重置",
+        styleLabel: "样式",
+        styleSolid: "纯色标签",
+        styleSolidSub: "纯色填充",
+        styleSplit: "双色分割",
+        styleSplitSub: "前缀 + 内容",
+        styleOutline: "描边边框",
+        styleOutlineSub: "线框设计",
+        leftLabel: "左侧前缀",
+        badgeText: "徽章文字",
+        accentColor: "主题强调色",
+        iconLabel: "图标 (218 款可选)",
+        browseIconsBtn: "浏览 218 款图标",
+        cornerRadius: "圆角弧度",
+        radiusRounded: "圆角 (6px)",
+        radiusPill: "胶囊 (全圆)",
+        radiusSharp: "直角 (0px)",
+        heightLabel: "高度",
+        heightCompact: "24px (紧凑)",
+        heightStandard: "28px (标准)",
+        heightLarge: "32px (加大)",
+        livePreview: "实时预览",
+        previewDark: "GitHub 深色主题 (#0d1117)",
+        previewLight: "GitHub 浅色主题 (#ffffff)",
+        copySvg: "复制 SVG",
+        copyMd: "复制 Markdown",
+        copyHtml: "复制 HTML",
+        downloadSvg: "下载 SVG",
+        svgOutput: "SVG 代码输出",
+        footerLicense: "Apache-2.0 开源协议",
+        modalTitle: "选择徽章图标 (218 款可用)",
+        modalSearchPh: "搜索 200+ 图标 (ios, android, openai, pytorch, rust...)",
+        catAll: "全部 (218)",
+        catMobile: "移动与系统",
+        catFrontend: "前端技术",
+        catBackend: "后端架构",
+        catAi: "AI 与机器学习",
+        catDb: "数据库",
+        catDevops: "DevOps 与云服务",
+        catTools: "开发工具",
+        catSymbols: "通用符号",
+        toastSvg: "SVG 代码已复制到剪贴板",
+        toastMd: "Markdown 代码已复制到剪贴板",
+        toastHtml: "HTML 代码已复制到剪贴板",
+        toastDownload: "SVG 徽章已开始下载",
+        toastReset: "徽章已重置为默认值",
+        noneText: "无 (仅文字)"
+      }
+    };
+
+    let currentLang = 'en';
+
+    function setLanguage(lang) {
+      if (!I18N[lang]) lang = 'en';
+      currentLang = lang;
+      document.documentElement.lang = lang;
+
+      // Update lang buttons
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.dataset.lang === lang) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      const dict = I18N[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict[key]) {
+          el.textContent = dict[key];
+        }
+      });
+
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.dataset.i18nPh;
+        if (dict[key]) {
+          el.placeholder = dict[key];
+        }
+      });
+
+      try {
+        localStorage.setItem('badgify_lang', lang);
+      } catch (e) {}
+    }
+
     // Toast and Action Buttons
     function showToast(msg) {
       const toast = document.getElementById('toast');
@@ -2368,18 +2799,29 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       setTimeout(() => { toast.classList.remove('show'); }, 2000);
     }
 
+    function showToastKey(key) {
+      const dict = I18N[currentLang] || I18N.en;
+      showToast(dict[key] || key);
+    }
+
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setLanguage(btn.dataset.lang);
+      });
+    });
+
     document.getElementById('copySvgBtn').addEventListener('click', () => {
-      navigator.clipboard.writeText(renderSvg()).then(() => showToast('SVG code copied to clipboard'));
+      navigator.clipboard.writeText(renderSvg()).then(() => showToastKey('toastSvg'));
     });
 
     document.getElementById('copyMdBtn').addEventListener('click', () => {
       const md = `![${state.value}](badge.svg)`;
-      navigator.clipboard.writeText(md).then(() => showToast('Markdown copied to clipboard'));
+      navigator.clipboard.writeText(md).then(() => showToastKey('toastMd'));
     });
 
     document.getElementById('copyHtmlBtn').addEventListener('click', () => {
       const html = `<img src="badge.svg" alt="${state.value}" height="${state.height}" />`;
-      navigator.clipboard.writeText(html).then(() => showToast('HTML snippet copied to clipboard'));
+      navigator.clipboard.writeText(html).then(() => showToastKey('toastHtml'));
     });
 
     document.getElementById('downloadSvgBtn').addEventListener('click', () => {
@@ -2391,8 +2833,16 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       a.download = `${state.value.toLowerCase().replace(/[^a-z0-9]+/g, '-') || 'badge'}.svg`;
       a.click();
       URL.revokeObjectURL(url);
-      showToast('SVG badge downloaded');
+      showToastKey('toastDownload');
     });
+
+    // Detect initial language
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    let savedLang = null;
+    try { savedLang = localStorage.getItem('badgify_lang'); } catch (e) {}
+    const navLang = (navigator.language || '').toLowerCase();
+    const detectedLang = urlLang || savedLang || (navLang.startsWith('ja') ? 'ja' : navLang.startsWith('zh') ? 'zh' : 'en');
+    setLanguage(detectedLang);
 
     // Initial render
     update();

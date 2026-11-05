@@ -3,6 +3,9 @@ import { PALETTE } from './palette.js';
 import { measureText } from './text-width.js';
 import type { BadgeOptions, BadgeRadius, BadgeStyle } from './types.js';
 
+export const DEFAULT_FONT_FAMILY =
+  "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif";
+
 function resolveRadius(radius: BadgeRadius | undefined, height: number): number {
   if (typeof radius === 'number') return radius;
   if (radius === 'sharp') return 0;
@@ -89,7 +92,7 @@ export function generateBadge(options: BadgeOptions): string {
     return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${height}" viewBox="0 0 ${totalWidth} ${height}" fill="none" role="img" aria-label="${safeTitle}">
   <title>${safeTitle}</title>
   <rect width="${totalWidth}" height="${height}" rx="${rx}" fill="${color}"/>
-${iconSvg}  <text x="${textX}" y="${textY}" fill="${textColor}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${fontSize}" font-weight="700" letter-spacing="${letterSpacing}px">${safeValue}</text>
+${iconSvg}  <text x="${textX}" y="${textY}" fill="${textColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" letter-spacing="${letterSpacing}px">${safeValue}</text>
 </svg>
 `;
   }
@@ -129,9 +132,9 @@ ${iconSvg}  <text x="${textX}" y="${textY}" fill="${textColor}" font-family="-ap
   <clipPath id="${clipId}"><rect width="${totalWidth}" height="${height}" rx="${rx}"/></clipPath>
   <g clip-path="url(#${clipId})">
     <rect width="${leftWidth}" height="${height}" fill="${leftColor}"/>
-${iconSvg}    <text x="${labelX}" y="${textY}" fill="${labelColor}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${labelFontSize}" font-weight="500" letter-spacing="${letterSpacing}px">${safeLabel || effectiveLabel}</text>
+${iconSvg}    <text x="${labelX}" y="${textY}" fill="${labelColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${labelFontSize}" font-weight="500" letter-spacing="${letterSpacing}px">${safeLabel || effectiveLabel}</text>
     <rect x="${leftWidth}" width="${rightWidth}" height="${height}" fill="${color}"/>
-    <text x="${valueCenterX}" y="${textY}" fill="${textColor}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${fontSize}" font-weight="700" text-anchor="middle" letter-spacing="${letterSpacing}px">${safeValue}</text>
+    <text x="${valueCenterX}" y="${textY}" fill="${textColor}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" text-anchor="middle" letter-spacing="${letterSpacing}px">${safeValue}</text>
   </g>
   <rect width="${totalWidth}" height="${height}" rx="${rx}" fill="none" stroke="${PALETTE.slateBorder}" stroke-width="1"/>
 </svg>
@@ -160,7 +163,7 @@ ${iconSvg}    <text x="${labelX}" y="${textY}" fill="${labelColor}" font-family=
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${totalWidth}" height="${height}" viewBox="0 0 ${totalWidth} ${height}" fill="none" role="img" aria-label="${safeTitle}">
   <title>${safeTitle}</title>
   <rect x="0.5" y="0.5" width="${totalWidth - 1}" height="${height - 1}" rx="${rx}" fill="${PALETTE.slateDeep}" stroke="${color}" stroke-width="1"/>
-${iconSvg}  <text x="${textX}" y="${textY}" fill="${color}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="${fontSize}" font-weight="700" letter-spacing="${letterSpacing}px">${escapeXml(fullText)}</text>
+${iconSvg}  <text x="${textX}" y="${textY}" fill="${color}" font-family="${DEFAULT_FONT_FAMILY}" font-size="${fontSize}" font-weight="700" letter-spacing="${letterSpacing}px">${escapeXml(fullText)}</text>
 </svg>
 `;
 }

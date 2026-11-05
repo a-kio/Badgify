@@ -1,8 +1,8 @@
-export { generateBadge } from './generator.js';
+export { generateBadge, DEFAULT_FONT_FAMILY } from './generator.js';
 export { ICONS, type IconName } from './icons.js';
 export { PALETTE, type PaletteColor } from './palette.js';
 export { PRESETS, getPreset, listPresets, type PresetId } from './presets.js';
-export { measureText } from './text-width.js';
+export { measureText, isCjkCharacter, getCharacterWidth10px } from './text-width.js';
 export type {
   BadgeOptions,
   BadgeRadius,

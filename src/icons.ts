@@ -4,6 +4,8 @@
  * DevOps cloud providers, AI/ML tools, and versatile UI utility symbols for custom badges.
  */
 export const ICONS: Record<string, string> = {
+  "twitter": "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
+  "x": "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z",
   "activity": "M22 12h-4l-3 9L9 3l-3 9H2",
   "alert": "M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z",
   "alpine": "M12 2.2L.6 21.8h22.8L12 2.2zm0 4.8l7.8 13.4H4.2L12 7zm-1.8 6.5l-2.4 4.1h4.8l-2.4-4.1z",

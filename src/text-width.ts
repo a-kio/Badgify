@@ -19,6 +19,52 @@ const CHAR_WIDTHS_10PX: Record<string, number> = {
 };
 
 const DEFAULT_CHAR_WIDTH_10PX = 6.0;
+const CJK_CHAR_WIDTH_10PX = 10.2;
+const HALFWIDTH_KANA_WIDTH_10PX = 5.5;
+
+/**
+ * Determines whether a character is fullwidth or CJK (Japanese Kanji/Kana, Chinese Hanzi, fullwidth punctuation).
+ */
+export function isCjkCharacter(char: string): boolean {
+  const code = char.codePointAt(0);
+  if (!code) return false;
+
+  return (
+    // CJK Radicals, Symbols, Punctuation, Japanese Hiragana & Katakana
+    (code >= 0x2e80 && code <= 0x33ff) ||
+    // CJK Unified Ideographs & Extension A
+    (code >= 0x3400 && code <= 0x4dbf) ||
+    (code >= 0x4e00 && code <= 0x9fff) ||
+    // Hangul (Korean)
+    (code >= 0xac00 && code <= 0xd7af) ||
+    // CJK Compatibility Ideographs & Forms
+    (code >= 0xf900 && code <= 0xfaff) ||
+    // Fullwidth ASCII variants, Fullwidth punctuation (！, ？, ：, etc.)
+    (code >= 0xff01 && code <= 0xff60) ||
+    // Fullwidth currency & symbols (￥, ￠, etc.)
+    (code >= 0xffe0 && code <= 0xffe6) ||
+    // Extension B..F
+    (code >= 0x20000 && code <= 0x2fa1f)
+  );
+}
+
+/**
+ * Retrieves the normalized 10px width for a single character,
+ * accounting for Latin, numbers, punctuation, Japanese (Kana/Kanji), and Chinese (Hanzi).
+ */
+export function getCharacterWidth10px(char: string): number {
+  if (char in CHAR_WIDTHS_10PX) {
+    return CHAR_WIDTHS_10PX[char]!;
+  }
+  const code = char.codePointAt(0);
+  if (code && code >= 0xff61 && code <= 0xff9f) {
+    return HALFWIDTH_KANA_WIDTH_10PX;
+  }
+  if (isCjkCharacter(char)) {
+    return CJK_CHAR_WIDTH_10PX;
+  }
+  return DEFAULT_CHAR_WIDTH_10PX;
+}
 
 /**
  * Calculates accurate rendered width of text in pixels.
@@ -39,7 +85,7 @@ export function measureText(
 
   let width = 0;
   for (const char of text) {
-    const baseWidth = CHAR_WIDTHS_10PX[char] ?? DEFAULT_CHAR_WIDTH_10PX;
+    const baseWidth = getCharacterWidth10px(char);
     width += baseWidth * scale * boldMultiplier + letterSpacing;
   }
 

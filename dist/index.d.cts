@@ -43,6 +43,7 @@ interface Preset {
     description?: string;
 }
 
+declare const DEFAULT_FONT_FAMILY = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif";
 /**
  * Generates high-end SVG markup for a developer badge.
  */
@@ -110,6 +111,15 @@ declare function getPreset(id: string): Preset | undefined;
 declare function listPresets(): Preset[];
 
 /**
+ * Determines whether a character is fullwidth or CJK (Japanese Kanji/Kana, Chinese Hanzi, fullwidth punctuation).
+ */
+declare function isCjkCharacter(char: string): boolean;
+/**
+ * Retrieves the normalized 10px width for a single character,
+ * accounting for Latin, numbers, punctuation, Japanese (Kana/Kanji), and Chinese (Hanzi).
+ */
+declare function getCharacterWidth10px(char: string): number;
+/**
  * Calculates accurate rendered width of text in pixels.
  * @param text The string to measure
  * @param fontSize Font size in pixels (default: 11.5)
@@ -123,4 +133,4 @@ declare function measureText(text: string, fontSize?: number, isBold?: boolean, 
  */
 declare function badgeFromPreset(presetId: string, overrides?: Partial<BadgeOptions>): string;
 
-export { type BadgeOptions, type BadgeRadius, type BadgeStyle, ICONS, type IconName, PALETTE, PRESETS, type PaletteColor, type Preset, type PresetId, badgeFromPreset, generateBadge, getPreset, listPresets, measureText };
+export { type BadgeOptions, type BadgeRadius, type BadgeStyle, DEFAULT_FONT_FAMILY, ICONS, type IconName, PALETTE, PRESETS, type PaletteColor, type Preset, type PresetId, badgeFromPreset, generateBadge, getCharacterWidth10px, getPreset, isCjkCharacter, listPresets, measureText };
