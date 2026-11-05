@@ -309,6 +309,109 @@
         "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
         "durationMs": 3481
       }
+    },
+    "65be9052dc82ea9e656d63d3220ca554a291e98c3a8e7dd36ac33b3e7bc4ecbb": {
+      "key": "65be9052dc82ea9e656d63d3220ca554a291e98c3a8e7dd36ac33b3e7bc4ecbb",
+      "checkId": "typecheck",
+      "status": "PASS",
+      "cachedAt": "2026-11-05T16:45:05.240Z",
+      "lastUsedAt": "2026-11-05T16:45:05.240Z",
+      "result": {
+        "summary": "exit 0",
+        "exitCode": 0,
+        "signal": null,
+        "stdout": {
+          "text": "",
+          "bytes": 0,
+          "totalBytes": 0,
+          "truncated": false
+        },
+        "stderr": {
+          "text": "",
+          "bytes": 0,
+          "totalBytes": 0,
+          "truncated": false
+        },
+        "findings": [],
+        "command": [
+          "pnpm",
+          "exec",
+          "tsc",
+          "--noEmit"
+        ],
+        "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+        "durationMs": 1355
+      }
+    },
+    "9f866dde3143cc616f7ec34828d3fd426ea8e2da427f752e5bb4ce2f56dff93a": {
+      "key": "9f866dde3143cc616f7ec34828d3fd426ea8e2da427f752e5bb4ce2f56dff93a",
+      "checkId": "test",
+      "status": "PASS",
+      "cachedAt": "2026-11-05T16:45:05.451Z",
+      "lastUsedAt": "2026-11-05T16:45:05.451Z",
+      "result": {
+        "summary": "11 passed",
+        "exitCode": 0,
+        "signal": null,
+        "stdout": {
+          "text": "\n RUN  v2.1.9 C:/Users/sadyk/.gemini/antigravity/scratch/Badgify\n\n ✓ tests/generator.test.ts (11 tests) 6ms\n\n Test Files  1 passed (1)\n      Tests  11 passed (11)\n   Start at  21:45:04\n   Duration  823ms (transform 210ms, setup 0ms, collect 241ms, tests 6ms, environment 0ms, prepare 224ms)\n\n",
+          "bytes": 294,
+          "totalBytes": 294,
+          "truncated": false
+        },
+        "stderr": {
+          "text": "$ vitest run\n",
+          "bytes": 13,
+          "totalBytes": 13,
+          "truncated": false
+        },
+        "findings": [],
+        "metrics": {
+          "testsTotal": 11,
+          "testsPassed": 11,
+          "testsFailed": 0,
+          "testsSkipped": 0
+        },
+        "command": [
+          "pnpm",
+          "run",
+          "test"
+        ],
+        "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+        "durationMs": 1516
+      }
+    },
+    "ed2500d2ad217a1e105511a8645f792c1ae47a981f842777f449d18d8c0c6b88": {
+      "key": "ed2500d2ad217a1e105511a8645f792c1ae47a981f842777f449d18d8c0c6b88",
+      "checkId": "build",
+      "status": "PASS",
+      "cachedAt": "2026-11-05T16:45:07.060Z",
+      "lastUsedAt": "2026-11-05T16:45:07.060Z",
+      "result": {
+        "summary": "exit 0",
+        "exitCode": 0,
+        "signal": null,
+        "stdout": {
+          "text": "CLI Building entry: src/index.ts\nCLI Using tsconfig: tsconfig.json\nCLI tsup v8.5.1\nCLI Target: es2022\nCLI Cleaning output folder\nESM Build start\nCJS Build start\nESM dist\\index.js 157.84 KB\nESM ⚡️ Build success in 43ms\nCJS dist\\index.cjs 159.20 KB\nCJS ⚡️ Build success in 43ms\nDTS Build start\nDTS ⚡️ Build success in 1265ms\nDTS dist\\index.d.ts  5.50 KB\nDTS dist\\index.d.cts 5.50 KB\nCLI Building entry: src/cli.ts\nCLI Using tsconfig: tsconfig.json\nCLI tsup v8.5.1\nCLI Target: es2022\nESM Build start\nESM dist\\cli.js 162.38 KB\nESM ⚡️ Build success in 36ms\n",
+          "bytes": 568,
+          "totalBytes": 568,
+          "truncated": false
+        },
+        "stderr": {
+          "text": "$ tsup src/index.ts --format esm,cjs --dts --clean && tsup src/cli.ts --format esm\n",
+          "bytes": 83,
+          "totalBytes": 83,
+          "truncated": false
+        },
+        "findings": [],
+        "command": [
+          "pnpm",
+          "run",
+          "build"
+        ],
+        "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+        "durationMs": 3151
+      }
     }
   }
 }

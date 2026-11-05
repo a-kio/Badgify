@@ -143,6 +143,8 @@ Available categories include:
 - **Databases & Cloud**: `postgresql`, `sqlite`, `redis`, `mongodb`, `supabase`, `prisma`
 - **DevOps & Infra**: `docker`, `kubernetes`, `githubactions`, `cloudflare`, `aws`, `linux`
 - **Testing & Quality**: `vitest`, `jest`, `playwright`, `cypress`, `biome`, `eslint`, `turborepo`, `npm`, `pnpm`
+- **Social & Media**: `twitter`, `linkedin`, `instagram`, `discord`, `youtube`, `telegram`, `tiktok`, `wechat`, `reddit`, `twitch`, `bluesky`, `threads`, `mastodon`, `spotify`, `bilibili`
+- **Anime Studios (32 Studios)**: `ghibli` (Studio Ghibli), `mappa` (MAPPA), `kyoani` (Kyoto Animation), `ufotable`, `witstudio`, `madhouse`, `bones`, `cloverworks`, `a1pictures`, `trigger`, `comixwave`, `shaft`, `productionig`, `sunrise`, `toei`, `pierrot`, `tms`, `davidproduction`, `whitefox`, `dogakobo`, `sciencesaru`, `paworks`, `jcstaff`, `studiochizu`, `olm`, `silverlink`, `kinemacitrus`, `feel`, `lerche`, `lidenfilms`, `colorido`, `gainax`
 - **Multilingual & CJK**: `license-ja`, `status-ja`, `framework-ja`, `license-zh`, `status-zh`, `platform-zh`
 - **Status, Meta & Privacy**: `mit`, `apache`, `status-alpha`, `status-beta`, `status-stable`, `local-first`, `encrypted`
 

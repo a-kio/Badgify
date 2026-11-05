@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="28" viewBox="0 0 96 28" fill="none" role="img" aria-label="ufotable">
+  <title>ufotable</title>
+  <rect width="96" height="28" rx="6" fill="#b91c1c"/>
+  <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="#ffffff" d="M12 2C7.5 2 3 4.5 3 6.5S7.5 11 12 11s9-2.5 9-4.5S16.5 2 12 2zm0 2c3.5 0 6.5 1.5 6.5 2.5S15.5 9 12 9s-6.5-1.5-6.5-2.5S8.5 4 12 4zm-4 8l-3 10h14l-3-10H8zm4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/>
+  </svg>
+  <text x="33" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.3px">ufotable</text>
+</svg>

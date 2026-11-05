@@ -144,4 +144,35 @@ describe('Badgify Engine', () => {
     expect(zhSvg).toContain('状态');
     expect(zhSvg).toContain('稳定版');
   });
+
+  it('generates anime studio and social media presets properly', () => {
+    // Anime Studios
+    const ghibliPreset = getPreset('ghibli');
+    expect(ghibliPreset).toBeDefined();
+    expect(ghibliPreset?.value).toBe('Ghibli');
+    const ghibliSvg = badgeFromPreset('ghibli');
+    expect(ghibliSvg).toContain('Ghibli');
+    expect(ghibliSvg).toContain('studio');
+
+    const mappaSvg = badgeFromPreset('mappa');
+    expect(mappaSvg).toContain('MAPPA');
+
+    const kyoaniSvg = badgeFromPreset('kyoani');
+    expect(kyoaniSvg).toContain('KyoAni');
+
+    const ufotableSvg = badgeFromPreset('ufotable');
+    expect(ufotableSvg).toContain('ufotable');
+
+    // Social Media
+    const twitterPreset = getPreset('twitter');
+    expect(twitterPreset).toBeDefined();
+    const twitterSvg = badgeFromPreset('twitter');
+    expect(twitterSvg).toContain('@akio_itw');
+
+    const discordSvg = badgeFromPreset('discord');
+    expect(discordSvg).toContain('Discord');
+
+    const wechatSvg = badgeFromPreset('wechat');
+    expect(wechatSvg).toContain('WeChat');
+  });
 });
