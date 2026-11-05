@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "runId": "run_01m6pb5m9x7pbn23kzmy87a4ha",
+  "createdAt": "2026-11-05T17:12:42.582Z",
+  "entries": [
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/checks/build-44575c.json",
+      "sha256": "17d6452f3507da3f166690a1c1eb46e180ce42917d8737408288ffa1028e1866",
+      "bytes": 1367,
+      "kind": "json"
+    },
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/checks/build-44575c.stderr.log",
+      "sha256": "c891e02ac28dd28b4a7f381cb080c72ce69eb57199bd20d47dc8630be4458f14",
+      "bytes": 83,
+      "kind": "log"
+    },
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/checks/build-44575c.stdout.log",
+      "sha256": "d4854c9ea6e45384d315ba3a32e872a790a50d3a2bdb62ba4fa18c5692a17fc7",
+      "bytes": 568,
+      "kind": "log"
+    },
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/checks/secret-scan-97adbd.json",
+      "sha256": "573ca51b7870d1ff01aebde3d9c48219cc4c8fe540da8884be64fb53bfe14946",
+      "bytes": 634,
+      "kind": "json"
+    },
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/checks/secret-scan-97adbd.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "kind": "log"
+    },
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/checks/secret-scan-97adbd.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "kind": "log"
+    },
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/checks/test-9f86d0.json",
+      "sha256": "0920c987fa4fa6134e9df1d6cf6057080dad1e63a19e1206ebf9f2b53cca759b",
+      "bytes": 1122,
+      "kind": "json"
+    },
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/checks/test-9f86d0.stderr.log",
+      "sha256": "cb7efe2ed065b3202856f854f1645179984b659249d4ea99dde8467ed4a4b173",
+      "bytes": 13,
+      "kind": "log"
+    },
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/checks/test-9f86d0.stdout.log",
+      "sha256": "aa102ff353459cde2114974b0ba0eecb5f5eed4acfc5eafd3f857377a1d2a163",
+      "bytes": 294,
+      "kind": "log"
+    },
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/checks/typecheck-0abcfc.json",
+      "sha256": "9541362e4bfc831940157492b2f6c2662e552b57eff28c2effdc96a988383e07",
+      "bytes": 732,
+      "kind": "json"
+    },
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/checks/typecheck-0abcfc.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "kind": "log"
+    },
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/checks/typecheck-0abcfc.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "kind": "log"
+    },
+    {
+      "path": ".proofgate/runs/run_01m6pb5m9x7pbn23kzmy87a4ha/summary.json",
+      "sha256": "0b6bfcfc1aafd8eeabf306478e30f4e4c98e5d0d3c01ad11416ba4423dd031bb",
+      "bytes": 1909,
+      "kind": "summary"
+    }
+  ],
+  "totalBytes": 6722,
+  "redacted": false,
+  "tool": {
+    "name": "proofgate",
+    "version": "1.0.0"
+  }
+}

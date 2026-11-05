@@ -484,6 +484,199 @@
       gap: 12px;
     }
 
+    /* Language Dropdown Button */
+    .lang-dropdown-wrap {
+      position: relative;
+      display: inline-block;
+    }
+
+    .lang-dropdown-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      height: 30px;
+      padding: 0 11px;
+      background: #111113;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: #e4e4e7;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      outline: none;
+    }
+
+    .lang-dropdown-btn:hover {
+      background: #18181b;
+      border-color: #3f3f46;
+      color: #ffffff;
+    }
+
+    .lang-dropdown-btn:focus-visible,
+    .lang-dropdown-btn.open {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+    }
+
+    .lang-dropdown-btn .globe-icon {
+      color: #71717a;
+      transition: color 0.15s ease;
+    }
+
+    .lang-dropdown-btn:hover .globe-icon {
+      color: #38bdf8;
+    }
+
+    .lang-dropdown-btn .chevron-icon {
+      color: #71717a;
+      transition: transform 0.2s ease, color 0.15s ease;
+    }
+
+    .lang-dropdown-btn.open .chevron-icon {
+      transform: rotate(180deg);
+      color: #38bdf8;
+    }
+
+    .lang-dropdown-menu {
+      position: absolute;
+      top: calc(100% + 6px);
+      right: 0;
+      min-width: 148px;
+      background: #111114;
+      border: 1px solid #27272a;
+      border-radius: 8px;
+      padding: 4px;
+      box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05);
+      z-index: 1000;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      backdrop-filter: blur(12px);
+    }
+
+    .lang-dropdown-menu.show {
+      display: flex;
+      animation: dropdownFadeIn 0.15s ease-out;
+    }
+
+    @keyframes dropdownFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .lang-menu-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 32px;
+      padding: 0 10px;
+      border: none;
+      background: transparent;
+      border-radius: 5px;
+      color: #a1a1aa;
+      font-size: 12.5px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.12s ease;
+      text-align: left;
+    }
+
+    .lang-menu-item:hover {
+      background: #1f1f23;
+      color: #ffffff;
+    }
+
+    .lang-menu-item.active {
+      background: #27272a;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .lang-item-code {
+      font-size: 10.5px;
+      padding: 1px 5px;
+      border-radius: 4px;
+      background: #18181b;
+      color: #71717a;
+      border: 1px solid #27272a;
+      font-family: var(--font-mono);
+    }
+
+    .lang-menu-item.active .lang-item-code {
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.3);
+      background: rgba(56, 189, 248, 0.08);
+    }
+
+    /* Stylized Select Dropdowns */
+    .styled-select-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .styled-select-wrap .select-box {
+      width: 100%;
+      height: 38px;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-color: #111114;
+      background-image: none;
+      padding: 0 36px 0 12px;
+      border: 1px solid #27272a;
+      border-radius: 6px;
+      color: var(--text-main);
+      font-size: 13px;
+      font-family: inherit;
+      outline: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .styled-select-wrap .select-box:hover {
+      border-color: #3f3f46;
+      background-color: #141418;
+    }
+
+    .styled-select-wrap .select-box:focus {
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+      background-color: #141418;
+    }
+
+    .styled-select-wrap .select-arrow {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: #71717a;
+      transition: all 0.15s ease;
+    }
+
+    .styled-select-wrap:hover .select-arrow {
+      color: #d4d4d8;
+    }
+
+    .styled-select-wrap:focus-within .select-arrow {
+      color: #38bdf8;
+    }
+
+    .styled-select-wrap .select-box option {
+      background-color: #111114;
+      color: #ededed;
+      padding: 8px 12px;
+    }
+
     /* Style Switcher */
     .style-switcher {
       display: grid;
@@ -969,15 +1162,36 @@
   <header>
     <div class="header-inner">
       <div class="brand">
-        <div class="brand-mark">B</div>
         <span class="brand-name">Badgify</span>
         <span class="brand-tag">v1.2</span>
       </div>
       <div class="header-right">
-        <div class="lang-switcher" id="langSwitcher" role="group" aria-label="Language selection">
-          <button type="button" class="lang-btn active" data-lang="en">EN</button>
-          <button type="button" class="lang-btn" data-lang="ja">日本語</button>
-          <button type="button" class="lang-btn" data-lang="zh">中文</button>
+        <div class="lang-dropdown-wrap" id="langDropdownWrap">
+          <button type="button" class="lang-dropdown-btn" id="langDropdownBtn" aria-haspopup="listbox" aria-expanded="false" title="Choose language">
+            <svg class="globe-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span id="currentLangLabel">English</span>
+            <svg class="chevron-icon" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m6 9 6 6 6-6"></path>
+            </svg>
+          </button>
+          <div class="lang-dropdown-menu" id="langDropdownMenu" role="listbox">
+            <button type="button" class="lang-menu-item active" data-lang="en" role="option">
+              <span class="lang-item-name">English</span>
+              <span class="lang-item-code">EN</span>
+            </button>
+            <button type="button" class="lang-menu-item" data-lang="ja" role="option">
+              <span class="lang-item-name">日本語</span>
+              <span class="lang-item-code">JA</span>
+            </button>
+            <button type="button" class="lang-menu-item" data-lang="zh" role="option">
+              <span class="lang-item-name">简体中文</span>
+              <span class="lang-item-code">ZH</span>
+            </button>
+          </div>
         </div>
         <a class="twitter-link" href="https://x.com/akio_itw" target="_blank" rel="noopener" title="@akio_itw on X (Twitter)">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -1079,19 +1293,29 @@
         <div class="grid-2 field">
           <div>
             <label class="field-label" data-i18n="cornerRadius">Corner radius</label>
-            <select id="inputRadius" class="select-box">
-              <option value="rounded" selected data-i18n="radiusRounded">Rounded (6px)</option>
-              <option value="pill" data-i18n="radiusPill">Pill (full round)</option>
-              <option value="sharp" data-i18n="radiusSharp">Sharp (0px)</option>
-            </select>
+            <div class="styled-select-wrap">
+              <select id="inputRadius" class="select-box">
+                <option value="rounded" selected data-i18n="radiusRounded">Rounded (6px)</option>
+                <option value="pill" data-i18n="radiusPill">Pill (full round)</option>
+                <option value="sharp" data-i18n="radiusSharp">Sharp (0px)</option>
+              </select>
+              <svg class="select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </div>
           </div>
           <div>
             <label class="field-label" data-i18n="heightLabel">Height</label>
-            <select id="inputHeight" class="select-box">
-              <option value="24" data-i18n="heightCompact">24px (compact)</option>
-              <option value="28" selected data-i18n="heightStandard">28px (standard)</option>
-              <option value="32" data-i18n="heightLarge">32px (large)</option>
-            </select>
+            <div class="styled-select-wrap">
+              <select id="inputHeight" class="select-box">
+                <option value="24" data-i18n="heightCompact">24px (compact)</option>
+                <option value="28" selected data-i18n="heightStandard">28px (standard)</option>
+                <option value="32" data-i18n="heightLarge">32px (large)</option>
+              </select>
+              <svg class="select-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"></path>
+              </svg>
+            </div>
           </div>
         </div>
 
@@ -1144,7 +1368,7 @@
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-left">
-        <strong>Badgify</strong> &copy; 2026 a-kio &middot; <span data-i18n="footerLicense">Apache-2.0 License</span>
+        <strong>Badgify</strong> &copy; <span id="copyrightYear">2026</span> a-kio &middot; <span data-i18n="footerLicense">Apache-2.0 License</span>
       </div>
       <div class="footer-links">
         <a href="https://x.com/akio_itw" target="_blank" rel="noopener" class="footer-link" title="Follow @akio_itw on X">
@@ -1825,23 +2049,27 @@
   },
   {
     "id": "wechat",
-    "name": "微信 (WeChat)",
+    "name": "WeChat",
     "cat": "Social & Media",
     "style": "split",
     "label": "微信",
     "val": "WeChat",
     "color": "#07c160",
-    "icon": "wechat"
+    "icon": "wechat",
+    "name_ja": "WeChat (微信)",
+    "name_zh": "微信"
   },
   {
     "id": "ghibli",
-    "name": "スタジオジブリ",
+    "name": "Studio Ghibli",
     "cat": "Anime Studios",
     "style": "split",
     "label": "studio",
     "val": "Ghibli",
     "color": "#0284c7",
-    "icon": "ghibli"
+    "icon": "ghibli",
+    "name_ja": "スタジオジブリ",
+    "name_zh": "吉卜力工作室"
   },
   {
     "id": "mappa",
@@ -1855,13 +2083,15 @@
   },
   {
     "id": "kyoani",
-    "name": "京都アニメーション",
+    "name": "Kyoto Animation",
     "cat": "Anime Studios",
     "style": "split",
     "label": "studio",
     "val": "KyoAni",
     "color": "#f59e0b",
-    "icon": "kyoani"
+    "icon": "kyoani",
+    "name_ja": "京都アニメーション",
+    "name_zh": "京都动画"
   },
   {
     "id": "ufotable",
@@ -1965,33 +2195,39 @@
   },
   {
     "id": "sunrise",
-    "name": "サンライズ (Sunrise)",
+    "name": "Sunrise",
     "cat": "Anime Studios",
     "style": "split",
     "label": "studio",
     "val": "Sunrise",
     "color": "#ea580c",
-    "icon": "sunrise"
+    "icon": "sunrise",
+    "name_ja": "サンライズ",
+    "name_zh": "日升动画"
   },
   {
     "id": "toei",
-    "name": "東映アニメーション",
+    "name": "Toei Animation",
     "cat": "Anime Studios",
     "style": "split",
     "label": "studio",
     "val": "Toei",
     "color": "#d97706",
-    "icon": "toei"
+    "icon": "toei",
+    "name_ja": "東映アニメーション",
+    "name_zh": "东映动画"
   },
   {
     "id": "pierrot",
-    "name": "スタジオぴえろ",
+    "name": "Studio Pierrot",
     "cat": "Anime Studios",
     "style": "split",
     "label": "studio",
     "val": "Pierrot",
     "color": "#f97316",
-    "icon": "pierrot"
+    "icon": "pierrot",
+    "name_ja": "スタジオぴえろ",
+    "name_zh": "小丑社"
   },
   {
     "id": "tms",
@@ -2025,23 +2261,27 @@
   },
   {
     "id": "dogakobo",
-    "name": "動画工房",
+    "name": "Doga Kobo",
     "cat": "Anime Studios",
     "style": "split",
     "label": "studio",
     "val": "Doga Kobo",
     "color": "#f59e0b",
-    "icon": "dogakobo"
+    "icon": "dogakobo",
+    "name_ja": "動画工房",
+    "name_zh": "动画工房"
   },
   {
     "id": "sciencesaru",
-    "name": "サイエンスSARU",
+    "name": "Science SARU",
     "cat": "Anime Studios",
     "style": "split",
     "label": "studio",
     "val": "Science SARU",
     "color": "#10b981",
-    "icon": "sciencesaru"
+    "icon": "sciencesaru",
+    "name_ja": "サイエンスSARU",
+    "name_zh": "科学猴"
   },
   {
     "id": "paworks",
@@ -2065,13 +2305,15 @@
   },
   {
     "id": "studiochizu",
-    "name": "スタジオ地図",
+    "name": "Studio Chizu",
     "cat": "Anime Studios",
     "style": "split",
     "label": "studio",
     "val": "Studio Chizu",
     "color": "#0284c7",
-    "icon": "studiochizu"
+    "icon": "studiochizu",
+    "name_ja": "スタジオ地図",
+    "name_zh": "地图工作室"
   },
   {
     "id": "olm",
@@ -2095,13 +2337,15 @@
   },
   {
     "id": "kinemacitrus",
-    "name": "キネマシトラス",
+    "name": "Kinema Citrus",
     "cat": "Anime Studios",
     "style": "split",
     "label": "studio",
     "val": "Kinema Citrus",
     "color": "#f59e0b",
-    "icon": "kinemacitrus"
+    "icon": "kinemacitrus",
+    "name_ja": "キネマシトラス",
+    "name_zh": "柑橘社"
   },
   {
     "id": "feel",
@@ -2115,33 +2359,39 @@
   },
   {
     "id": "lerche",
-    "name": "ラルケ (Lerche)",
+    "name": "Lerche",
     "cat": "Anime Studios",
     "style": "split",
     "label": "studio",
     "val": "Lerche",
     "color": "#6366f1",
-    "icon": "lerche"
+    "icon": "lerche",
+    "name_ja": "ラルケ",
+    "name_zh": "云雀工作室"
   },
   {
     "id": "lidenfilms",
-    "name": "ライデンフィルム",
+    "name": "Liden Films",
     "cat": "Anime Studios",
     "style": "split",
     "label": "studio",
     "val": "Liden Films",
     "color": "#ea580c",
-    "icon": "lidenfilms"
+    "icon": "lidenfilms",
+    "name_ja": "ライデンフィルム",
+    "name_zh": "里登电影"
   },
   {
     "id": "colorido",
-    "name": "スタジオコロリド",
+    "name": "Studio Colorido",
     "cat": "Anime Studios",
     "style": "split",
     "label": "studio",
     "val": "Colorido",
     "color": "#10b981",
-    "icon": "colorido"
+    "icon": "colorido",
+    "name_ja": "スタジオコロリド",
+    "name_zh": "色彩社"
   },
   {
     "id": "gainax",
@@ -2161,7 +2411,8 @@
     "label": "ライセンス",
     "val": "MIT",
     "color": "#10b981",
-    "icon": "scale"
+    "icon": "scale",
+    "lang": "ja"
   },
   {
     "id": "status-ja",
@@ -2171,7 +2422,8 @@
     "label": "状態",
     "val": "安定版",
     "color": "#22c55e",
-    "icon": "check"
+    "icon": "check",
+    "lang": "ja"
   },
   {
     "id": "lang-ja",
@@ -2181,7 +2433,8 @@
     "label": "言語",
     "val": "Rust",
     "color": "#ea580c",
-    "icon": "rust"
+    "icon": "rust",
+    "lang": "ja"
   },
   {
     "id": "license-zh",
@@ -2191,7 +2444,8 @@
     "label": "开源协议",
     "val": "Apache-2.0",
     "color": "#2563eb",
-    "icon": "scale"
+    "icon": "scale",
+    "lang": "zh"
   },
   {
     "id": "status-zh",
@@ -2201,7 +2455,8 @@
     "label": "状态",
     "val": "稳定版",
     "color": "#06b6d4",
-    "icon": "rocket"
+    "icon": "rocket",
+    "lang": "zh"
   },
   {
     "id": "cloud-zh",
@@ -2211,7 +2466,8 @@
     "label": "架构",
     "val": "云原生",
     "color": "#6366f1",
-    "icon": "cloud"
+    "icon": "cloud",
+    "lang": "zh"
   },
   {
     "id": "ios",
@@ -2785,6 +3041,7 @@
   "#15803d"
 ];
 
+    let currentLang = 'en';
     let state = {
       style: 'solid',
       label: 'platform',
@@ -3029,14 +3286,46 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       swatchesContainer.appendChild(b);
     });
 
-    // Init preset chips
+    function getPresetDisplayName(p) {
+      if (currentLang === 'ja' && p.name_ja) return p.name_ja;
+      if (currentLang === 'zh' && p.name_zh) return p.name_zh;
+      return p.name;
+    }
+
+    // Init preset chips with language-aware filtering and localization
     function renderPresetChips(filter = '') {
       const container = document.getElementById('presetChips');
+      if (!container) return;
       container.innerHTML = '';
-      PRESETS.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()) || p.val.toLowerCase().includes(filter.toLowerCase())).forEach(p => {
+      const filterLower = filter.toLowerCase().trim();
+
+      const filtered = PRESETS.filter(p => {
+        // Hide language-specific presets that don't match the active language
+        if (p.lang && p.lang !== currentLang) {
+          return false;
+        }
+
+        if (!filterLower) return true;
+
+        const displayName = getPresetDisplayName(p).toLowerCase();
+        const val = (p.val || '').toLowerCase();
+        const label = (p.label || '').toLowerCase();
+        const nameJa = (p.name_ja || '').toLowerCase();
+        const nameZh = (p.name_zh || '').toLowerCase();
+
+        return displayName.includes(filterLower) ||
+               val.includes(filterLower) ||
+               label.includes(filterLower) ||
+               nameJa.includes(filterLower) ||
+               nameZh.includes(filterLower);
+      });
+
+      filtered.forEach(p => {
         const btn = document.createElement('button');
         btn.className = 'preset-btn';
-        btn.innerHTML = `<span class="preset-dot" style="background:${p.color}"></span><span>${p.name}</span>`;
+        const displayName = getPresetDisplayName(p);
+        btn.innerHTML = `<span class="preset-dot" style="background:${p.color}"></span><span>${displayName}</span>`;
+        btn.title = `${displayName} (${p.style || 'solid'})`;
         btn.onclick = () => {
           state.style = p.style || 'solid';
           state.value = p.val;
@@ -3357,14 +3646,30 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       }
     };
 
-    let currentLang = 'en';
+    const LANG_LABELS = {
+      en: 'English',
+      ja: '日本語',
+      zh: '简体中文'
+    };
 
     function setLanguage(lang) {
       if (!I18N[lang]) lang = 'en';
       currentLang = lang;
       document.documentElement.lang = lang;
 
-      // Update lang buttons
+      // Update dropdown button text & active item
+      const langLabelEl = document.getElementById('currentLangLabel');
+      if (langLabelEl) langLabelEl.textContent = LANG_LABELS[lang] || 'English';
+
+      document.querySelectorAll('.lang-menu-item').forEach(item => {
+        if (item.dataset.lang === lang) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+
+      // Update legacy lang buttons if any
       document.querySelectorAll('.lang-btn').forEach(btn => {
         if (btn.dataset.lang === lang) {
           btn.classList.add('active');
@@ -3388,6 +3693,16 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
         }
       });
 
+      // Close language dropdown menu
+      const menu = document.getElementById('langDropdownMenu');
+      const btn = document.getElementById('langDropdownBtn');
+      if (menu) menu.classList.remove('show');
+      if (btn) btn.classList.remove('open');
+
+      // Re-render preset chips according to active language (eliminates foreign CJK tags in EN mode)
+      const searchVal = document.getElementById('presetSearch')?.value || '';
+      renderPresetChips(searchVal);
+
       try {
         localStorage.setItem('badgify_lang', lang);
       } catch (e) {}
@@ -3408,11 +3723,51 @@ ${iconSvg}  <text x="${padLeft + iconTotal}" y="${textY}" fill="${state.color}" 
       showToast(dict[key] || key);
     }
 
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        setLanguage(btn.dataset.lang);
+    // Language Dropdown Interaction
+    const langBtn = document.getElementById('langDropdownBtn');
+    const langMenu = document.getElementById('langDropdownMenu');
+
+    if (langBtn && langMenu) {
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = langMenu.classList.toggle('show');
+        langBtn.classList.toggle('open', isOpen);
+        langBtn.setAttribute('aria-expanded', String(isOpen));
       });
-    });
+
+      document.querySelectorAll('.lang-menu-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+          e.stopPropagation();
+          setLanguage(item.dataset.lang);
+        });
+      });
+
+      // Click outside to close
+      document.addEventListener('click', (e) => {
+        if (!langBtn.contains(e.target) && !langMenu.contains(e.target)) {
+          langMenu.classList.remove('show');
+          langBtn.classList.remove('open');
+          langBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && langMenu.classList.contains('show')) {
+          langMenu.classList.remove('show');
+          langBtn.classList.remove('open');
+          langBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Auto-update copyright year dynamically every new year
+    try {
+      const yearEl = document.getElementById('copyrightYear');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    } catch (e) {}
 
     document.getElementById('copySvgBtn').addEventListener('click', () => {
       navigator.clipboard.writeText(renderSvg()).then(() => showToastKey('toastSvg'));
