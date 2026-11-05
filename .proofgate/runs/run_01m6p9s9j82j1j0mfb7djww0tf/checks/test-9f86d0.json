@@ -1,0 +1,44 @@
+{
+  "id": "test",
+  "title": "Test suite",
+  "type": "command",
+  "status": "PASS",
+  "required": true,
+  "profiles": [
+    "fast",
+    "balanced",
+    "thorough"
+  ],
+  "durationMs": 1467,
+  "startedAt": "2026-11-05T16:48:26.968Z",
+  "finishedAt": "2026-11-05T16:48:28.435Z",
+  "cached": false,
+  "summary": "11 passed",
+  "stdout": {
+    "text": "\n RUN  v2.1.9 C:/Users/sadyk/.gemini/antigravity/scratch/Badgify\n\n ✓ tests/generator.test.ts (11 tests) 6ms\n\n Test Files  1 passed (1)\n      Tests  11 passed (11)\n   Start at  21:48:27\n   Duration  817ms (transform 176ms, setup 0ms, collect 206ms, tests 6ms, environment 0ms, prepare 252ms)\n\n",
+    "bytes": 294,
+    "totalBytes": 294,
+    "truncated": false
+  },
+  "stderr": {
+    "text": "$ vitest run\n",
+    "bytes": 13,
+    "totalBytes": 13,
+    "truncated": false
+  },
+  "findings": [],
+  "metrics": {
+    "testsTotal": 11,
+    "testsPassed": 11,
+    "testsFailed": 0,
+    "testsSkipped": 0
+  },
+  "command": [
+    "pnpm",
+    "run",
+    "test"
+  ],
+  "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+  "exitCode": 0,
+  "signal": null
+}
