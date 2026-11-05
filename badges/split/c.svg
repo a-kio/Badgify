@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="104" height="28" viewBox="0 0 104 28" fill="none" role="img" aria-label="stack: C">
-  <title>stack: C</title>
-  <clipPath id="clip_016qm1"><rect width="104" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_016qm1)">
-    <rect width="72" height="28" fill="#181d26"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="122" height="28" viewBox="0 0 122 28" fill="none" role="img" aria-label="backend: C">
+  <title>backend: C</title>
+  <clipPath id="clip_z22a41"><rect width="122" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_z22a41)">
+    <rect width="90" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="#ffffff" d="M11.996 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm0 3.6a8.4 8.4 0 1 1-5.94 14.34 1.2 1.2 0 1 1 1.7-1.7 6 6 0 1 0 0-8.48 1.2 1.2 0 1 1-1.7-1.7A8.36 8.36 0 0 1 12 3.6z"/>
+      <path fill="#ffffff" d="M16.5921 9.1962s-.354-3.298-3.627-3.39c-3.2741-.09-4.9552 2.474-4.9552 6.14 0 3.6651 1.858 6.5972 5.0451 6.5972 3.184 0 3.5381-3.665 3.5381-3.665l6.1041.365s.36 3.31-2.196 5.836c-2.552 2.5241-5.6901 2.9371-7.8762 2.9201-2.19-.017-5.2261.034-8.1602-2.97-2.938-3.0101-3.436-5.9302-3.436-8.8002 0-2.8701.556-6.6702 4.047-9.5502C7.444.72 9.849 0 12.254 0c10.0422 0 10.7172 9.2602 10.7172 9.2602z"/>
     </svg>
-    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">stack</text>
-    <rect x="72" width="32" height="28" fill="#0284c7"/>
-    <text x="88" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">C</text>
+    <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">backend</text>
+    <rect x="90" width="32" height="28" fill="#0284c7"/>
+    <text x="106" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" text-anchor="middle" letter-spacing="0.3px">C</text>
   </g>
-  <rect width="104" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
+  <rect width="122" height="28" rx="6" fill="none" stroke="#333b47" stroke-width="1"/>
 </svg>

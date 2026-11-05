@@ -85,11 +85,6 @@ declare function isBrightColor(color: string, threshold?: number): boolean;
  */
 declare function getOptimalForeground(bgColor: string, preferredColor?: string, autoContrast?: boolean): string;
 
-/**
- * Curated collection of 218+ precision SVG icon paths (24x24 viewBox).
- * Includes tech stacks, mobile/desktop platforms (iOS, Android), databases,
- * DevOps cloud providers, AI/ML tools, and versatile UI utility symbols for custom badges.
- */
 declare const ICONS: Record<string, string>;
 type IconName = keyof typeof ICONS;
 

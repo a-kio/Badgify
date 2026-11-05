@@ -2,7 +2,7 @@
   <title>Gainax</title>
   <rect width="88" height="28" rx="6" fill="#dc2626"/>
   <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-    <path fill="#ffffff" d="M12 2L2 20h20L12 2zm0 4.2L17.8 17H6.2L12 6.2zm-2 5.8l2 3 2-3h-4z"/>
+    <path fill="#ffffff" d="M2 6h4.5v3H4.2v6h2.3v3H2V6zm6 0h2.5l2.2 7.5L15 6h2.5l-3.5 12H11.5L8 6zm10.5 0H22v12h-2.5v-4.5h-1V18H16V6h2.5v4.5h1V6z"/>
   </svg>
   <text x="33" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.3px">Gainax</text>
 </svg>

@@ -2,7 +2,7 @@
   <title>KyoAni</title>
   <rect width="89" height="28" rx="6" fill="#f59e0b"/>
   <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-    <path fill="#000000" d="M12 2a4 4 0 0 0-4 4c0 2 2 3.5 4 6 2-2.5 4-4 4-6a4 4 0 0 0-4-4zm-6 6a4 4 0 0 0-4 4c0 2 3.5 2 6 4-2.5-2-4-4-4-6a4 4 0 0 0 2-2zm12 0c.7 0 1.4.3 2 1 0 2-1.5 4-4 6 2.5-2 6-2 6-4a4 4 0 0 0-4-3zm-6 6c-2 2.5-4 4-4 6a4 4 0 0 0 8 0c0-2-2-3.5-4-6z"/>
+    <path fill="#000000" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10c0-1.8-.48-3.48-1.32-4.94l-2.12 1.22c.59 1.11.94 2.38.94 3.72 0 4.14-3.36 7.5-7.5 7.5S4.5 16.14 4.5 12 7.86 4.5 12 4.5c1.62 0 3.12.52 4.34 1.4l1.8-1.8C16.48 2.78 14.34 2 12 2zm0 5a5 5 0 0 0-5 5c0 2.76 2.24 5 5 5 1.93 0 3.6-1.1 4.42-2.7l-2.28-.96A2.52 2.52 0 0 1 12 14.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5c.78 0 1.48.36 1.94.92l1.9-1.42A4.97 4.97 0 0 0 12 7z"/>
   </svg>
   <text x="33" y="18" fill="#000000" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.3px">KyoAni</text>
   <rect width="89" height="28" rx="6" fill="none" stroke="rgba(0,0,0,0.12)" stroke-width="1"/>

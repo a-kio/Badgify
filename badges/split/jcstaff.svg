@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="153" height="28" viewBox="0 0 153 28" fill="none" role="img" aria-label="studio: J.C.Staff">
   <title>studio: J.C.Staff</title>
-  <clipPath id="clip_aqyn82"><rect width="153" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_aqyn82)">
+  <clipPath id="clip_amsjp8"><rect width="153" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_amsjp8)">
     <rect width="78" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="#ffffff" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 3c1.7 0 3.3.6 4.5 1.6l-3.2 4.2H8.5L12 5zm5.9 2.8c1.3 1.2 2.1 2.9 2.1 4.7 0 .8-.2 1.5-.4 2.2l-4.8-1.6V9l3.1-1.2zm-12 2.4l4.8 1.6V15l-3.1 1.2A7 7 0 0 1 5.9 10.2zM12 19a6.9 6.9 0 0 1-4.5-1.6l3.2-4.2h4.8L12 19z"/>
+      <path fill="#ffffff" d="M12 2l1.5 3.8 4 .5-3 2.8.8 4-3.3-2-3.3 2 .8-4-3-2.8 4-.5L12 2zm-8 14h16v2H4v-2zm2 4h12v1.8H6V20z"/>
     </svg>
     <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">studio</text>
     <rect x="78" width="75" height="28" fill="#ef4444"/>

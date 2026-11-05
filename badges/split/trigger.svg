@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="145" height="28" viewBox="0 0 145 28" fill="none" role="img" aria-label="studio: Trigger">
   <title>studio: Trigger</title>
-  <clipPath id="clip_6zi7lh"><rect width="145" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_6zi7lh)">
+  <clipPath id="clip_elhcxe"><rect width="145" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_elhcxe)">
     <rect width="78" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="#ffffff" d="M12 2L4 18h16L12 2zm0 4.5l5.5 10.5H6.5L12 6.5zm-1 6.5h2v3h-2v-3zm0-4h2v2h-2V9z"/>
+      <path fill="#ffffff" d="M3 4h18v4h-6.5v12h-4.5V8H3V4zm12.5 7.5L20 8v5l-4.5 3.5v-5z"/>
     </svg>
     <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">studio</text>
     <rect x="78" width="67" height="28" fill="#f43f5e"/>

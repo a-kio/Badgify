@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="143" height="28" viewBox="0 0 143 28" fill="none" role="img" aria-label="studio: Gainax">
   <title>studio: Gainax</title>
-  <clipPath id="clip_gnzv4p"><rect width="143" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_gnzv4p)">
+  <clipPath id="clip_t4m024"><rect width="143" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_t4m024)">
     <rect width="78" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="#ffffff" d="M12 2L2 20h20L12 2zm0 4.2L17.8 17H6.2L12 6.2zm-2 5.8l2 3 2-3h-4z"/>
+      <path fill="#ffffff" d="M2 6h4.5v3H4.2v6h2.3v3H2V6zm6 0h2.5l2.2 7.5L15 6h2.5l-3.5 12H11.5L8 6zm10.5 0H22v12h-2.5v-4.5h-1V18H16V6h2.5v4.5h1V6z"/>
     </svg>
     <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">studio</text>
     <rect x="78" width="65" height="28" fill="#dc2626"/>
