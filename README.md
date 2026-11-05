@@ -6,13 +6,13 @@
     <a href="https://a-kio.github.io/Badgify/"><strong>Open Live Studio &rarr;</strong></a>
   </p>
   <p>
-    <a href="LICENSE"><img src="badges/solid/mit.svg" alt="MIT License" height="28" /></a>
-    <img src="badges/solid/node.svg" alt="Node.js 22" height="28" />
-    <img src="badges/solid/ios.svg" alt="iOS" height="28" />
-    <img src="badges/solid/android.svg" alt="Android" height="28" />
+    <a href="https://github.com/a-kio/Badgify"><img src="badges/split/github.svg" alt="GitHub" height="28" /></a>
+    <a href="LICENSE"><img src="badges/split/apache.svg" alt="Apache 2.0 License" height="28" /></a>
+    <img src="badges/split/status-stable.svg" alt="Stable v1.2" height="28" />
+    <a href="https://a-kio.github.io/Badgify/"><img src="badges/split/studio.svg" alt="Web Studio" height="28" /></a>
+    <img src="badges/solid/node.svg" alt="Node.js >= 22" height="28" />
     <img src="badges/solid/typescript.svg" alt="TypeScript" height="28" />
-    <img src="badges/solid/status-stable.svg" alt="Stable" height="28" />
-    <img src="badges/solid/local-first.svg" alt="Local-first" height="28" />
+    <img src="badges/solid/local-first.svg" alt="Zero Telemetry" height="28" />
   </p>
 </div>
 
