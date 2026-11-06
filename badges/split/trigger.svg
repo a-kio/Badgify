@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="145" height="28" viewBox="0 0 145 28" fill="none" role="img" aria-label="studio: Trigger">
   <title>studio: Trigger</title>
-  <clipPath id="clip_fjwdo1"><rect width="145" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_fjwdo1)">
+  <clipPath id="clip_7j30n0"><rect width="145" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_7j30n0)">
     <rect width="78" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" fill-rule="evenodd" d="M1.50 5.10L1.50 10.20L6.45 10.20L6.60 8.55L8.85 8.70L8.70 15.45L7.20 15.45L7.20 18.75L16.65 18.60L16.65 15.45L15.00 15.30L15.15 8.55L17.25 8.70L17.40 10.20L22.35 10.20L22.35 5.10Z"/>

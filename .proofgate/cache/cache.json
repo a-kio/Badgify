@@ -927,6 +927,109 @@
         "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
         "durationMs": 3218
       }
+    },
+    "133dab7d5b4a2ab36e7f753d6006b729855d3bdf08853a14fc6e268134c8c746": {
+      "key": "133dab7d5b4a2ab36e7f753d6006b729855d3bdf08853a14fc6e268134c8c746",
+      "checkId": "typecheck",
+      "status": "PASS",
+      "cachedAt": "2026-11-06T07:12:46.203Z",
+      "lastUsedAt": "2026-11-06T07:12:46.203Z",
+      "result": {
+        "summary": "exit 0",
+        "exitCode": 0,
+        "signal": null,
+        "stdout": {
+          "text": "",
+          "bytes": 0,
+          "totalBytes": 0,
+          "truncated": false
+        },
+        "stderr": {
+          "text": "",
+          "bytes": 0,
+          "totalBytes": 0,
+          "truncated": false
+        },
+        "findings": [],
+        "command": [
+          "pnpm",
+          "exec",
+          "tsc",
+          "--noEmit"
+        ],
+        "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+        "durationMs": 1831
+      }
+    },
+    "3066e28a24d66b8c56087ecd3e49b07417448c1d4327b6270b06072d163a198f": {
+      "key": "3066e28a24d66b8c56087ecd3e49b07417448c1d4327b6270b06072d163a198f",
+      "checkId": "test",
+      "status": "PASS",
+      "cachedAt": "2026-11-06T07:12:46.496Z",
+      "lastUsedAt": "2026-11-06T07:12:46.496Z",
+      "result": {
+        "summary": "17 passed",
+        "exitCode": 0,
+        "signal": null,
+        "stdout": {
+          "text": "\n RUN  v2.1.9 C:/Users/sadyk/.gemini/antigravity/scratch/Badgify\n\n ✓ tests/generator.test.ts (12 tests) 10ms\n ✓ tests/icons.test.ts (5 tests) 28ms\n\n Test Files  2 passed (2)\n      Tests  17 passed (17)\n   Start at  12:12:45\n   Duration  1.13s (transform 388ms, setup 0ms, collect 633ms, tests 38ms, environment 1ms, prepare 638ms)\n\n",
+          "bytes": 336,
+          "totalBytes": 336,
+          "truncated": false
+        },
+        "stderr": {
+          "text": "$ vitest run\n",
+          "bytes": 13,
+          "totalBytes": 13,
+          "truncated": false
+        },
+        "findings": [],
+        "metrics": {
+          "testsTotal": 17,
+          "testsPassed": 17,
+          "testsFailed": 0,
+          "testsSkipped": 0
+        },
+        "command": [
+          "pnpm",
+          "run",
+          "test"
+        ],
+        "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+        "durationMs": 2029
+      }
+    },
+    "ef7641bbffe25cf8aa8ab51e362c37ea7e55c72c8c29bc625c730b00a5ef102a": {
+      "key": "ef7641bbffe25cf8aa8ab51e362c37ea7e55c72c8c29bc625c730b00a5ef102a",
+      "checkId": "build",
+      "status": "PASS",
+      "cachedAt": "2026-11-06T07:12:48.403Z",
+      "lastUsedAt": "2026-11-06T07:12:48.403Z",
+      "result": {
+        "summary": "exit 0",
+        "exitCode": 0,
+        "signal": null,
+        "stdout": {
+          "text": "CLI Building entry: src/index.ts\nCLI Using tsconfig: tsconfig.json\nCLI tsup v8.5.1\nCLI Target: es2022\nCLI Cleaning output folder\nESM Build start\nCJS Build start\nESM dist\\index.js 339.01 KB\nESM ⚡️ Build success in 64ms\nCJS dist\\index.cjs 340.67 KB\nCJS ⚡️ Build success in 63ms\nDTS Build start\nDTS ⚡️ Build success in 1628ms\nDTS dist\\index.d.ts  7.06 KB\nDTS dist\\index.d.cts 7.06 KB\nCLI Building entry: src/cli.ts\nCLI Using tsconfig: tsconfig.json\nCLI tsup v8.5.1\nCLI Target: es2022\nESM Build start\nESM dist\\cli.js 343.80 KB\nESM ⚡️ Build success in 46ms\n",
+          "bytes": 568,
+          "totalBytes": 568,
+          "truncated": false
+        },
+        "stderr": {
+          "text": "$ tsup src/index.ts --format esm,cjs --dts --clean && tsup src/cli.ts --format esm\n",
+          "bytes": 83,
+          "totalBytes": 83,
+          "truncated": false
+        },
+        "findings": [],
+        "command": [
+          "pnpm",
+          "run",
+          "build"
+        ],
+        "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+        "durationMs": 3984
+      }
     }
   }
 }

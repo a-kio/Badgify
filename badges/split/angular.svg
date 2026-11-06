@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="162" height="28" viewBox="0 0 162 28" fill="none" role="img" aria-label="frontend: Angular">
   <title>frontend: Angular</title>
-  <clipPath id="clip_20nk9z"><rect width="162" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_20nk9z)">
+  <clipPath id="clip_z3mwrb"><rect width="162" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_z3mwrb)">
     <rect width="91" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
       <path fill="#ffffff" fill-rule="evenodd" d="M16.712 17.711H7.288l-1.204 2.916L12 24l5.916-3.373-1.204-2.916ZM14.692 0l7.832 16.855.814-12.856L14.692 0ZM9.308 0 .662 3.999l.814 12.856L9.308 0Zm-.405 13.93h6.198L12 6.396 8.903 13.93Z"/>

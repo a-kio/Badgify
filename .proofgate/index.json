@@ -1,7 +1,57 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-06T06:54:53.120Z",
+  "updatedAt": "2026-11-06T07:12:48.715Z",
   "runs": [
+    {
+      "id": "run_01m6qv7wrqjnebt71sptjfha2f",
+      "status": "VERIFIED",
+      "mode": "full",
+      "profile": "balanced",
+      "task": "Initial task verification for Badgify",
+      "startedAt": "2026-11-06T07:12:43.545Z",
+      "finishedAt": "2026-11-06T07:12:48.448Z",
+      "durationMs": 4903,
+      "summary": {
+        "total": 4,
+        "passed": 4,
+        "failed": 0,
+        "unknown": 0,
+        "skipped": 0,
+        "blocked": 0,
+        "error": 0,
+        "requiredTotal": 4,
+        "requiredPassed": 4,
+        "requiredFailed": 0
+      },
+      "checks": [
+        {
+          "id": "typecheck",
+          "title": "TypeScript typecheck (tsc --noEmit)",
+          "status": "PASS",
+          "required": true
+        },
+        {
+          "id": "test",
+          "title": "Test suite",
+          "status": "PASS",
+          "required": true
+        },
+        {
+          "id": "build",
+          "title": "Production build",
+          "status": "PASS",
+          "required": true
+        },
+        {
+          "id": "secret-scan",
+          "title": "No committed secrets in changed files",
+          "status": "PASS",
+          "required": true
+        }
+      ],
+      "evidenceDir": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f",
+      "intentHash": "09e846617ff099fe919779dce0882033eb3ddbdec51b1f3241793fe57dcc7962"
+    },
     {
       "id": "run_01m6qt72dm332dn5jt1d0m5cxn",
       "status": "VERIFIED",

@@ -1,0 +1,400 @@
+{
+  "schemaVersion": 1,
+  "id": "run_01m6qv7wrqjnebt71sptjfha2f",
+  "status": "VERIFIED",
+  "mode": "full",
+  "profile": "balanced",
+  "task": "Initial task verification for Badgify",
+  "project": {
+    "root": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+    "name": "Badgify",
+    "ecosystem": [
+      "node"
+    ],
+    "packageManager": "pnpm"
+  },
+  "startedAt": "2026-11-06T07:12:43.545Z",
+  "finishedAt": "2026-11-06T07:12:48.448Z",
+  "durationMs": 4903,
+  "environment": {
+    "platform": "win32",
+    "arch": "x64",
+    "osRelease": "10.0.26200",
+    "nodeVersion": "v26.7.0",
+    "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+    "hostname": "FIREBAT",
+    "ci": false,
+    "git": {
+      "available": true,
+      "root": "C:/Users/sadyk/.gemini/antigravity/scratch/Badgify",
+      "branch": "main",
+      "head": "da6750a2f1223d847a089236673654a6555f8bdb",
+      "dirty": true
+    },
+    "toolVersions": {
+      "node": "v26.7.0",
+      "git": "git version 2.51.0.windows.1",
+      "pnpm": "12.16.1"
+    },
+    "capturedAt": "2026-11-06T07:12:48.709Z"
+  },
+  "intent": {
+    "hash": "09e846617ff099fe919779dce0882033eb3ddbdec51b1f3241793fe57dcc7962",
+    "approved": true,
+    "stale": false,
+    "lockPath": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify\\.proofgate\\acceptance.lock.json",
+    "approvedAt": "2026-11-05T13:04:00.023Z",
+    "approvedBy": "init"
+  },
+  "changedFiles": {
+    "source": "full",
+    "files": [],
+    "fingerprint": "",
+    "truncated": false
+  },
+  "criteria": [
+    {
+      "id": "typecheck-passes",
+      "description": "TypeScript typecheck (tsc --noEmit) completes successfully",
+      "kind": "check",
+      "required": true,
+      "status": "PASS",
+      "reason": "check \"typecheck\" passed",
+      "evidence": [
+        "check:typecheck",
+        "status:PASS"
+      ]
+    },
+    {
+      "id": "test-passes",
+      "description": "Test suite completes successfully",
+      "kind": "check",
+      "required": true,
+      "status": "PASS",
+      "reason": "check \"test\" passed",
+      "evidence": [
+        "check:test",
+        "status:PASS"
+      ]
+    },
+    {
+      "id": "build-passes",
+      "description": "Production build completes successfully",
+      "kind": "check",
+      "required": true,
+      "status": "PASS",
+      "reason": "check \"build\" passed",
+      "evidence": [
+        "check:build",
+        "status:PASS"
+      ]
+    },
+    {
+      "id": "secret-scan-passes",
+      "description": "No committed secrets in changed files completes successfully",
+      "kind": "check",
+      "required": true,
+      "status": "PASS",
+      "reason": "check \"secret-scan\" passed",
+      "evidence": [
+        "check:secret-scan",
+        "status:PASS"
+      ]
+    },
+    {
+      "id": "human-signoff",
+      "description": "A human reviewed the diff and the evidence bundle",
+      "kind": "manual",
+      "required": false,
+      "status": "UNKNOWN",
+      "reason": "awaiting human sign-off (proofgate criteria signoff human-signoff)",
+      "evidence": []
+    }
+  ],
+  "checks": [
+    {
+      "id": "typecheck",
+      "title": "TypeScript typecheck (tsc --noEmit)",
+      "type": "command",
+      "status": "PASS",
+      "required": true,
+      "profiles": [
+        "fast",
+        "balanced",
+        "thorough"
+      ],
+      "durationMs": 1831,
+      "startedAt": "2026-11-06T07:12:44.372Z",
+      "finishedAt": "2026-11-06T07:12:46.203Z",
+      "cached": false,
+      "summary": "exit 0",
+      "stdout": {
+        "text": "",
+        "bytes": 0,
+        "totalBytes": 0,
+        "truncated": false
+      },
+      "stderr": {
+        "text": "",
+        "bytes": 0,
+        "totalBytes": 0,
+        "truncated": false
+      },
+      "findings": [],
+      "command": [
+        "pnpm",
+        "exec",
+        "tsc",
+        "--noEmit"
+      ],
+      "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+      "exitCode": 0,
+      "signal": null,
+      "artifacts": [
+        ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/typecheck-0abcfc.json",
+        ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/typecheck-0abcfc.stderr.log",
+        ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/typecheck-0abcfc.stdout.log"
+      ]
+    },
+    {
+      "id": "test",
+      "title": "Test suite",
+      "type": "command",
+      "status": "PASS",
+      "required": true,
+      "profiles": [
+        "fast",
+        "balanced",
+        "thorough"
+      ],
+      "durationMs": 2029,
+      "startedAt": "2026-11-06T07:12:44.467Z",
+      "finishedAt": "2026-11-06T07:12:46.496Z",
+      "cached": false,
+      "summary": "17 passed",
+      "stdout": {
+        "text": "\n RUN  v2.1.9 C:/Users/sadyk/.gemini/antigravity/scratch/Badgify\n\n ✓ tests/generator.test.ts (12 tests) 10ms\n ✓ tests/icons.test.ts (5 tests) 28ms\n\n Test Files  2 passed (2)\n      Tests  17 passed (17)\n   Start at  12:12:45\n   Duration  1.13s (transform 388ms, setup 0ms, collect 633ms, tests 38ms, environment 1ms, prepare 638ms)\n\n",
+        "bytes": 336,
+        "totalBytes": 336,
+        "truncated": false
+      },
+      "stderr": {
+        "text": "$ vitest run\n",
+        "bytes": 13,
+        "totalBytes": 13,
+        "truncated": false
+      },
+      "findings": [],
+      "metrics": {
+        "testsTotal": 17,
+        "testsPassed": 17,
+        "testsFailed": 0,
+        "testsSkipped": 0
+      },
+      "command": [
+        "pnpm",
+        "run",
+        "test"
+      ],
+      "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+      "exitCode": 0,
+      "signal": null,
+      "artifacts": [
+        ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/test-9f86d0.json",
+        ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/test-9f86d0.stderr.log",
+        ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/test-9f86d0.stdout.log"
+      ]
+    },
+    {
+      "id": "build",
+      "title": "Production build",
+      "type": "command",
+      "status": "PASS",
+      "required": true,
+      "profiles": [
+        "balanced",
+        "thorough"
+      ],
+      "durationMs": 3984,
+      "startedAt": "2026-11-06T07:12:44.419Z",
+      "finishedAt": "2026-11-06T07:12:48.403Z",
+      "cached": false,
+      "summary": "exit 0",
+      "stdout": {
+        "text": "CLI Building entry: src/index.ts\nCLI Using tsconfig: tsconfig.json\nCLI tsup v8.5.1\nCLI Target: es2022\nCLI Cleaning output folder\nESM Build start\nCJS Build start\nESM dist\\index.js 339.01 KB\nESM ⚡️ Build success in 64ms\nCJS dist\\index.cjs 340.67 KB\nCJS ⚡️ Build success in 63ms\nDTS Build start\nDTS ⚡️ Build success in 1628ms\nDTS dist\\index.d.ts  7.06 KB\nDTS dist\\index.d.cts 7.06 KB\nCLI Building entry: src/cli.ts\nCLI Using tsconfig: tsconfig.json\nCLI tsup v8.5.1\nCLI Target: es2022\nESM Build start\nESM dist\\cli.js 343.80 KB\nESM ⚡️ Build success in 46ms\n",
+        "bytes": 568,
+        "totalBytes": 568,
+        "truncated": false
+      },
+      "stderr": {
+        "text": "$ tsup src/index.ts --format esm,cjs --dts --clean && tsup src/cli.ts --format esm\n",
+        "bytes": 83,
+        "totalBytes": 83,
+        "truncated": false
+      },
+      "findings": [],
+      "command": [
+        "pnpm",
+        "run",
+        "build"
+      ],
+      "cwd": "C:\\Users\\sadyk\\.gemini\\antigravity\\scratch\\Badgify",
+      "exitCode": 0,
+      "signal": null,
+      "artifacts": [
+        ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/build-44575c.json",
+        ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/build-44575c.stderr.log",
+        ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/build-44575c.stdout.log"
+      ]
+    },
+    {
+      "id": "secret-scan",
+      "title": "No committed secrets in changed files",
+      "type": "secret-scan",
+      "status": "PASS",
+      "required": true,
+      "profiles": [
+        "fast",
+        "balanced",
+        "thorough"
+      ],
+      "durationMs": 540,
+      "startedAt": "2026-11-06T07:12:44.363Z",
+      "finishedAt": "2026-11-06T07:12:44.903Z",
+      "cached": false,
+      "summary": "No secrets found in 289 file(s)",
+      "stdout": {
+        "text": "",
+        "bytes": 0,
+        "totalBytes": 0,
+        "truncated": false
+      },
+      "stderr": {
+        "text": "",
+        "bytes": 0,
+        "totalBytes": 0,
+        "truncated": false
+      },
+      "findings": [],
+      "metrics": {
+        "filesScanned": 289
+      },
+      "artifacts": [
+        ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/secret-scan-97adbd.json",
+        ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/secret-scan-97adbd.stderr.log",
+        ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/secret-scan-97adbd.stdout.log"
+      ]
+    }
+  ],
+  "skippedChecks": [],
+  "cache": {
+    "enabled": true,
+    "hits": 0,
+    "misses": 3
+  },
+  "evidence": {
+    "dir": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f",
+    "manifestPath": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/manifest.json",
+    "manifestHash": "c650f4fba981cc2d5f14dc7f79612f5110f9c4a29aecbf5ba18aabacb9fdc744",
+    "entries": [
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/build-44575c.json",
+        "sha256": "c4338a53e71b158fca51d54a40735ee2b62fb49180490982d97aadd53a24eacb",
+        "bytes": 1367,
+        "kind": "json"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/build-44575c.stderr.log",
+        "sha256": "c891e02ac28dd28b4a7f381cb080c72ce69eb57199bd20d47dc8630be4458f14",
+        "bytes": 83,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/build-44575c.stdout.log",
+        "sha256": "e4f02ae697911cbbfc1636e81ff8341cb4a4ccdd38641c6d40b948e1aa971f30",
+        "bytes": 568,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/secret-scan-97adbd.json",
+        "sha256": "988fa278d88f0d7340ce66bcfbeabc2a01bc4418015328ffc9d7bcd7d74eeff2",
+        "bytes": 634,
+        "kind": "json"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/secret-scan-97adbd.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/secret-scan-97adbd.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/test-9f86d0.json",
+        "sha256": "d5688eabb5723c144fb0ceb84085b370b191f335e987e00457fa719e87a6bb29",
+        "bytes": 1165,
+        "kind": "json"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/test-9f86d0.stderr.log",
+        "sha256": "cb7efe2ed065b3202856f854f1645179984b659249d4ea99dde8467ed4a4b173",
+        "bytes": 13,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/test-9f86d0.stdout.log",
+        "sha256": "88e716e21804949fae326bb62652abeda63b798972af06b0caf0e4b82caa8478",
+        "bytes": 336,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/typecheck-0abcfc.json",
+        "sha256": "c634282a84e09099fc1443188bc9016e39368b5beec1d151472bacc7514602db",
+        "bytes": 732,
+        "kind": "json"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/typecheck-0abcfc.stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/checks/typecheck-0abcfc.stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "kind": "log"
+      },
+      {
+        "path": ".proofgate/runs/run_01m6qv7wrqjnebt71sptjfha2f/summary.json",
+        "sha256": "49bf747e4d2489225ff93b4ce191911e0ee636430ed5f1055fd3e04685c8bae1",
+        "bytes": 1909,
+        "kind": "summary"
+      }
+    ],
+    "totalBytes": 6807,
+    "redacted": false
+  },
+  "summary": {
+    "total": 4,
+    "passed": 4,
+    "failed": 0,
+    "unknown": 0,
+    "skipped": 0,
+    "blocked": 0,
+    "error": 0,
+    "requiredTotal": 4,
+    "requiredPassed": 4,
+    "requiredFailed": 0
+  },
+  "notes": [],
+  "tool": {
+    "name": "proofgate",
+    "version": "1.0.0",
+    "schemaVersion": 1
+  }
+}

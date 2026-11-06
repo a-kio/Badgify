@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="129" height="28" viewBox="0 0 129 28" fill="none" role="img" aria-label="meta: Alpha">
   <title>meta: Alpha</title>
-  <clipPath id="clip_te67vi"><rect width="129" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_te67vi)">
+  <clipPath id="clip_b64lyd"><rect width="129" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_b64lyd)">
     <rect width="71" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="#ffffff" fill-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/>
+      <path fill="#ffffff" fill-rule="evenodd" d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z"/>
     </svg>
     <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">meta</text>
     <rect x="71" width="58" height="28" fill="#f59e0b"/>
