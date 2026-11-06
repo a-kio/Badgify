@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="162" height="28" viewBox="0 0 162 28" fill="none" role="img" aria-label="frontend: Angular">
   <title>frontend: Angular</title>
-  <clipPath id="clip_z1xpan"><rect width="162" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_z1xpan)">
+  <clipPath id="clip_20nk9z"><rect width="162" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_20nk9z)">
     <rect width="91" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="#ffffff" d="M16.712 17.711H7.288l-1.204 2.916L12 24l5.916-3.373-1.204-2.916ZM14.692 0l7.832 16.855.814-12.856L14.692 0ZM9.308 0 .662 3.999l.814 12.856L9.308 0Zm-.405 13.93h6.198L12 6.396 8.903 13.93Z"/>
+      <path fill="#ffffff" fill-rule="evenodd" d="M16.712 17.711H7.288l-1.204 2.916L12 24l5.916-3.373-1.204-2.916ZM14.692 0l7.832 16.855.814-12.856L14.692 0ZM9.308 0 .662 3.999l.814 12.856L9.308 0Zm-.405 13.93h6.198L12 6.396 8.903 13.93Z"/>
     </svg>
     <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">frontend</text>
     <rect x="91" width="71" height="28" fill="#ef4444"/>

@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="179" height="28" viewBox="0 0 179 28" fill="none" role="img" aria-label="studio: Studio Chizu">
   <title>studio: Studio Chizu</title>
-  <clipPath id="clip_6jzcns"><rect width="179" height="28" rx="6"/></clipPath>
-  <g clip-path="url(#clip_6jzcns)">
+  <clipPath id="clip_jcbobi"><rect width="179" height="28" rx="6"/></clipPath>
+  <g clip-path="url(#clip_jcbobi)">
     <rect width="78" height="28" fill="#181d26"/>
     <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-      <path fill="#ffffff" d="M14.5 2.5a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6zM6.5 10l5-2.5 3.2 2.8 4.8-2.2 1 1.8-5.5 2.6-2.5-2.2-2.5 4.5 4.2 2.8-.8 2-6.2-4.2L6 14.5 3.5 13l1-2 2 1z"/>
+      <path fill="#ffffff" fill-rule="evenodd" d="M19.81 5.27L15.13 8.11L12.61 7.79L9.66 8.47L7.28 9.77L4.51 12.14L5.92 14.20L2.50 21.36L5.38 22.76L7.68 17.90L14.02 22.48L16.00 19.60L11.14 16.10L14.20 12.83L21.43 7.57ZM14.81 1.20L13.98 1.49L13.76 1.63L13.22 2.21L12.90 2.96L12.86 3.83L12.97 4.26L13.22 4.76L13.87 5.41L14.59 5.74L15.53 5.77L16.03 5.63L16.43 5.41L17.08 4.76L17.40 4.01L17.44 3.14L17.18 2.39L16.97 2.06L16.54 1.63L15.82 1.27L15.49 1.20Z"/>
     </svg>
     <text x="33" y="18" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11" font-weight="500" letter-spacing="0.3px">studio</text>
     <rect x="78" width="101" height="28" fill="#0284c7"/>

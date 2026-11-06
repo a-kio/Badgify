@@ -91,7 +91,7 @@ export function generateBadge(options: BadgeOptions): string {
 
     const iconSvg = iconPath
       ? `  <svg x="${iconX}" y="${iconY}" width="${iconSize}" height="${iconSize}" viewBox="${iconViewBox}" aria-hidden="true">
-    <path fill="${resolvedIconColor}" d="${iconPath}"/>
+    <path fill="${resolvedIconColor}" fill-rule="evenodd" d="${iconPath}"/>
   </svg>\n`
       : '';
 
@@ -138,7 +138,7 @@ ${borderSvg}</svg>
 
     const iconSvg = iconPath
       ? `    <svg x="${iconX}" y="${iconY}" width="${iconSize}" height="${iconSize}" viewBox="${iconViewBox}" aria-hidden="true">
-      <path fill="${resolvedIconColor}" d="${iconPath}"/>
+      <path fill="${resolvedIconColor}" fill-rule="evenodd" d="${iconPath}"/>
     </svg>\n`
       : '';
 
@@ -171,7 +171,7 @@ ${iconSvg}    <text x="${labelX}" y="${textY}" fill="${resolvedLabelColor}" font
 
   const iconSvg = iconPath
     ? `  <svg x="${iconX}" y="${iconY}" width="${iconSize}" height="${iconSize}" viewBox="${iconViewBox}" aria-hidden="true">
-    <path fill="${color}" d="${iconPath}"/>
+    <path fill="${color}" fill-rule="evenodd" d="${iconPath}"/>
   </svg>\n`
     : '';
 

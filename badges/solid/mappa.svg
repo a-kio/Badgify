@@ -2,7 +2,7 @@
   <title>MAPPA</title>
   <rect width="91" height="28" rx="6" fill="#dc2626"/>
   <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-    <path fill="#ffffff" d="M1.5 18V6h3.2l3.8 6.5L12.3 6h3.2v12h-2.8v-7.2L9.3 16H8L4.6 10.8V18H1.5zm15.2 0V6h4.5c1.8 0 2.8 1.1 2.8 2.8v1.6c0 1.4-.7 2.3-1.8 2.6L24 18h-3.2l-1.6-4.6h-2.1V18h-2.4zm2.4-6.8h2.1c.5 0 .8-.3.8-.8v-1.2c0-.5-.3-.8-.8-.8h-2.1v2.8z"/>
+    <path fill="#ffffff" fill-rule="evenodd" d="M1.20 10.46L1.20 13.51L1.86 13.51L1.89 11.34L3.42 13.15L5.12 11.34L5.14 13.51L8.01 13.51L8.01 13.03L7.21 12.99L8.47 11.06L10.03 13.49L11.72 13.51L11.75 10.97L13.93 11.01L13.90 11.77L12.18 11.82L12.18 12.30L14.25 12.30L14.77 11.95L14.82 10.95L15.26 10.97L15.26 13.51L16.06 13.51L16.08 10.97L18.31 11.08L18.21 11.79L16.52 11.82L16.52 12.32L18.74 12.30L17.94 13.51L19.84 13.51L19.84 13.03L19.04 13.01L20.30 11.06L21.86 13.49L22.78 13.51L20.76 10.49L19.91 10.46L19.15 11.63L19.09 10.81L18.58 10.46L9.96 10.46L9.98 10.95L10.90 10.97L10.88 12.99L8.93 10.49L8.06 10.49L6.38 13.03L5.90 13.01L5.90 10.46L5.17 10.46L3.49 12.30L1.86 10.46Z"/>
   </svg>
   <text x="33" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.3px">MAPPA</text>
 </svg>

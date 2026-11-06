@@ -2,7 +2,7 @@
   <title>Gainax</title>
   <rect width="88" height="28" rx="6" fill="#dc2626"/>
   <svg x="10" y="6" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
-    <path fill="#ffffff" d="M2 6h4.5v3H4.2v6h2.3v3H2V6zm6 0h2.5l2.2 7.5L15 6h2.5l-3.5 12H11.5L8 6zm10.5 0H22v12h-2.5v-4.5h-1V18H16V6h2.5v4.5h1V6z"/>
+    <path fill="#ffffff" fill-rule="evenodd" d="M11.18 9.93L11.18 14.33L12.17 14.29L12.22 11.74L13.94 14.33L15.67 14.33L16.23 12.99L17.53 13.04L17.96 14.33L19.82 14.33L20.47 13.30L21.24 14.33L22.58 14.33L21.20 12.17L22.76 9.75L21.42 9.75L20.47 11.05L19.60 9.75L18.44 9.75L19.91 12.17L18.83 13.90L17.18 9.71L16.80 9.62L16.36 9.93L14.89 13.81L14.76 9.80L14.25 9.62L13.90 10.06L13.86 12.60L12.09 9.88L11.48 9.62ZM16.88 10.96L16.92 11.05L16.97 11.09L17.01 11.31L17.23 11.96L17.23 12.09L16.54 11.96L16.58 11.74ZM1.24 11.35L1.20 12.39L1.50 13.25L1.93 13.77L2.80 14.25L6.38 14.25L6.86 12.95L8.16 12.99L8.63 14.33L10.79 14.33L10.79 10.06L10.36 9.62L9.84 9.71L9.58 10.10L9.54 14.07L8.07 9.97L7.68 9.62L6.99 9.93L5.43 14.07L5.35 12.04L4.27 12.09L4.22 13.34L3.32 13.12L2.80 12.26L2.84 11.57L3.40 10.88L4.01 10.66L5.39 10.83L5.39 9.88L4.27 9.62L2.67 9.80L1.63 10.57ZM7.59 11.01L7.64 11.14L7.64 11.27L7.90 11.96L7.85 12.09L7.12 12.04L7.42 11.14Z"/>
   </svg>
   <text x="33" y="18" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', Meiryo, 'Microsoft YaHei', 'PingFang SC', 'Noto Sans CJK SC', 'Noto Sans CJK JP', sans-serif" font-size="11.5" font-weight="700" letter-spacing="0.3px">Gainax</text>
 </svg>
